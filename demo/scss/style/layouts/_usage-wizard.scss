@@ -1,0 +1,179 @@
+/* _usage-wizard.scss */
+
+.panel-usage-wizard {
+    background: white;
+    border: 1px solid $color-gray;
+    text-align: center;
+    padding: $offset-g2;
+    margin-bottom: $offset-g1;
+    @include border-radius($border-radius-panel);
+
+    .wizard-title {
+        display: block;
+        width: 100%;
+
+        h2,
+        h3 {
+            //cr: remove h2 & extend when html is updated
+            @extend .h3;
+            display: block;
+            margin: 0 0 $offset-g2 0;
+            text-align: left;
+        }
+
+        i.fa {
+            color: $color-primary;
+            font-size: 48px;
+            line-height: 45px;
+        }
+
+        &.with-img-box {
+            float: left;
+            text-align: left;
+
+            h2,
+            h3 {
+                float: left;
+                display: block;
+                width: 70%;
+                width: calc(100% - 130px); //width of img + a 10px gap
+                text-align: left;
+            }
+
+            .img-box {
+                float: right;
+                position: relative;
+                display: block;
+                width: 30%;
+                width: calc(120px - 0px);
+                min-height: $offset-g2;
+
+                img {
+                    position: absolute;
+                    top: -66px;
+                    right: -30px;
+                    width: 150px;
+                    height: auto;
+                }
+            }
+            // (END) .img-box
+        }
+        // (END) .with-img-box
+    }
+    // (END) .wizard-title
+
+    .img-box.new-row {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+
+        img {
+            position: absolute;
+            width: 135px;
+            top: -52px;
+            right: -45px;
+        }
+    }
+    // /.img-box
+
+    .cust-input-group-elec {
+        margin-bottom: $form-input-gap;
+
+        > div.floating-label-wrap {
+            margin: 0;
+            display: block;
+            float: left;
+            width: 48%;
+            width: calc(50% - #{($form-input-gap / 2)});
+
+            &:first-child {
+                margin-right: $form-input-gap;
+            }
+        }
+    }
+    // (END) .cust-input-group-elec
+
+    .row.row_consumption-label {
+        margin-top: $offset-2;
+
+        label {
+            margin-bottom: 0;
+            line-height: $offset-g2;
+        }
+
+        .link-estimation {
+            float: right;
+            text-align: right;
+            color: $base-font-color;
+            @include underline-custom-color($base-font-color);
+            line-height: $offset-g2;
+            padding-bottom: 0;
+            white-space: nowrap;
+            cursor: pointer;
+            @include set-opacity('semi');
+
+            &:hover {
+                @include set-opacity('full');
+                margin-bottom: -1px;
+            }
+        }
+        // /.link-estimation
+    }
+
+    .ftr-info {
+        border-top: 1px solid #cacdd1;
+        margin-top: $offset-g2;
+        padding-top: $offset-g2;
+
+        .btn.pull-right {
+            margin-left: $offset-1;
+            margin-bottom: $offset-1;
+        }
+
+        ul {
+            text-align: left;
+
+            li {
+                &.li-rates {
+                    > span {
+                        margin-right: $offset-g1;
+                        white-space: nowrap;
+
+                        > span {
+                            margin-right: $offset-g1;
+                            white-space: nowrap;
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                }
+
+                i.fa {
+                    color: $color-primary;
+                    @extend .text-after;
+                }
+            }
+        }
+    }
+    // (END) .ftr-info
+}
+
+img.logo-klantent-vertellen {
+    height: $offset-g4;
+    width: auto;
+}
+
+// modal close button (when usage wizard is in modal)
+.usage-wizard-modal {
+    .panel-usage-wizard {
+        max-width: 100%;
+    }
+
+    .btn.btn-close {
+        position: absolute;
+        right: $offset-g2;
+        top: $offset-g2;
+    }
+}

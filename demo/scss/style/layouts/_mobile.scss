@@ -1,0 +1,41 @@
+/* _mobile.scss */
+
+/* CUSTOM styles based on widths (catch unspecific sizes) */
+/* xl (cust) */
+@media all and (max-width: $bp-xlg) {
+
+}
+/* lg */
+@media all and (max-width: $bp-lg) {
+
+}
+/* md */
+@media all and (min-width: ($bp-md + 1)) {//961px
+    .visible-md-down {display: none !important;}
+}
+@media all and (max-width: $bp-md) {//960px
+    .visible-md-down {
+        // now visible
+    }
+    .hidden-md-down {display: none !important;}
+}
+/* sm */
+@media all and (min-width: ($bp-sm + 1)) {//769px
+    .visible-sm-down {display: none !important;}
+}
+@media all and (max-width: $bp-sm) {//768px
+    .visible-sm-down {
+        // now visible
+    }
+    .hidden-sm-down {display: none !important;} 
+}
+/* xs */
+@media all and (min-width: ($bp-xs + 1)) {//481px    
+    .visible-xs-down {display: none !important;}
+}
+@media all and (max-width: $bp-xs ) {//480px
+    .visible-xs-down {
+        // now visible
+    }
+    .hidden-xs-down {display: none !important;} 
+}

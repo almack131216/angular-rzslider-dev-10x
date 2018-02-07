@@ -1,0 +1,82 @@
+/* _typography-resp.scss */
+
+$font-size-h1:54px;
+$font-size-h2:42px;
+$font-size-h3:24px;
+$font-size-h4:20px;
+$font-size-h5:20px;
+
+
+.jumbotron h1,
+.jumbotron .h1 {
+    font-weight: 800;
+    color: black;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+    font-weight: bold;
+    color: black;
+}
+
+h5,
+.h5 {
+    font-weight: normal;
+    color: black;
+}
+
+h1,
+.h1,
+.jumbotron h1,
+.jumbotron .h1 {
+    font-size: $font-size-h1;
+    line-height: 60px;
+}
+
+h2,
+.h2 {
+    font-size: $font-size-h2;
+    line-height: 60px;
+}
+
+h3,
+.h3 {
+    font-size: $font-size-h3;
+    line-height: $offset-g2;
+    font-weight: 800;
+}
+
+h4,
+.h4 {
+    font-size: $font-size-h4;
+    line-height: $offset-g2;
+}
+
+h5,
+.h5 {
+    font-size: $font-size-h5;
+    line-height: $offset-g2;
+}
+
+/* S & XS */
+@media all and (max-width: $bp-sm) {
+    h1,
+    .h1,
+    .jumbotron h1,
+    .jumbotron .h1 {
+        font-size: 28px;
+        line-height: 30px;
+    }
+
+    h2,
+    .h2 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+}

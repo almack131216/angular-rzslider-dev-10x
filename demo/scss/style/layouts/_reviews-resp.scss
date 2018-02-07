@@ -1,0 +1,155 @@
+/* _reviews-resp.scss */
+
+.flexWrap.reviewWrap {
+    @extend .flexWrap-shared;
+    
+    .row-flex {
+        padding-bottom:$offset-g2;//because bubble has arrow at base
+    }
+}
+
+/* AMTODO - if we are able to exceed 3 items, we need to use grid */
+/* see 'Service Per Topic' for additional ref */
+// @media (min-width: ($bp-md - 1px)) {
+//     .flexWrap.reviewWrap {
+//         .row-flex {
+//             display: flex;
+//             flex-wrap: wrap;
+//             -ms-box-orient: horizontal;
+//             -webkit-flex-direction: row;
+//             flex-direction: row;
+//         }
+//     }
+// }
+
+/* >=1440 */
+@media (min-width: $bp-xlg) {
+    .flexWrap.reviewWrap {
+        .row-flex {
+            
+            &.has-3-cols,
+            &.has-2-cols,
+            &.has-1-cols {
+                .col-flex {
+                    // width: 450px !important;
+                    // min-width: 450px !important;                  
+                }
+            }
+
+        }
+        // /.row-flex
+    }
+    // /.flexWrap.reviewWrap
+}
+// />=1440
+
+/* >=1140 && <1440 */
+@media (min-width: $bp-lg) and (max-width: ($bp-xlg - 1px)) {
+    .flexWrap.reviewWrap {
+        .row-flex {
+
+            &.has-3-cols,
+            &.has-2-cols,
+            &.has-1-cols {
+                .col-flex {
+                    // width: 350px !important;
+                    // min-width: 350px !important;                  
+                }
+            }
+
+        }
+        // /.row-flex
+    }
+    // /.flexWrap.reviewWrap
+}
+// />=1140 && <1440
+
+/* >=960 && <1140 */
+@media (min-width: $bp-md) and (max-width: ($bp-lg - 1px)) {
+    .flexWrap.reviewWrap {
+        .row-flex {
+
+            &.has-3-cols,
+            &.has-2-cols,
+            &.has-1-cols {
+                .col-flex {
+                    // width: 290px !important;
+                    // min-width: 290px !important;                  
+                }
+            }
+
+        }
+        // /.row-flex
+    }
+    // /.flexWrap.reviewWrap
+}
+// />=1140 && <1440
+
+
+/* below md (959px - because it gets very squashed between 768 and 960) */
+@media (min-width: $bp-sm) and (max-width: ($bp-md - 1px)) {
+
+    .flexWrap.reviewWrap {        
+        
+        .row-flex {
+            
+            &.has-1-cols {
+                overflow-x:hidden;
+            }
+            &.justify-content-center:not(.has-1-cols) {
+                justify-content: initial;
+            }
+
+            &.has-4-cols,
+            &.has-3-cols,
+            &.has-2-cols,
+            &.has-1-cols {
+                .col-flex {
+                    width: 480px !important;
+                    min-width: 480px !important;                  
+                }
+            }
+
+        }
+        // /.row-flex
+    }
+    // /.flexWrap.reviewWrap
+}
+
+/* < 768 */
+@media (max-width: ($bp-sm - 1px)) {
+
+    .flexWrap.reviewWrap {
+        .row-flex {
+            &.has-1-cols {
+                overflow-x:hidden;
+            }
+            &.justify-content-center:not(.has-1-cols) {
+                justify-content: initial;
+            }
+
+            &.has-4-cols,
+            &.has-3-cols,
+            &.has-2-cols,
+            &.has-1-cols {
+                .col-flex {
+                    width: 370px !important;
+                    min-width: 370px !important;
+
+                    .review-bubble {
+                        &:before {        
+                            left: ($offset-g1 + 1px);
+                        }
+
+                        &:after {
+                            left: $offset-g1;
+                        }
+                    }
+                }
+                // /.col-flex
+            }
+        }
+        // /.row-flex
+    }
+    // /.flexWrap.reviewWrap
+}

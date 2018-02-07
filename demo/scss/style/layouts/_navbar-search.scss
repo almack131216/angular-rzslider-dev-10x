@@ -1,0 +1,167 @@
+/* _navbar-search.scss */
+
+.ed-navbar {
+    height: 100%;
+}
+
+.ed-navbar-search {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    opacity: 1;
+
+    @media (min-width: ($bp-md))  {
+        padding-left: $offset-g1;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 0 $offset-g1;
+        position: relative;
+
+        .btn {
+            position: relative;
+            left: 0;
+            border-width: 0px;
+        }
+
+        .search-suggestions {
+            opacity: 1;
+            width: 100%;
+            margin-left: 8px;
+            position: relative;
+
+            input.form-control {
+                border: 1px solid transparent !important;
+                @include box-shadow(false);
+
+                &:hover, &:focus {
+                    border: 1px solid transparent;
+                    @include box-shadow(false);
+                }
+
+                &.filled {
+                    border: 1px solid $color-hyperlink !important;
+                }
+
+                &.suggestions-open {
+                    border-bottom: 1px solid transparent !important;
+                }
+            }
+
+            .search-suggestions-options {
+                cursor: pointer;
+                display: block;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 95%;
+                z-index: 99;
+                background-color: #fff;
+                border: 1px solid $color-hyperlink;
+                border-top: 0px;
+                @include border-radius-position($border-radius-input,'bottom');
+
+                a {
+                    padding: $offset-g1;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: $base-font-color;
+                    @include underline-omit();
+
+                    &:hover {
+                        color: #fff;
+                        background-color: $color-hyperlink;
+
+                        i {
+                            color: #fff;
+                        }
+                    }
+
+                    span {
+                        margin-right: 15px;
+                    }
+
+                    i {
+                        color: $color-gray-dark;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: ($bp-md - 1px))  {
+            margin-left: 0;
+        }
+    }
+
+    a.btn-disc {
+        opacity: 1;
+        color: $color-gray-dark;
+    }
+
+    // transition for showing
+    &.ed-hide-remove {
+        transition: all 1.1s;
+
+        // animate icon first
+        form .btn {
+            transition: all 0.6s ease;
+        }
+
+        // animate form second (transition-delay)
+        form .search-suggestions, a.btn-disc {
+            transition: opacity 0.6s ease 0.5s;
+        }
+    }
+
+    // transition for hiding
+    &.ed-hide-add {
+        position: relative;
+        transition: opacity 0.3s ease 0.8s;
+
+        // animate form first
+        form .search-suggestions, a.btn-disc {
+            transition: opacity 0.6s ease;
+        }
+
+        // animate icon second (transition-delay)
+        form .btn {
+            transition: left 0.6s ease 0.5s;
+        }
+    }
+
+    &.ed-hide {
+        opacity: 0.01;
+
+        form .btn {
+            left: 90%;
+        }
+
+        form .search-suggestions, a.btn-disc {
+            opacity: 0.01;
+        }
+    }
+
+    &.ed-hide:not(.ng-animate) {
+        position: absolute;
+        z-index: -1;
+    }
+}
+
+.ed-navbar-menu {
+    display: inherit;
+
+    &.ed-hide {
+        display: none;
+    }
+
+    // transition for showing
+    &.ed-hide-remove {
+        // wait for ed-navbar-search animation to finish (transition-delay 0.8s)
+        transition: display 0.3s ease 0.8s;
+        display: none;
+    }
+}

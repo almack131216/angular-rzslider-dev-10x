@@ -1,0 +1,87 @@
+$loader-color: $color-primary !default;
+$loader-size: 24px !default;
+$loader-border-size: 8px !default;
+$loader-gap: 6px !default;
+$loader-animation-duration: 1s !default;
+
+@mixin loader10(
+    $color: $loader-color,
+    $size: $loader-size,
+    $duration: $loader-animation-duration,
+    $gap: $loader-gap,
+    $align: middle
+) {
+    $name: str-slice(inspect($color), 2);
+
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    position: relative;
+    animation: loader10-#{$name} $duration ease alternate infinite;
+    animation-delay: ($duration / 5) * 2;
+
+    &:after,
+    &:before {
+        content: '';
+        position: absolute;
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        animation: loader10-#{$name} $duration ease alternate infinite;
+    }
+
+    &:before {
+        left: -($size + $gap);
+        animation-delay: ($duration / 5) * 1;
+    }
+
+    &:after {
+        right: -($size + $gap);
+        animation-delay: ($duration / 5) * 3;
+    }
+
+    @if ($align == center) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @if ($align == middle) {
+        top: 50%;
+        margin: -($size + $size / 2) auto 0;
+    } @else {
+        top: -$size;
+    }
+
+    /*
+    when loader is used with ng-if, .ng-leave class is added and loader is not removed from DOM until animation is finished
+    force it to be hidden right away
+    */
+    &.ng-leave {
+        display: none;
+    }
+
+    @keyframes loader10-#{$name} {
+        0% {
+            box-shadow: 0 $size 0 (-$size) $color;
+        }
+
+        100% {
+            box-shadow: 0 $size 0 $color;
+        }
+    }
+}
+
+.loader10-wrap {
+    padding: $offset-g2;
+    height: 90px;
+}
+
+.loader10 {
+    @include loader10();
+}
+
+.bg-is-dark {
+    .loader10 {
+        @include loader10(#fff);
+    }
+}

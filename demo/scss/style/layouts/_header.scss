@@ -1,0 +1,21 @@
+/* _header.scss */
+
+header {
+    .strongboxWrap {
+        margin:$offset-g2;
+    }
+
+    .hdr-strongbox {
+        background-color:$color-primary;
+        border:1px solid $color-primary;
+        padding:$offset-g1;
+        max-width:50%;
+        
+        h1 {color:#fff;text-transform: uppercase;margin:0;font-size:60px;line-height:60px;text-align:left;}
+        
+        &.inverse {
+            background-color:#fff;
+            h1 {color:$color-primary}
+        }
+    }
+}

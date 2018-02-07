@@ -1,0 +1,47 @@
+/* _delivery-process.scss */
+
+/* base level flexWrap styling */
+.flexWrap.dpWrap {
+    @extend .flexWrap-shared;
+
+    .row-flex {
+        background:transparent url(img/tmp-line.jpg) repeat-x left 90px;   
+    }
+}
+
+.wrap-dp {
+    @extend .btn-block-generic;
+    text-decoration:none !important;
+
+    h3, h4 {//cr: remove h3 & extend when in sitecore
+        @extend .h4;
+        margin:$offset-g2 auto;
+        display:block;
+        text-align:center;
+        white-space:normal;
+        
+        /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
+        -ms-word-break: break-all;
+            word-break: break-all;
+
+        /* Non standard for webkit */
+        word-break: break-word;
+
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+    }
+
+    i.fa-check {visibility:hidden;}
+    i.inactive {visibility:visible;}
+
+    &.active {
+        i.fa-check {visibility:visible;}
+        i.inactive {visibility:hidden;}
+    }
+
+    span.text {      
+        color:$base-font-color;
+    } 
+}

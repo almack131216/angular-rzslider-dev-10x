@@ -1,0 +1,30 @@
+.pagination-wrap {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: $offset-g2 0;
+
+    .pagination {
+        display: inline-block;
+        margin: 0 auto;
+
+        .btn-disc {
+            &[disabled],
+            &:not(:hover) {
+                background: transparent;
+            }
+
+            i.fa.fa-angle-left {
+                margin-left: -3px;
+            }
+            i.fa.fa-angle-right {
+                margin-left: 3px;
+            }
+        }
+
+        span {
+            line-height: 40px;
+            padding: 0 $offset-g2;
+        }
+    }
+}

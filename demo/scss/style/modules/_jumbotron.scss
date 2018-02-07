@@ -1,0 +1,36 @@
+/* _jumbotron.scss */
+
+.jumbotron {
+    width:100%;
+    margin-bottom:0px;
+    padding-top:0;
+    padding-bottom:0;
+
+    &.isTesting {
+        // background-color: #f30;
+        // background-size: auto 100%;
+        // background-repeat: no-repeat;
+        // background: url(./img/symmetric-grid-bootstrap.jpg) no-repeat center left scroll;
+    }
+
+    &.pull-up-bottom {
+       margin-bottom:-70px;
+       padding-bottom:100px;
+
+       > .container {
+           padding-bottom:0px;
+       }
+   }
+
+    h1 {
+        i.fa {
+            font-size:inherit;
+            line-height:inherit;
+            margin-right:$offset-g1;
+        }
+    }
+
+    p {
+        @extend .pTag;
+    }
+}

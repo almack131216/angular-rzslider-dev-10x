@@ -1,0 +1,89 @@
+/* _price-ring.scss */
+
+.bg-price-ring {
+    display:table;
+    width:100%;
+    height:210px;
+    max-width:385px;    
+    text-align:center;
+    background:white url(./img/price-ring.png) no-repeat;
+    background-position:center top;
+    background-size: 100%;
+    margin:$offset-2 auto 0 auto;
+    padding:0;
+
+    .display-table-cell {
+        vertical-align:middle;
+        padding:$offset-g1;
+    }
+
+    .price-wrap {
+        display:inline-block;
+        margin:0 auto;
+
+        .price-before {
+            font-size:20px;
+            color:$color-gray;
+            display:block;
+            font-weight: bold;
+        }
+
+        .price-after {
+            font-size:$offset-g4;
+            line-height:$offset-g4;
+            font-weight:800;
+            color:$color-primary;
+
+            sup {
+                font-size:16px;
+                margin-left:5px;
+                vertical-align: top;
+                top:16px;
+                font-weight: bold;
+            }
+        }
+    }
+    // (END) .price-wrap
+}
+// /.bg-price-ring
+
+.bg-price-ring + .btn.btn-main {
+    margin:0 auto;
+}
+
+/* >=960 */
+// make 3 input fields go on 2 lines
+@media (min-width: $bp-md) {
+
+    .panel-usage-wizard {
+        .bg-price-ring {            
+            width:380px;
+        }
+    }
+
+}
+
+
+/* 768 - 959 */
+// make 3 input fields go on 2 lines
+@media (min-width: $bp-sm) and (max-width: ($bp-md - 1px)) {
+
+    .panel-usage-wizard {
+        .bg-price-ring {
+            background-position:center center;           
+        }
+    }
+
+}
+
+/* <= 767 */
+// make 3 input fields go on 2 lines
+@media (max-width: ($bp-sm - 1px)) {
+
+    .panel-usage-wizard {
+        .bg-price-ring {
+            background-position:center center;           
+        }
+    }
+
+}

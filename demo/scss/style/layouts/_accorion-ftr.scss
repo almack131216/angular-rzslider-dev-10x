@@ -1,0 +1,78 @@
+/* _accordion-ftr.scss */
+/*******************************
+* see '_accordion.scss' for shared accordion properties
+*******************************/
+
+div.accordion-parent.ftrAccordion {
+    background:transparent;
+    width:100%;
+    float:left;
+
+    > .panel {
+        background:transparent;
+    }
+
+    .accordion-heading,
+    .accordion-body {        
+        width:100%;
+        float:left;
+    }   
+
+    .accordion-heading {      
+        border-color:white;
+        color:white;
+
+        &:first-child {
+            @include border-radius-position(3px,'top');
+        }
+
+         &:nth-last-child(2) {
+            @include border-radius-position(3px,'bottom');
+        }
+        
+        &[aria-expanded="true"] {
+            border-color:white;
+            border-bottom:1px solid transparent !important;
+        }
+
+        &[aria-expanded="false"]:hover {
+            border-color:white;
+        }
+
+        i.fa.chevron {
+            &:before {
+                color:white;
+            }
+        }
+
+        &.collapsed {
+            i.fa.chevron:before {
+                color:white;
+            }                            
+        }
+    }
+        
+    .accordion-body {
+        border-color:white;
+        padding:0px;
+
+        ul {
+            margin-bottom:0px;
+
+            li {
+                a {
+                    display:block;
+                    padding:$offset-2 $offset-g1;
+                    border-top:1px solid $color-gray-light;
+                    border-top:1px solid $rgba-gray-light-20;
+                    line-height:20px;
+                }
+            }
+        } 
+
+        &:after {
+            height:0px;
+        }
+    }                  
+    
+}

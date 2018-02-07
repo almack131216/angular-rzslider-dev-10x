@@ -1,0 +1,95 @@
+/* _accordion-faq.scss */
+/*******************************
+* see '_accordion.scss' for shared accordion properties
+*******************************/
+
+div.accordion-parent.faqAccordion {        
+
+    .accordion-heading {
+        margin-top:0px;
+        padding:$offset-g2;
+        background:white;
+        border:1px solid white;
+        border-bottom:1px solid $color-gray-light;
+        // &:last-child {
+        //     border-bottom:1px solid white;
+        // }
+
+        .accordion-title {
+            padding-right:50px;
+        }
+
+        &[aria-expanded="true"] {
+            border-color:$color-border;
+            border-bottom:1px solid white !important;
+        }
+
+        &[aria-expanded="false"]:hover {
+            border-color:$color-border;
+        }
+
+    }
+
+    .accordion-body {
+        background:white;
+        padding:0 80px;
+    }
+
+}
+// /div.accordion-parent.faqAccordion
+
+/* > xs */
+@media (min-width: ($bp-sm + 1px)) {
+
+    div.accordion-parent.faqAccordion {
+        .accordion-heading {
+            position:relative; 
+
+            i.fa.fa-comments {                
+                position:absolute;
+                top:$offset-g2;
+                left:$offset-g2;
+            }
+
+            .accordion-title {
+                padding-left:50px;                
+            }
+        }
+    }
+    // /div.accordion-parent.faqAccordion
+}
+
+/* xs and below */
+@media (max-width: $bp-sm) {
+
+    div.accordion-parent.faqAccordion {
+        .accordion-heading {
+            i.fa.fa-comments {
+                display:none;
+            }
+        }
+            
+        .accordion-body {
+            padding:0 80px 0 $offset-g2;
+        }
+    }
+    // /div.accordion-parent.faqAccordion
+}
+
+/* 480 and below */
+@media (max-width: $bp-xs) {
+
+    div.accordion-parent.faqAccordion {
+        .accordion-heading {
+            &[aria-expanded="false"]:hover {
+                background-color:$color-faq-hover;
+                border-color:$color-faq-hover;
+            }
+        }
+            
+        .accordion-body {
+            padding-right:60px;
+        }
+    }
+    // /div.accordion-parent.faqAccordion
+}

@@ -1,0 +1,56 @@
+/* _button-block.scss */
+
+$fa-circle-height: 120px;
+
+.btn-block-generic {
+    @include underline-omit();
+    border: 1px solid $color-border;
+    display: block;
+    width: 100%;
+    background: white;
+    text-align: center;
+    padding: $offset-g2;
+
+    .fa-stack {
+        font-size: #{$fa-circle-height/2};
+
+        i.fa.fa-stack-2x.fa-circle {
+            font-size: $fa-circle-height;
+            line-height: $fa-circle-height;
+            color: $color-primary;
+        }
+        i.fa.fa-stack-1x {
+            color: white;
+            font-size: #{$fa-circle-height/2.5};
+            line-height: $fa-circle-height;
+        }
+    }
+
+    span.text {
+        display: block;
+    }
+
+    &:hover,
+    &:active {
+        border-bottom-width: 1px;
+    }
+
+    &:hover:not(.ignore-hover-style),
+    &.active,
+    &:active:not(.ignore-active-style) {
+        background-color: $color-primary;
+        border-color: $color-primary;
+        color: white;
+
+        h3,
+        h4,
+        span.text,
+        i.fa:not(.fa-stack-1x) {
+            color: white !important;
+        }
+
+        i.fa.fa-stack-1x {
+            color: $color-primary !important;
+        }
+    }
+}

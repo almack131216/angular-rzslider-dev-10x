@@ -1,0 +1,48 @@
+/* buttons */
+$btn-sm-disc-size: 42px;
+$btn-sm-lineheight: 1.88;
+$btn-sm-font-size: 16px;
+$btn-sm-padding: $offset-0-5 $offset-g1;
+
+$btn-md-disc-size: 62px;
+$btn-md-lineheight: 1.5;
+$btn-md-font-size: 20px;
+$btn-md-padding: $offset-g1 $offset-g2;
+
+$btn-lg-disc-size: 82px;
+$btn-lg-lineheight: 1.25;
+$btn-lg-font-size: 24px;
+$btn-lg-padding: 25px 50px;
+
+/* default */
+$btn-color-default: #fff;
+$btn-color-default-bg: #3b9cff;
+$btn-color-default-border: #3b9cff;
+$btn-color-default-raised: #2f7ccc;
+
+$btn-color-primary: #fff;
+$btn-color-primary-bg: $color-primary;
+$btn-color-primary-border: $color-primary;
+$btn-color-primary-raised: #4c911c;
+
+$btn-color-basic: $base-font-color;
+$btn-color-basic-bg: #fff;
+$btn-color-basic-border: $color-gray;
+$btn-color-basic-raised: $color-gray;
+
+$btn-color-tab: #000;
+$btn-color-tab-bg: #fff;
+$btn-color-tab-border: #fff;
+$btn-color-tab-border-active: $color-gray;
+
+$btn-color-disabled: white;
+$btn-color-disabled-bg: $color-gray;
+$btn-color-disabled-border: $color-gray;
+$btn-color-disabled-raised: #96989b;
+
+$btn-raised-default: 3px;
+$btn-raised-default-top: 0px;
+$btn-raised-hover: 2px;
+$btn-raised-hover-top: 1px;
+$btn-raised-active: 0px;
+$btn-raised-active-top: 3px;

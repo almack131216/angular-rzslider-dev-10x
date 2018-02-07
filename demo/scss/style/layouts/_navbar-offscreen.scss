@@ -1,0 +1,201 @@
+/* _navbar-offscreen.scss */
+
+$menu-width: 415px;
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+// wrapper for the menu and backdrop
+.ed-menu {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+
+    // green backdrop
+    .ed-menu-backdrop {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: $color-primary;
+        background: $rgba-primary-modal-bg;
+    }
+
+    // white menu element
+    .ed-menu-inside {
+        position: absolute;
+        width: $menu-width;
+        max-width: 100%;
+        height: 100%;
+        background-color: #fff;
+        z-index: 100;
+        overflow: hidden;
+    }
+
+    // transition for showing the whole menu
+    &.ed-hide-remove {
+        z-index: 99;
+        transition: all 0.5s;
+
+        .ed-menu-backdrop {
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+
+        .ed-menu-inside {
+            left: 0;
+            transition: left 0.5s;
+        }
+    }
+
+    // transition for hiding the whole menu
+    &.ed-hide-add {
+        transition: all 0.75s;
+
+        .ed-menu-backdrop {
+            transition: opacity 0.75s 0.25s;
+        }
+
+        .ed-menu-inside {
+            left: 0;
+            transition: left 0.75s;
+        }
+    }
+
+    &.ed-hide {
+        .ed-menu-backdrop {
+            opacity: 0;
+        }
+
+        .ed-menu-inside {
+            left: -100%;
+        }
+    }
+
+    &.ed-hide:not(.ng-animate) {
+        z-index: -1;
+    }
+
+    // top title bar, back and close buttons
+    .ed-menu-title-bar {
+        display: flex;
+        padding: $offset-g1;
+        text-align: center;
+        line-height: $btn-sm-disc-size;
+        font-size: 20px;
+
+        .title {
+            flex-grow: 1;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+
+            &.ed-title-hide {
+                opacity: 0;
+            }
+
+            &.ed-title-hide-add,
+            &.ed-title-hide-remove {
+                transition: opacity 0.25s;
+            }
+        }
+
+        .ed-menu-btn-back {
+            opacity: 1;
+
+            &.ed-hide-add,
+            &.ed-hide-remove {
+                transition: opacity 0.5s;
+            }
+
+            &.ed-hide {
+                opacity: 0;
+            }
+        }
+    }
+
+    // submenu panel
+    .ed-menu-panel {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 70px);
+        max-height: calc(100% - 70px);
+        padding-right: 0;
+        left: 0;
+        top: 70px;
+
+        a {
+            @include underline-omit();
+            display: block;
+            border-bottom: 1px solid $color-gray-light;
+            color: $base-font-color;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: $offset-g1;
+
+            &:hover,
+            &:active {
+                border-bottom: 1px solid $color-gray-light;
+            }
+
+            &:first-child {
+                border-top: 1px solid $color-gray-light;
+            }
+
+            &.has-subitems {
+                font-weight: bold;
+
+                i {
+                    width: 40px;
+                    text-align: center;
+                }
+            }
+        }
+
+        // Animations
+        // -------------------------------------------------------------
+
+        // all hidden elements that are not being hidden by animation are on the right side of wrapper (left: 100%)
+        &.ed-hide:not(.ed-hide-add-active) {
+            left: 100%;
+        }
+
+        // hidden parent elements (should slide from the left) are on the left side of wrapper (left: -100%)
+        &.ed-hide.ed-parent {
+            left: -100%;
+        }
+
+        // show panel by moving it to "left: 0"
+        // when opening submenu, it comes from the right because of "left: 100%" (see .ed-hide)
+        // when closing submenu, parent submenu comes from the left because of "left: -100%" (see .ed-hide.ed-parent)
+        &.ed-hide-remove {
+            left: 0;
+            transition: left 0.5s;
+            overflow-y: hidden;
+        }
+
+        // hide parent panel when opening submenu, by moving it to the left (left: -100%) of the wrapper
+        // must be put to ed-hide-add-active, doesn't work on ed-hide-add ???
+        &.ed-hide-add-active {
+            left: -100%;
+        }
+        &.ed-hide-add {
+            transition: left 0.5s;
+            overflow-y: hidden;
+        }
+
+        // hide child panel when closing submenu, by moving it to the right (left: 100%) of the wrapper
+        &.ed-hide-add-active.ed-child {
+            left: 100%;
+        }
+    }
+}
+
+@media all and (min-width: ($bp-md)) {
+    .ed-menu {
+        display: none;
+    }
+}

@@ -1,0 +1,166 @@
+/* _sign-up-resp.scss */
+
+/* >= 961 */
+@media (min-width: $bp-lg + 1px) {
+    .panel.panel-signup {    
+
+        .panel-body {
+            .input-list {
+                > div.cust-input-group {
+                    > div {
+                        display:block;                            
+                        float:left;
+
+                        &:first-child {
+                            width:calc(25% - 5px);
+                            margin-right:5px;
+                        }
+                        &:nth-child(2) {
+                            width:calc(25% - 5px);
+                            margin-left:5px;
+                            margin-right:5px;
+                        }
+                        &:nth-child(3) {
+                            width:calc(50% - 10px);
+                            margin-left:5px;
+                        }
+                    }
+                }
+                // /> div.cust-input-group
+
+                > div.wrap-datepicker > div {
+                    width:50%;
+                }             
+            }
+        }
+        // /.panel-body
+    }
+}
+
+@media (min-width: ($bp-sm + 1px)) and (max-width: $bp-lg) {
+    .panel.panel-signup {    
+
+        .panel-body {
+            .input-list {
+                > div.cust-input-group {
+                    > div {
+                        display:block;                            
+                        float:left;
+
+                        &:first-child {
+                            width:calc(50% - 5px);
+                            margin-right:5px;
+                        }
+                        &:nth-child(2) {
+                            width:calc(50% - 5px);
+                            margin-left:5px;
+                        }
+                        &:nth-child(3) {
+                            margin-top:$offset-g1;
+                            width:100%;
+                        }
+                    }
+                }
+                // /> div.cust-input-group
+
+                > div.wrap-datepicker > div {
+                    width:50%;                    
+                }              
+            }
+        }
+        // /.panel-body
+    }
+    // /.panel.panel-signup
+}
+
+@media (max-width: $bp-md) {
+    .panel.panel-signup {
+        .panel-body {
+            .input-list {
+                > div.wrap-datepicker > div {
+                    width:100%;                    
+                }              
+            }
+        }
+        // /.panel-body
+    }
+    // /.panel.panel-signup
+}
+
+@media (max-width: $bp-sm) {
+    .panel.panel-signup {
+        .panel-body {
+            .input-list {
+                > div.cust-input-group {
+                    > div {
+                        display:block;                            
+                        float:left;
+                        margin-top:$offset-g1;
+                        width:100%;
+
+                        &:first-child {
+                            margin-top:0;
+                        }
+                    }
+                }
+                // /> div.cust-input-group
+
+                > div.wrap-datepicker > div {
+                    width:100%;
+                }               
+            }
+        }
+        // /.panel-body
+    }
+    // /.panel.panel-signup
+}
+
+/* >= 961 */
+@media (min-width: $bp-md + 1px) {
+    .wrap-signup-form {
+        float:left;
+        width:calc(100% - 480px);
+    }
+
+    .wrap-signup-product-summary {
+        float:right;
+        width:450px;
+    }
+}
+
+/* 960 */
+@media (max-width: $bp-md) {
+    .wrap-signup-form {
+        float:left;
+        width:calc(50% - 15px);
+    }
+
+    .wrap-signup-product-summary {
+        float:right;
+        width:calc(50% - 15px);
+    }
+}
+
+/* <= 768 */
+@media (max-width: ($bp-sm - 1px)) {
+    .wrap-signup-form {
+        float:left;
+        width:100%;
+    }
+
+    .wrap-signup-product-summary {
+        float:left;
+        width:100%;
+    }
+}
+
+/* xs */
+@media (max-width: $bp-xs) {
+    .ed-step-buttons {
+        text-align:center;
+        .btn.btn-continue {
+            width:100%;
+            margin:0 0 $offset-g2 0;
+        }
+    }
+}

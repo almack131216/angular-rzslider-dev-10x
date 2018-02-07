@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="rzSliderDemo">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AngularJS Touch Slider</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="./lib/bootstrap.min.css">
+  <link rel="stylesheet" href="../dist/rzslider.css"/>
+  <link rel="stylesheet" href="demo.css"/>
+  <link rel="stylesheet" href="css/index.css"/>
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+</head>
+
+<body ng-controller="MainCtrl">
+
+<div class="wrapper">
+
+  <article>
+    <h2>Debug slider</h2>
+    <div class="debug-options">
+      <strong class="margin-right-1">settings:</strong>
+      value: <input type="number" ng-model="amcustDebugSlider.value">
+      advice: <input type="number" ng-model="amcustDebugSlider.options.showAdvice">
+      min: <input type="number" ng-model="amcustDebugSlider.options.floor" min="1">
+      max: <input type="number" ng-model="amcustDebugSlider.options.ceil">
+      <button ng-click="parentBtnMinus()" ng-disabled="amcustDebugSlider.value == amcustDebugSlider.options.floor">parent -</button>
+      <button ng-click="parentBtnPlus()" ng-disabled="amcustDebugSlider.value == amcustDebugSlider.options.ceil">parent +</button>
+    </div>
+    
+    <div class="amcust-slider">
+      <div class="heading-output">
+        <span class="panels-count"><span ng-bind="amcustDebugSlider.value"></span> panelen</span>
+        <span class="panels-output"><span class="LblOutput">Opbrengst</span><strong><span ng-bind="amcustDebugSlider.value * amcustDebugSlider.options.powerOutput | number : 3"></span> kWh/jr</strong></span>
+      </div>
+      <div class="slider-wrap">
+        <rzslider
+          rz-slider-model="amcustDebugSlider.value"
+          rz-slider-options="amcustDebugSlider.options"
+          rz-slider-tpl-url="amcustTemplate.html"
+        ></rzslider>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+</body>
+<script src="../node_modules/angular/angular.js"></script>
+<script src="./lib/ui-bootstrap-tpls.js"></script>
+<script src="../dist/rzslider.js"></script>
+<script src="demo.js"></script>
+</html>

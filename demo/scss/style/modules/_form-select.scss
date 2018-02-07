@@ -1,0 +1,100 @@
+/* _form-select.scss */
+
+form {
+    .ed-select-hidden {
+        display: none !important;
+
+        &.ng-empty + .ed-select-styled {
+            color: $color-gray-dark;
+        }
+    }
+
+    .has-detail-left {
+        .ed-select {
+            .ed-select-styled {
+                padding-left: 45px;
+            }
+        }
+    }
+
+    .has-detail-left-2x {
+        .ed-select {
+            .ed-select-styled {
+                padding-left: 65px;
+            }
+        }
+    }
+
+    .ed-select {
+        @extend .form-control-base-styles;
+        border: 0px;
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        // hack - ed-select is somehow 9px taller than it should be
+        margin-bottom: -9px;
+
+        .ed-select-styled {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: $offset-g1;
+            display: flex;
+            justify-content: space-between;
+            line-height: $offset-g2;
+            border: 1px solid $color-border;
+            @include border-radius($border-radius-input);
+            background-color: white;
+
+            .fa {
+                color: black;
+                line-height: $offset-g2 !important;
+                @include set-opacity('semi');
+            }
+
+            &.active {
+                border: 1px solid $color-hyperlink;
+                border-bottom: 0px;
+
+                .fa {
+                    @include set-opacity('full');
+                }
+            }
+
+            &:not(.active):hover {
+                border: 1px solid $color-gray-dark;
+            }
+        }
+        // /.ed-select-styled
+
+        .ed-select-options {
+            position: absolute;
+            top: 95%;
+            right: 0;
+            left: 0;
+            z-index: 99;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            background-color: #fff;
+            border: 1px solid $color-hyperlink;
+            border-top: 0px;
+            @include border-radius-position($border-radius-input,'bottom');
+
+            li {
+                margin: 0;
+                padding: $offset-g1;
+
+                &:hover {
+                    color: #fff;
+                    background-color: $color-hyperlink;
+                }
+            }
+        }
+        // /.ed-select-options
+    }
+}
+// /form

@@ -1,0 +1,50 @@
+/* _typography-hyperlink.scss */
+
+@mixin underline-omit() {
+    border-bottom-width: 0;
+
+    &:hover,
+    &:active {
+        margin-bottom: 0;
+        border-bottom-width: 0;
+    }
+}
+
+@mixin underline-only-on-hover($color: $color-hyperlink) {
+    border-bottom-color: transparent;
+    color: $color;
+
+    &:hover,
+    &:active {
+        border-bottom-color: $color;
+    }
+}
+
+@mixin underline-custom-color($color) {
+    border-bottom-color: $color;
+}
+
+a,
+.link {
+    border-bottom: 1px solid $color-hyperlink;
+    cursor: pointer;
+    text-decoration: none !important;
+
+    &:hover,
+    &:active {
+        border-bottom-width: 2px;
+        color: $color-hyperlink;
+        margin-bottom: -2px;
+    }
+}
+
+.link {
+    color: $color-hyperlink;
+}
+
+// remove border in Sitecore experience editor's toolbars
+.scChromeToolbar {
+    a {
+        @include underline-omit();
+    }
+}

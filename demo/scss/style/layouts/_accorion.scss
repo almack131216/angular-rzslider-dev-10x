@@ -1,0 +1,147 @@
+/* _accordion.scss */
+/*******************************
+* Does not work properly if "in" is added after "collapse".
+* Get free snippets on bootpen.com
+*******************************/
+
+.chevron-plus {
+    content: "\f056";
+}
+
+.chevron-minus {
+    content: "\f055";
+}
+
+div.accordion-parent {
+    width: 100%;
+
+    .panel {
+        background-color:transparent;
+    }
+
+    .accordion-heading,
+    .accordion-body {
+        width:100%;
+        float:left;
+    }
+
+    .accordion-heading {
+        margin-top:-1px;
+        display:block;
+        background:transparent;
+        color:black;
+        line-height:$offset-g2;
+        font-weight:bold;
+        padding:$offset-g1;
+        cursor:pointer;
+        border:1px solid $color-border;
+        // border-bottom:none;
+
+        // &:last-child {
+        //     border-bottom:1px solid $color-border;
+        // }
+
+        .accordion-title {
+            display: block;
+            padding-right:$offset-g2;
+        }
+
+        &[aria-expanded="true"] {
+            border-color:$color-border;
+            border-bottom:1px solid white !important;
+        }
+
+        &[aria-expanded="false"]:hover {
+            border-color:$color-border;
+        }
+
+        > i.fa {
+            line-height:30px;
+            width:20px;
+
+            &.chevron {
+                float:right;
+                margin-left:$offset-g1;
+                &:before {
+                    @extend.chevron-plus;
+                }
+            }
+        }
+
+        &.collapsed {
+            i.fa.chevron:before {
+                @extend.chevron-minus;
+            }
+        }
+    }
+    /* [END] .accordion-heading */
+
+    .accordion-body {
+        padding:0 $offset-g1;
+        border:1px solid $color-border;
+        border-top:0px;
+        // border-bottom:0px;
+
+        > p:last-child {
+            margin-bottom:0px;
+        }
+
+        &:after {
+            display:block;
+            content:"";
+            height:$offset-g2;
+        }
+    }
+    /* [END] .accordion-body */
+}
+
+
+div.accordion-parent-raw {
+
+    .accordion-heading-raw {
+
+        &[aria-expanded="true"] {
+        }
+
+        &[aria-expanded="false"]:hover {
+        }
+
+        > .td-title {
+            > .i-title {
+                > i.fa {
+                    
+                }
+            }
+        }
+
+        > .td-i {
+            > i.fa.spacer {
+                color:transparent;
+                @include set-opacity('zero');
+            }
+
+            > i.fa.spacer:before,
+            > i.fa.chevron:before {
+                @extend .chevron-plus;
+            }
+        }        
+
+        &.collapsed {
+            > .td-i {
+                > i.fa.chevron:before {
+                    @extend .chevron-minus;
+                }
+            }
+        }
+    }
+    /* [END] .accordion-heading */
+
+    .accordion-body-raw {
+        &:after {
+            display:block;
+            content:"";
+            height:0px;
+        }
+    }
+    /* [END] .accordion-body */
+}

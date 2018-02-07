@@ -1,0 +1,129 @@
+/* _navbar.scss */
+
+.btn-sm.menu,
+.navbar-brand.brand-resp {
+    display: none;
+}
+
+.navbar {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    @include border-radius(0px);
+    border: 0px;
+    z-index: 0;
+
+    ul.navbar-nav {
+        li {
+            &.li-login {
+                margin-right: 0px;
+                margin-left: $offset-g1;
+            }
+        }
+    }
+
+    .navbar-header {
+        margin-right: $offset-g2;
+
+        .navbar-brand {
+            @include underline-omit();
+            margin-left: 0px;
+            padding: $offset-g2 $offset-g1 0 $offset-g1;
+
+            img {
+                height: 19px;
+                width: auto;
+                margin: 0 auto;
+            }
+        }
+    }
+    // (END) .navbar-header
+
+    > .container {
+        height: 75px;
+        background: white;
+    }
+
+    ul.nav {
+        margin: 8px 0 0 0;
+
+        li {
+            margin: 0;
+            padding-top: 9px;
+            display: inline-block;
+            color: $base-font-color;
+
+            > a,
+            &.dropdown > a {
+                background-color: transparent;
+
+                &:not(.account) {
+                    border-color: transparent;
+                }
+
+                &:hover {
+                    color: $color-primary;
+                    border-color: $color-primary;
+                }
+
+                &:active {
+                    color: white;
+                    background-color: $color-primary;
+                    border-color: $color-primary;
+                }
+            }
+
+            &.dropdown {
+                > a {
+                    color: black;
+                    font-weight: bold;
+                }
+
+                &.open {
+                    > a {
+                        color: white;
+                        background-color: $color-primary;
+                        border-color: $color-primary;
+                    }
+
+                    > ul.dropdown-menu {
+                        margin-top: 16px;
+                        border-top: 0;
+                        @include border-radius(0px);
+                        box-shadow: 0 2px 7px $rgba-black-20;
+                        background-clip: padding-box;
+                        padding: $offset-g1 $offset-g1 $offset-2;
+                        z-index: -1;
+
+                        > li {
+                            display: block;
+                            padding: 0;
+
+                            a {
+                                color: $base-font-color;
+                                padding: 0;
+                                background: transparent;
+                                line-height: $offset-g2;
+                                @include underline-omit();
+
+                                &:hover {
+                                    color: inherit;
+
+                                    span {
+                                        padding-bottom: 1px;
+                                        border-bottom: 2px solid $color-primary;
+                                    }
+                                }
+                            }
+                            // a
+                        }
+                        // li
+                    }
+                    // ul.dropdown-menu
+                }
+                // &.open
+            }
+            // dropdown
+        }
+    }
+    // ul.nav
+}

@@ -1,0 +1,93 @@
+/* _breadcrumbs.scss */
+
+// temporary hiding of breadcrumbs
+.container {
+    &.breadcrumbWrap {
+        display: none !important;
+    }
+}
+
+ul.breadcrumb {
+    text-align: left;
+    margin-bottom: 0px;
+    color: inherit;
+
+    li {
+        &:before {
+            @extend .fa-dummy;
+            content: '\f105';
+            font-weight: normal;
+            color: inherit;
+        }
+
+        &:first-child:before {
+            display: none;
+        }
+
+        h1 {
+            display: inline;
+            font-size: $base-font-size;
+            line-height: $base-font-line-height;
+            color: inherit;
+        }
+
+        a {
+            color: inherit;
+            @include underline-only-on-hover(inherit);
+
+            &:hover {
+                color: inherit;
+            }
+        }
+    }
+}
+
+div.breadcrumbWrap.color-black {
+    ul.breadcrumb {
+        color: black;
+
+        li {
+            &:before {
+                color: black;
+            }
+
+            h1 {
+                color: black;
+            }
+
+            a {
+                color: black;
+                @include underline-only-on-hover(black);
+
+                &:hover {
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+div.breadcrumbWrap.color-white {
+    ul.breadcrumb {
+        color: white;
+
+        li {
+            &:before {
+                color: white;
+            }
+
+            h1 {
+                color: white;
+            }
+
+            a {
+                color: white;
+                @include underline-only-on-hover(white);
+
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+    }
+}

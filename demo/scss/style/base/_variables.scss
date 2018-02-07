@@ -1,0 +1,103 @@
+/* _variables.scss */
+
+/* Base colors */
+$color-primary:#5fb624;//rgb(95,182,36)
+$color-light:#F0F0F0;
+$color-gray:#cacdd1;
+$color-gray-dark:#a5a9b0;
+$color-gray-light:#f4f4f4;
+
+/* Font colors */
+$color-prom-orange:#F89800;
+$color-prom-yellow:#FFCC00;
+$color-prom-red:#C41A1A;
+
+$color-validate-good:#5fb624;
+$color-validate-error:#C41A1A;
+
+$base-font-size:16px;
+$base-font-family:"Open Sans",Arial,sans-serif;
+$base-font-color:#494e56;
+$base-font-line-height:30px;
+
+$color-hyperlink:#3B9CFF;
+$color-hyperlink-hover:#2F7CCC;
+$color-hyperlink-active:#E91315;
+$disabled-color:rgb(200, 200, 200);
+
+$color-border:$color-gray;
+$color-faq-hover:$color-gray-light;
+$color-danger:#f00;
+
+/* rgba colors */
+$rgba-white-20:rgba(255,255,255,0.2);
+$rgba-white-nav-down:rgba(255,255,255,0.9);
+$rgba-primary-modal-bg:rgba(95, 182, 36, 0.7);
+$rgba-black-20:rgba(0,0,0,0.2);
+$rgba-black-40:rgba(0,0,0,0.4);
+$rgba-black-60:rgba(0,0,0,0.6);
+$rgba-gray-light-20:rgba(244,244,244,0.2);
+
+/* responsive breakpoints */
+$bp-xlg:1440px;
+$bp-lg:1140px;
+$bp-md:960px;
+$bp-sm:768px;
+$bp-xs:480px;
+$bp-xxs:320px;
+$bp-cust-s5:360px;
+
+/* offset: margins & paddings */
+$offset-0:0px;
+$offset-0-5:5px;
+$offset-1:10px;
+$offset-2:20px;
+$offset-3:30px;
+$offset-4:40px;
+$offset-g1:15px;
+$offset-g2:30px;
+$offset-g3:45px;
+$offset-g4:60px;
+
+/* forms */
+$form-input-gap:10px;
+
+/* border-radius */
+$border-radius-panel:3px;
+$border-radius-panel-btn:5px;
+$border-radius-input:3px;
+$border-radius-button:25px;
+
+/* social media buttons */
+$color-share:#a5a9b0;
+$color-share-raised:#84878c;
+$color-twitter:#3b9cff;
+$color-twitter-raised:#2f7ccc;
+$color-facebook:#2f7ccc;
+$color-facebook-raised:#2563a3;
+$color-youtube:#c41a1a;
+$color-youtube-raised:#9c1414;
+$color-instagram:#f89800;
+$color-instagram-raised:#c67900;
+
+/* table */
+$table-color-border-thead:$color-gray-dark;
+$table-color-border:$color-gray-light;
+
+/* modal */
+$modal-width-default:470px;
+$modal-width-xlg:720px;
+$modal-width-lg:720px;// when media <1140
+$modal-width-md:640px;// when media <960
+$modal-width-sm:580px;// when media <768
+$modal-width-xs:435px;// when media <600
+$modal-width-xxs:90%;// when media <480
+
+$modal-header-height:90px;
+
+// $color-debug: red;
+// $color-debug2: orange;
+// $color-debug3: yellow;
+$color-debug: transparent;
+$color-debug2: transparent;
+$color-debug3: transparent;

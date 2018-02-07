@@ -1,0 +1,245 @@
+/* _sign-up.scss */
+
+.border-me {
+    @include border-me(true, $border-radius-panel, false);
+}
+
+.panel.panel-signup {
+    border: 1px solid #cacdd1;
+    margin-bottom: $offset-g1;
+    @include border-radius($border-radius-panel);
+
+    > .panel-heading {
+        display: flex;
+        align-items: flex-start;
+        margin: 0 $offset-g1;
+        padding: $offset-g1 0;
+        border-bottom: 1px solid #cacdd1;
+
+        ed-step-heading {
+            width: 100%;
+        }
+
+        h4 {
+            width: 100%;
+            padding-right: $offset-g1;
+            margin: 0;
+
+            &.complete {
+                color: $color-primary;
+            }
+
+            i.fa,
+            span.stepnum {
+                background:white;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                color: $color-primary;
+                margin-top: 5px;
+                margin-right: $offset-1;
+                float: left;
+            }
+
+            i.fa {
+                font-size: 30px;
+            }
+
+            span.stepnum {
+                border: 1px solid $color-primary;
+                text-align: center;
+                @include border-radius(15px);
+                font-size: 16px;
+            }
+            // /span.stepnum
+
+            span.hdr-aligned {
+                display: inline-block;
+                margin-top: 5px;
+            }
+        }
+    }
+    // /.panel-heading
+
+    > .panel-body {
+        margin: 0;
+        padding: $offset-2 $offset-g1;
+
+        .radio-list {
+            // margin-bottom:$offset-g2;
+        }
+
+        .input-list {
+            > div {
+                margin: $offset-g1 0 0 0;
+                display: block;
+                width: 100%;
+                float: left;
+            }
+        }
+    }
+    // /.panel-body
+
+    .panel-shade {
+        float: left;
+        width: 100%;
+        display: block;
+        padding: $offset-g1;
+        background: $color-gray-light;
+
+        h4 {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        .no-action {
+            padding: 0;
+            border: 0px;
+            outline: none;
+            background: transparent;
+            cursor: default;
+        }
+
+        .text-with-btn-right {
+            margin-bottom:$offset-2;
+
+            .title {
+                display:block;
+                font-weight:bold;
+                color:black;
+            }
+            .btn {
+                float:right;
+            }
+        }
+
+    }
+
+    &.inactive {
+        border-color: white;
+        margin-bottom: 0;
+
+        .panel-heading {
+            h4 {
+                color: #cacdd1;
+
+                i.fa,
+                span.stepnum {
+                    color: #cacdd1;
+                    border-color: #cacdd1;
+                }
+            }
+        }
+        // /.panel-heading
+    }
+
+}
+
+.ed-step-buttons {
+    display: block;
+    width: 100%;
+    float: left;
+    padding-top: $offset-g2;
+    padding-bottom: $offset-g1;
+
+    .btn.btn-continue,
+    .step-cancel {
+        margin: 0;
+    }
+
+    .step-cancel {
+        margin-left: $offset-g1;
+        margin-right: $offset-g1;
+    }
+}
+
+ed-sign-up-form-step-3 p {
+    margin-bottom: $offset-1;
+}
+
+ed-sign-up-form-step-4 .ed-step-buttons {
+    padding-top: $offset-g2 - 10px;
+    padding-bottom: $offset-g2;
+}
+
+.step-4-note {
+    color: $color-gray-dark;
+}
+
+.wrap-signup-form.bg-steps {
+    position:relative;
+
+    &:before {
+        content:"";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: $offset-g2;//ensure line is hidden beneath last panel
+        left: $offset-g1;
+        border-left: 2px solid $color-gray-light;
+        transform: translate(-50%);
+    }
+
+    .panel {
+        &.panel-naked {
+            background:transparent;
+            border:none;
+            @include box-shadow(false);
+    
+            > .panel-heading {
+                margin:0;
+                border-bottom:none;
+            }
+
+            > .panel-heading-summary {
+                &.indent-to-match-step-title {
+                    padding:0 $offset-g2 0 $offset-4;
+                }
+            }
+    
+            > .panel-body {      
+                            
+            }
+        }
+    }
+    
+}
+
+// animations for step panels
+.wrap-signup-form.enable-animation {
+    .panel.panel-signup {
+        > .panel-body {
+            &.ng-enter {
+                transition: all 0.75s 0.75s, padding-top 0.25s 0.75s,
+                    padding-bottom 0.25s 0.75s;
+            }
+
+            &.ng-leave {
+                transition: all 0.75s, padding-top 0.25s 0.5s,
+                    padding-bottom 0.25s 0.5s;
+            }
+
+            &.ng-enter,
+            &.ng-leave.ng-leave-active {
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            &.ng-leave,
+            &.ng-enter.ng-enter-active {
+                max-height: 1000px;
+                opacity: 1;
+                overflow: auto;
+                padding-top: $offset-2;
+                padding-bottom: $offset-2;
+            }
+        }
+    }
+}

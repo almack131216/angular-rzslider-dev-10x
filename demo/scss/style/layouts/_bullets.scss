@@ -1,0 +1,23 @@
+$bullet-font-size: 24px;
+$bullet-line-height: 30px;
+
+.bullets {
+    li {
+        margin: $bullet-line-height 0;
+        padding-left: 35px;
+
+        h3 {
+            display: inline;
+            margin: 0;
+        }
+
+        &:before {
+            margin-left: -35px;
+            margin-right: 6px;
+            font-size: $bullet-font-size;
+            line-height: $bullet-line-height;
+            width: $bullet-line-height;
+            height: $bullet-font-size;
+        }
+    }
+}

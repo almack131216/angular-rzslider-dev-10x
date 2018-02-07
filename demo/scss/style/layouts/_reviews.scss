@@ -1,0 +1,100 @@
+/* _reviews.scss */
+
+.review-bubble {
+    position: relative;
+    height: auto;
+    padding: $offset-g2;
+    background: #ffffff;
+    border: 1px solid $color-border;
+    @include border-radius(0px);
+
+    .review-title,
+    .review-body {
+        display: block;
+        width: 100%;
+        clear: both;
+    }
+
+    .review-title {
+        .text {
+            float: left;
+            width: calc(100% - 80px);
+
+            h4 {
+                margin-top: 0;
+                margin-bottom: $offset-1;
+                white-space: normal;
+            }
+        }
+        // /.text
+        .number {
+            font-size: 48px;
+            line-height: 65px;
+            text-align: right;
+            color: $color-primary;
+            float: right;
+            min-width: 80px;
+            font-weight: bold;
+        }
+        // /.number
+
+        .brief {
+            display: block;
+            float: left;
+            width: 100%;
+            color: #494e56;
+            white-space: normal;
+
+            &.good {
+                color: $color-primary;
+            }
+        }
+    }
+    // /.review-title
+
+    .review-body {
+        padding: $offset-g2 0 0 0;
+        white-space: normal;
+
+        > div.review-message {
+            padding-bottom: $offset-g2;
+            color: $color-gray-dark;
+
+            p {
+                color: $color-gray-dark;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        > div.review-author {
+            color: $color-gray-dark;
+        }
+    }
+    // /.review-body
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 0 $offset-g2 $offset-g2 0;
+        display: block;
+        width: 0;
+    }
+
+    &:before {
+        border-color: transparent $color-border;
+        z-index: 0;
+        bottom: (- $offset-g2);
+        left: ($offset-g4 + 1px);
+    }
+
+    &:after {
+        border-color: transparent #ffffff;
+        z-index: 1;
+        bottom: (- ($offset-g2 - 3px));
+        left: $offset-g4;
+    }
+}

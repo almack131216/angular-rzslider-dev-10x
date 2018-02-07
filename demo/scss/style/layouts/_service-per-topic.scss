@@ -1,0 +1,100 @@
+/* _service-per-topic.scss */
+
+ul.ul-spt {
+    @extend .ul-style-none;
+
+    li {
+        a {
+            @include underline-only-on-hover();
+
+            &:after {
+                @extend .fa-dummy;
+                content:"\f105";
+                margin-left:5px;
+                width:5px;
+            }
+        }
+    }
+} 
+
+.wrap-spt {
+    background:white;
+    border:1px solid $color-border;
+    padding:$offset-g2;
+    text-align:left;     
+
+    h4 {
+        margin:0 0 $offset-g2 0;
+        display: inline-block;
+    }       
+}
+
+/* >= sm */
+@media (min-width: 769px) {
+
+    .flexWrap.sptWrap {
+        margin-left:-15px;
+        margin-right:-15px;
+        float:none;
+        width:auto;
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;        
+            box-sizing: border-box; 
+        }
+
+        .row-flex {
+            display: flex;
+            flex-wrap: wrap;
+           
+           -ms-box-orient: horizontal;
+           -webkit-flex-direction: row; 
+            flex-direction: row;     
+            
+            &.panel {
+                margin-bottom:0;
+            }
+
+            .col-flex {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;        
+                box-sizing: border-box;
+                
+                margin-top:$offset-g2; 
+                padding: $offset-g2;
+                margin-left:$offset-g1;
+                margin-right:$offset-g1;
+
+                // kill top-margin of first 3 col-flex divs (2 hidden divs between each)
+                // 1,4,7
+                &:nth-child(-n+7){
+                    margin-top:0px;
+                }
+            }            
+
+            &.has-1-cols,
+            &.has-2-cols,
+            &.has-3-cols {
+                .col-flex {
+                    width:calc(33.33333333% - 30px);                    
+                }
+            } 
+            // &.has-2-cols {
+            //     .col-flex {
+            //         width: 49%;
+            //         width:calc(50% - 30px);
+            //     }
+            // }
+            // &.has-1-cols {
+            //     .col-flex {
+            //         width: 100%;
+            //         width:calc(100% - 30px);
+            //     }
+            // }              
+       
+        }
+        // /.row-flex
+    }
+    // /.flexWrap.sptWrap
+}

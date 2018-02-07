@@ -1,0 +1,89 @@
+/* _bootstrap-datepicker.scss */
+/*
+    customizations for "bootstrap-datepicker" library
+*/
+
+.dropdown-menu.datepicker {
+    background: white;
+
+    table {
+        @extend .table-unstyled;
+
+        tr {
+            th {
+                color: black;
+
+                button {
+                    i.glyphicon {
+                        @extend .fa-dummy;
+
+                        &.glyphicon-chevron-left {
+                            &:before {
+                                content: "\f053";
+                            }
+                        }
+
+                        &.glyphicon-chevron-right {
+                            &:before {
+                                content: "\f054";
+                            }
+                        }
+                    }
+                }
+            }
+            // /th
+
+            th,
+            td {
+                text-align: center;
+
+                .btn.btn-default {
+                    position: static;
+                    margin: 0 auto;
+                    padding: 3px $offset-1;
+                    background: white !important;
+                    @include box-shadow(false);
+                    line-height: 30px;
+                    height: auto;
+                    font-size: 16px;
+                    font-weight: normal;
+                    @include border-radius(0px);
+                    border: 0px;
+
+                    &:not([disabled]) {
+                        color: black;
+
+                        span.text-muted {
+                            color: #cacdd1; //dates in next month
+                        }
+
+                        &:hover {
+                            color: $btn-color-default-bg;
+                            strong {
+                                color: $btn-color-default-bg;
+                            }
+                        }
+
+                        &:active {
+                            background-color: $btn-color-default-bg !important;
+                            color: white;
+                            strong {
+                                color: white;
+                            }
+                        }
+                    }
+
+                    &[disabled] {
+                        color: #cacdd1;
+                        text-decoration: line-through;
+                    }
+                }
+                // /.btn.btn-default
+            }
+            // /th, td
+        }
+        // /tr
+    }
+    // /table
+}
+// /.dropdown-menu.datepicker

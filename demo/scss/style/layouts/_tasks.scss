@@ -1,0 +1,85 @@
+/* _tasks.scss */
+
+.btn-task {
+    @extend .btn-block-generic;
+
+    i.fa-3x {
+        margin-bottom: $offset-2;
+        color: $color-primary;
+        line-height: 72px;
+    }
+
+    span.text {
+        min-height: $offset-g2;
+        font-size: 20px;
+        line-height: $offset-g2;
+        color: black;
+    }
+}
+
+/* sm and above */
+@media (min-width: ($bp-sm + 1px)) and (max-width: ($bp-md - 1px)) {
+    .btn-task {
+        padding: $offset-g2 $offset-2; //help text 9or it will break too soon)
+    }
+}
+
+/* sm and above */
+@media (min-width: 769px) {
+    .btn-task {
+        i.fa.nav-icon {
+            display: none;
+        }
+    }
+
+    .flexWrap.taskWrap {
+        // @extend .flexWrap-shared;
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .row-flex {
+            width: 100%;
+            display: flex;
+
+            &.equalHMWrap {
+                justify-content: space-between;
+
+                &.has-4-cols {
+                    .col-flex {
+                        width: 23%;
+                        width: calc(25% - 20px);
+                    }
+                }
+
+                &.has-3-cols {
+                    .col-flex {
+                        width: 32%;
+                        width: calc(33.33333333% - 20px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* xs */
+@media (max-width: $bp-sm) {
+    .btn-task {
+        text-align: left;
+        margin-top: -1px;
+        padding: $offset-1;
+        position: relative;
+
+        i.fa.fa-3x {
+            display: none;
+        }
+        i.fa.nav-icon {
+            float: right;
+            margin: 5px 0 0 $offset-g1;
+            color: black;
+        }
+    }
+}

@@ -1,0 +1,175 @@
+/* _sign-up-solar.scss */
+
+.panel.panel-signup.solar {
+    border: none;
+    @include box-shadow(true);
+
+    > .panel-heading {
+        margin:0 $offset-g2;
+        padding:$offset-g2 0;
+        border-bottom: 1px solid $color-gray-light;
+
+        ed-step-heading {
+            width: 100%;
+
+            h4 {
+                font-size:$font-size-h3;
+                color:$color-primary;
+                
+                .stepnum {
+                    line-height:#{$offset-g2 - 4px};
+                    border-width:2px;
+                }
+            }
+        }
+
+        h3 {
+            padding: 0;
+            margin: 0;
+        }
+
+        &.with-link-right,
+        &.with-btn-right {
+
+            h3 {
+                display: flex;
+                width: 100%;
+            }
+
+            a:not(.btn) {
+                white-space:nowrap;
+                @include underline-only-on-hover();
+            }
+            .btn {
+                white-space:nowrap;
+            }
+        }
+    }
+    // /.panel-heading
+
+    > .panel-body {
+        padding: $offset-2 $offset-g2;
+
+        &.arrow-bottom {
+            position: relative;
+
+            &:after {
+                top: 100%;
+                left: 50%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+                border-color: rgba(255, 255, 255, 0);
+                border-top-color: #fff;
+                border-width: 15px;
+                margin-left: -15px;
+            }
+        }
+        /* REF: http://www.cssarrowplease.com/ */
+
+        &.ftr-cart {
+            background:$color-gray-light;
+            padding: $offset-g2;
+
+            > .btn {
+                width:100%;
+                margin-bottom:$offset-g2;
+            }
+
+            h4 {
+                color:$color-primary;
+                margin:0;
+            }
+        }
+
+        div.table-solar-cart {
+            div.div-tr {
+                &.tr-pad {
+                    div.div-td {
+                        padding:$offset-g1;
+                        padding-left:0;
+                    }
+
+                    &.tr-shade {
+                        div.div-td {
+                            &:first-child {
+                                padding-left:$offset-g1;
+                            }
+                        }
+                    }
+                }
+                &.tr-discount {
+                    div.div-td {
+                        color:$color-primary;
+                        font-weight: bold;
+                    }
+                }
+                div.div-td {
+                    padding-right:$offset-g1;
+                }
+                
+            }            
+        }
+
+        .map-wrap {
+
+            .map-col-txt,
+            .map-col-map {
+                display:block;
+                float:left;
+                width:50%;
+            }
+
+            .map-col-txt {
+                padding-right:$offset-g2;
+            }
+
+            .map-col-map {
+                .map {
+                    display:block;
+                    width:100%;
+                    height:140px;
+                    background:$color-gray-light;
+                    margin:0 0 $offset-1 0;
+                }
+                ul.ul-icon-text {
+                    text-align:right;
+
+                    > li {
+                        margin-left:$offset-0-5;
+
+                        i.fa {
+                            &.color-solar-map-suitable {
+                                color:#ffcc00 !important;
+                            }
+                            &.color-solar-map-less-suitable {
+                                color:#c41a1a !important;
+                            }
+                            &.color-solar-map-very-suitable {
+                                color:#5fb624 !important;
+                            }
+                        }
+                    }
+                    
+                }
+                /* (END) .ul-icon-text */
+            }
+        }
+        
+    }
+    // /.panel-body
+
+    &.map {
+        > .panel-heading {
+            border-bottom:none;
+        }
+        
+        > .panel-body {
+            padding-top:0;
+            padding-bottom:$offset-g2;
+        }
+    }
+}

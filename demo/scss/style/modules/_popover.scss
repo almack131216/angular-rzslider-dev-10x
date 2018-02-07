@@ -1,0 +1,95 @@
+/* _popover.scss */
+
+.popover {
+    outline: none;
+    width: 300px;
+    @include border-radius($border-radius-input);
+    @include box-shadow(false);
+    background-color: white;
+    z-index: 99;
+    position: absolute;
+
+    // these two are important for ed-popover directive
+    opacity: 0;
+    height: 0;
+
+    &.top {
+        margin-top: $offset-g1;
+    }
+
+    .btn-close {
+        position: absolute;
+        top: -15px;
+        right: 10px;
+    }
+
+    .popover-title {
+        margin-top: 0px;
+        padding: $offset-2;
+        background: transparent;
+        border: none;
+    }
+
+    .popover-content {
+        padding: $offset-2;
+    }
+
+    &::after,
+    &::before {
+        -webkit-box-sizing: inherit;
+        box-sizing: inherit;
+        content: "";
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+    }
+
+    &::before {
+        border-width: 11px;
+    }
+
+    &::after {
+        border-width: 10px;
+    }
+
+    &::before {
+        bottom: -11px;
+        margin-left: -11px;
+        border-top-color: #cacdd1;
+    }
+
+    &::after {
+        bottom: -10px;
+        margin-left: -10px;
+        border-top-color: #fff;
+    }
+
+    &.top {
+        &::after,
+        &::before {
+            border-bottom-width: 0;
+        }
+    }
+
+    &.bottom {
+        &::after,
+        &::before {
+            border-top-width: 0;
+        }
+
+        &::before {
+            top: -11px;
+            margin-left: -11px;
+            border-bottom-color: #cacdd1;
+        }
+
+        &::after {
+            top: -10px;
+            margin-left: -10px;
+            border-bottom-color: #fff;
+        }
+    }
+}

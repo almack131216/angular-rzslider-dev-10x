@@ -1,0 +1,113 @@
+/*
+Energiedirect Bootstrap Sass Theme
+Author: Actum 2017
+Version: 0.0.1
+*/
+
+/*
+Some styles are to be found in the same folder as their component, e.g. components/countdown/countdown/countdown.scss
+I believe it's a better way of organizing styles and I'd like to put all future styles directly to their respective component.
+*/
+
+/* BASE - base styles, variables, mixins etc */
+@import 'style/base/_fonts.scss';
+@import 'style/base/_variables.scss';
+@import 'style/base/_mixins.scss';
+@import 'style/base/_mixins-buttons.scss';
+@import 'style/base/_base.scss';
+@import 'style/base/_base-colors.scss';
+
+/* MODULES - individual site components */
+@import 'style/modules/_jumbotron.scss';
+@import 'style/modules/_flex-wrap.scss';
+@import 'style/modules/_typography.scss';
+@import 'style/modules/_typography-resp.scss';
+@import 'style/modules/_typography-hyperlink.scss';
+@import 'style/modules/_ul.scss';
+@import 'style/modules/_button-variables.scss';
+@import 'style/modules/_buttons.scss';
+@import 'style/modules/_button-carousel.scss';
+@import 'style/modules/_button-effect-ripple.scss';
+@import 'style/modules/_button-block.scss';
+@import 'style/modules/_price-ring.scss';
+@import 'style/modules/_form.scss';
+@import 'style/modules/_form-input.scss';
+@import 'style/modules/_form-validation.scss';
+@import 'style/modules/_form-select.scss';
+@import 'style/modules/_cust-input-groups.scss';
+@import 'style/modules/_sections.scss';
+@import 'style/modules/_star-rating.scss';
+@import 'style/modules/_checkboxes.scss';
+@import 'style/modules/_modal.scss';
+@import 'style/modules/_modal-resp.scss';
+@import 'style/modules/_popover.scss';
+@import 'style/modules/_loader.scss';
+@import 'style/modules/_header-fixtop.scss';
+@import 'style/modules/_intro-text.scss';
+@import 'style/modules/_marketing-heading-jquery.scss';
+@import 'style/modules/_tables.scss';
+@import 'style/modules/_tables-resp.scss';
+@import 'style/modules/_toggle-switch.scss';
+@import 'style/modules/_scrollbar.scss';
+@import 'style/modules/_img-component.scss';
+@import 'style/modules/_richtext.scss';
+@import 'style/modules/_pager.scss';
+@import 'style/modules/_review-bar.scss';
+
+/* LAYOUTS - page layout styles */
+@import 'style/layouts/_containers.scss';
+@import 'style/layouts/_breadcrumbs.scss';
+@import 'style/layouts/_navbar.scss';
+@import 'style/layouts/_navbar-resp.scss';
+@import 'style/layouts/_navbar-search.scss';
+@import 'style/layouts/_navbar-offscreen.scss';
+@import 'style/layouts/_header.scss';
+@import 'style/layouts/_footer.scss';
+@import 'style/layouts/_footer-row1.scss';
+@import 'style/layouts/_footer-row2.scss';
+@import 'style/layouts/_footer-row3.scss';
+@import 'style/layouts/_footer-row4.scss';
+@import 'style/layouts/_product-panel.scss';
+@import 'style/layouts/_product-panel-resp.scss';
+@import 'style/layouts/_usage-wizard.scss';
+@import 'style/layouts/_usage-wizard-best-offer.scss';
+@import 'style/layouts/_usage-wizard-best-offer-resp.scss';
+@import 'style/layouts/_usage-wizard-resp.scss';
+@import 'style/layouts/_tasks.scss';
+@import 'style/layouts/_service-per-topic.scss';
+@import 'style/layouts/_ubr.scss';
+@import 'style/layouts/_accorion.scss';
+@import 'style/layouts/_accorion-faq.scss';
+@import 'style/layouts/_accorion-ftr.scss';
+@import 'style/layouts/_accorion-spt.scss';
+@import 'style/layouts/_delivery-process.scss';
+@import 'style/layouts/_delivery-process-resp.scss';
+@import 'style/layouts/_search-results.scss';
+@import 'style/layouts/_search-results-resp.scss';
+@import 'style/layouts/_signup.scss';
+@import 'style/layouts/_signup-solar.scss';
+@import 'style/layouts/_signup-resp.scss';
+@import 'style/layouts/_signup-product-summary.scss';
+@import 'style/layouts/_signup-ftr.scss';
+@import 'style/layouts/_reviews.scss';
+@import 'style/layouts/_reviews-resp.scss';
+@import 'style/layouts/_reviews-full.scss';
+@import 'style/layouts/_offsets.scss';
+@import 'style/layouts/_xxxs-lite.scss';
+@import 'style/layouts/_mobile.scss';
+@import 'style/layouts/_newslist.scss';
+@import 'style/layouts/_bloglist.scss';
+@import 'style/layouts/_vacancies.scss';
+@import 'style/layouts/_bullets.scss';
+@import 'style/layouts/_youtube.scss';
+@import 'style/layouts/_usps.scss';
+@import 'style/layouts/_date-heading.scss';
+@import 'style/base/_bg-custom-colors.scss';
+@import 'style/base/_recycled.scss';
+@import 'style/addons/_experience-editor.scss';
+@import 'style/addons/_bootstrap-datepicker.scss';
+@import 'style/addons/_bootstrap-overrule.scss';
+@import 'style/addons/_rz-slider-amcust.scss';
+
+/* styles needed for experience editor in Sitecore */
+@import 'style/sitecore/_marketing-heading.scss';

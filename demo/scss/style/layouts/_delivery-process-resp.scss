@@ -1,0 +1,57 @@
+/* _delivery-process-resp.scss */
+
+/* m to l */
+@media (min-width: $bp-md) and (max-width: $bp-lg) {
+    .wrap-dp {
+        padding:$offset-g2 $offset-g1;
+    }
+}
+
+/* 959 down to xs */
+/* below md (959px - because it gets very squashed between 768 and 960) */
+@media (max-width: ($bp-md - 1px)) {
+
+    .flexWrap.dpWrap {
+        .row-flex {
+
+            &.has-5-cols,
+            &.has-4-cols,
+            &.has-3-cols,
+            &.has-2-cols,
+            &.has-1-cols {
+                .col-flex {
+                    display: flex;
+
+                    span.text {
+                        display: block;
+                        float: left;
+                        width: auto;
+                        white-space: normal;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+/* xs and below */
+@media (max-width: ($bp-md - 1px)) {
+
+    .flexWrap.dpWrap {
+        .row-flex {
+            &.has-5-cols,
+            &.has-4-cols,
+            &.has-3-cols,
+            &.has-2-cols,
+            &.has-1-cols {
+                .col-flex {
+                    width: 290px !important;
+                    min-width: 290px !important;
+                }
+            }
+        }
+        // /.row-flex
+    }
+    // /.flexWrap.dpWrap
+}

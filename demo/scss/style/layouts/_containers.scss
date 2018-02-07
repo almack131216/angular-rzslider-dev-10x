@@ -1,0 +1,143 @@
+/* _containers.scss */
+
+$hdr-padtop:170px;
+$hdr-padtop-resp:140px;
+
+body {
+    .rowpad-top {
+        padding-top: $offset-g4;
+    }
+
+    .rowpad-bottom {
+        padding-bottom: $offset-g4;
+    }
+
+    .ee_compad-top {
+        padding-top:$offset-g2 !important;
+    }
+
+    .ee_compad-bottom .flexWrap > .row-flex,
+    .ee_compad-bottom {
+        padding-bottom:$offset-g2 !important;
+    }
+
+    //we need this to be the first selement AFTER the header / nav
+    //will make it easier to select first container for padtop
+    #hdr-padtop-ref {
+        display:none !important;
+    }
+
+    // give huge padding-top to first container after header nav component
+    .suck-to-top,
+    #hdr-padtop-ref + .container,
+    #hdr-padtop-ref + .jumbotron > .container {
+        // @extend .debug-bs;
+        padding-top:$hdr-padtop;
+    }
+
+    .container.container-wrapping-row {
+        padding-left: $offset-g1;
+        padding-right: $offset-g1;
+        width: auto;
+
+        // for rows inside of wrapping row we need to overwrite default Bootstrap's ".containter .jumbotron"
+        > .row > div > .jumbotron {
+            border-radius: 0;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+
+.container {
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.page-content {
+    .container {
+        // overflow-x:hidden;//hackathon
+        > div[class^="col-"],
+        > .row > div[class^="col-"] {
+            //emergency hack
+            //if a container is within a container, strip its padding-x
+            > .container {
+                padding-left:0px;
+                padding-right:0px;
+            }
+        }
+    }
+}
+
+// 1439 - 1470
+@media (min-width: ($bp-xlg - 1px)) and (max-width: ($bp-xlg + $offset-g2)) {
+    body {
+        overflow-x:hidden;
+    }
+}
+
+// >=1440
+@media (min-width: $bp-xlg){
+    .container {
+        width: ($bp-xlg - $offset-g2);
+        // padding-left:$offset-g1;
+        // padding-right:$offset-g1;
+    }
+}
+
+@media (max-width: ($bp-xlg - 1px)) {
+    .container:not(.padding-x-0) {
+        width: calc(100% - 30px);
+    }
+    .container.padding-x-0 {
+        width:100%;
+    }
+}
+
+@media (max-width: $bp-sm) {
+    body {
+        .rowpad-top {
+            padding-top: $offset-g2;
+        }
+
+        .rowpad-bottom {
+            padding-bottom: $offset-g2;
+        }
+
+        > .container,
+        > .page-content > .container,
+        > .jumbotron > .container,
+        > .page-content > .jumbotron > .container {
+            //on small devices, make sure components do not touch (force gap)
+            .col-sm-12, .col-xs-12, .col-sm-xs-12 {
+                // margin-top:$offset-g1;
+                margin-bottom:$offset-g1;
+            }
+        }
+
+        .suck-to-top,
+        #hdr-padtop-ref + .container,
+        #hdr-padtop-ref + .jumbotron > .container {
+            padding-top:$hdr-padtop-resp;
+        }
+    }
+}
+
+@media (min-width: ($bp-xs + 1px)) and (max-width: ($bp-sm - 1px)) {
+    .col-sm-xs-12 {
+        float:left;
+        width:100%;
+    }
+}
+
+// make sure components are always block
+ed-best-offer,
+ed-marketing-heading,
+ed-product-overview,
+ed-rating,
+ed-usage-wizard {
+    display: block;
+    clear: both;
+}

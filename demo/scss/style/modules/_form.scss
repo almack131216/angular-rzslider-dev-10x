@@ -1,0 +1,104 @@
+/* _form.scss */
+// general (global) styles for input, label, checkbox etc
+
+.radio label,
+.checkbox label {
+    min-height: $offset-2;
+}
+
+.form-control-base-styles {
+    border: 1px solid $color-border;
+    height: $offset-g4;
+    @include border-radius($border-radius-input);
+
+    &:hover {
+        @include input-box-shadow();
+        border-color: $color-gray-dark;
+    }
+
+    &:focus {
+        border-color: $color-hyperlink;
+    }
+}
+
+input.form-control:not(.floating-label-input) {
+    @extend .form-control-base-styles;
+    line-height: $offset-g4;
+    padding: 0 $offset-g1;
+}
+
+label {
+    line-height: 60px;
+    font-size: $btn-md-font-size;
+
+    &.btn-sm {
+        line-height: 40px;
+        font-size: $btn-sm-font-size;
+    }
+
+    &.btn-lg {
+        line-height: 80px;
+        font-size: $btn-lg-font-size;
+    }
+}
+
+form {
+    text-align: left;
+
+    &.error-animation {
+        @include error-animation();
+    }
+
+    h2 {
+        line-height: $base-font-line-height;
+        margin: $offset-1 0 $offset-g2 0;
+        text-align: left;
+    }
+
+    .input-group {
+        .input-group-addon {
+            i.fa {
+                color: $color-validate-good;
+                width: $offset-2; //need this to ensure all inputs align, regardless of icon
+            }
+        }
+    }
+
+    .row {
+        margin-top: 0px;
+        margin-bottom: $offset-1;
+
+        .col-xs-12 {
+            margin-bottom: $form-input-gap;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .kill-margin-bottom-on-last-child {
+            .col-xs-12:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    label {
+        padding: 0;
+        font-size: $base-font-size;
+        line-height: $base-font-line-height;
+        color: black;
+    }
+
+    input[type="number"] {
+        padding-right: 0px;
+        -moz-appearance: textfield;
+    }
+
+    /* Remove controls from Safari and Chrome */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0; /* Removes leftover margin */
+    }
+}

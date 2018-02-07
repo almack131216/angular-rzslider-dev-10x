@@ -1,0 +1,38 @@
+/* _cust-input-groups.scss */
+
+div.cust-input-group-2-cols {
+    > div {
+        display:block;                            
+        float:left;
+
+        &:first-child {
+            width:calc(50% - 5px);
+            margin-right:5px;
+        }
+        &:nth-child(2) {
+            width:calc(50% - 5px);
+            margin-left:5px;
+        }
+    }
+}
+
+div.cust-input-group-3-cols {
+    > div {
+        display:block;                            
+        float:left;
+
+        &:first-child {
+            width:calc(33.33333333% - 7px);
+            margin-right:7px;
+        }
+        &:nth-child(2) {
+            width:calc(33.33333333% - 6px);
+            margin-left:3px;
+            margin-right:3px;
+        }
+        &:nth-child(3) {
+            width:calc(33.33333333% - 7px);
+            margin-left:7px;
+        }
+    }
+}

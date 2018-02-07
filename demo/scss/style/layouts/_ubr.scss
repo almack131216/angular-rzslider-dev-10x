@@ -1,0 +1,43 @@
+/* _ubr.scss */
+
+.ul-checks-ubr {
+    @extend .ul-style-none;
+    display: flex;
+
+    li {
+        display: flex;
+        width: (100% / 3);
+
+        i.fa.fa-2x {
+            width: 40px;
+            height: 40px;
+            margin: 0;
+            color:$color-primary;
+        }
+
+        > div {
+            padding: 5px $offset-1;
+            max-width: 75%;
+            max-width: calc(100% - 50px);
+
+            > a {
+                @include underline-custom-color(#000);
+                font-size: 20px;
+                color: black;
+                display: inline;
+            }
+        }
+    }
+}
+
+/* xs and down */
+@media (max-width: $bp-sm) {
+    .ul-checks-ubr {
+        flex-direction: column;
+
+        li {
+            width: auto;
+            margin: $offset-1 0;
+        }
+    }
+}

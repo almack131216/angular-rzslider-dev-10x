@@ -1,0 +1,101 @@
+/* _footer.scss */
+
+footer {
+    .jumbotron.ftr-row1 {
+        border-top: 1px solid $color-border;
+
+        .container {
+            background:white;        
+
+            .row.ftr-row1 {
+                text-align:left;
+
+                h4 {
+                    display:inline-block;
+                    margin:$offset-g2 $offset-g2 0 0;
+                    line-height:30px;
+                } 
+                ul {
+                    display:inline-block;
+                    margin-top:$offset-g2;
+                    margin-bottom:$offset-g2;
+
+                    li {
+                        display:inline-block;
+                        margin-top:0;
+                        margin-bottom:0;
+                        margin-right:$offset-g2;
+                        white-space: nowrap;
+                        line-height:30px;
+
+                        &:last-child {
+                            margin-right:0px;
+                        }
+                    }
+                }                          
+            }
+            // (END) row
+        }
+        // (END) container-fluid  
+    } 
+}
+// /footer
+
+@media all and (min-width: $bp-xlg) {
+    footer {
+        .jumbotron.ftr-row1 {
+            .container {
+                .row.ftr-row1 {
+                    text-align:left;
+                }
+                // (END) row
+            }
+            // (END) container-fluid
+        }
+    }
+}
+
+@media all and (max-width: ($bp-xlg - 1px)) {
+    footer {
+        .jumbotron.ftr-row1 {
+            .container {
+                .row.ftr-row1 {
+                    text-align:center;
+                    h4 {
+                        display:block;
+                        margin-right:0px;                    
+                    }
+                    ul {                    
+                        li {
+                            margin-left:$offset-g1;
+                            margin-right:$offset-g1;
+                            line-height:$offset-g2;
+                        }
+                    } 
+                }
+                // (END) row
+            }
+            // (END) container-fluid
+        }
+    }
+}
+
+@media all and (max-width: $bp-sm) {
+    footer {
+        .jumbotron.ftr-row1 {
+            .container {
+                .row.ftr-row1 {
+                    ul {
+                        
+                        li {
+                            margin-left:5px;
+                            margin-right:5px;
+                        }
+                    } 
+                }
+                // (END) row
+            }
+            // (END) container-fluid
+        }
+    }
+}

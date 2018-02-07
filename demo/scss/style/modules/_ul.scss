@@ -1,0 +1,85 @@
+/* _ul.scss */
+
+.ul-style-none {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ul-inline {
+    list-style: none !important;
+    li {
+        display: inline-block;
+    }
+}
+
+.ul-strong {
+    li {
+        @extend .strong;
+    }
+}
+
+.ul-checks {
+    @extend .ul-style-none;
+
+    li {
+        padding-left: 25px;
+
+        &:before {
+            @extend .fa-dummy;
+            color: $color-primary;
+            display: inline;
+            margin-left: -25px;
+            margin-right: 5px;
+            line-height: $base-font-line-height;
+        }
+    }
+}
+
+.ul-icon-text,
+.ul-checks-editable {
+    @extend .ul-style-none;
+
+    li {
+        i.fa {
+            @extend .fa-fw;
+            color: $color-primary;
+            margin-right: $offset-1;
+            font-size: 16px !important;
+        }
+    }
+}
+
+.ul-social-media {
+    @extend .ul-style-none;
+
+    li {
+        margin: 0 $offset-1 0 0;
+        display: block;
+        float: left;
+    }
+
+    &.lg li {
+        margin: $offset-2 $offset-2 0 0;
+    }
+}
+
+.ul-inline-discs {
+    @extend .ul-style-none;
+
+    li {
+        margin: 0 $offset-1 0 0;
+        display: inline-block;
+
+        .btn-basic,
+        .btn-tab {
+            border: 1px solid white;
+            font-weight: normal;
+
+            &.active,
+            &:active {
+                border-color: #cacdd1;
+            }
+        }
+    }
+}

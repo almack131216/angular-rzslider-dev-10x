@@ -1,0 +1,88 @@
+/* _modal.scss */
+
+.modal-backdrop {
+    background: $color-primary;
+    background: $rgba-primary-modal-bg;
+    color: $color-primary;
+    color: $rgba-primary-modal-bg;
+}
+
+.modal {
+    background: transparent;
+
+    .modal-dialog {
+        .modal-content {
+            @include border-radius(0px);
+            @include box-shadow(false);
+            border: 1px solid #cacdd1;
+
+            .modal-loader-wrap {
+                padding: $offset-g2;
+                height: 90px;
+            }
+
+            .modal-header {
+                padding: $offset-g2;
+                padding-bottom: 0px;
+                border: none;
+
+                .modal-title {
+                    //cr: remove extend when html is updated
+                    @extend .h3;
+                    margin: 0;
+                }
+            }
+
+            .modal-header-inside-pad {
+                margin: 0 0 $offset-g2 0;
+
+                > h4 {
+                    margin: 0;
+                }
+            }
+
+            .modal-body {
+                padding: $offset-g2;
+
+                &.scrollbar {
+                    margin-top: $offset-g1;
+                    border-right: $offset-1 solid white;
+                }
+
+                &.modal-inner {
+                    h2 {
+                        margin-top: 0px;
+                    }
+                }
+            }
+
+            .modal-footer {
+                padding: $offset-g2;
+                text-align: center;
+                border-top: 0px;
+
+                .btn-default {
+                    width: 100%;
+                }
+
+                &.btns-yes-no {
+                    padding-bottom: $offset-g4;
+
+                    > .btn-default {
+                        margin-bottom: $offset-g2;
+                    }
+                }
+            }
+        }
+
+        &.modal-left {
+            margin: 0;
+            height: 100%;
+            background: white;
+
+            .modal-content {
+                border: 0px;
+            }
+        }
+    }
+}

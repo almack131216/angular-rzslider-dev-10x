@@ -1,0 +1,38 @@
+/* _accordion-spt.scss */
+/*******************************
+* see '_accordion.scss' for shared accordion properties
+*******************************/
+
+/* >= sm */
+@media (max-width: $bp-sm) {
+    div.accordion-parent.sptAccordion {        
+            
+        .accordion-heading {
+            background:white;
+        }
+
+        .accordion-body {
+            background:white;
+            padding:0;
+            
+            ul.ul-spt {
+                li {
+                    a {
+                        display:block;
+                        padding:$offset-g1;
+                        border-top:1px solid $color-gray-light;
+
+                        &:after {
+                            display:none;//hide chevron
+                        }
+                    }
+                }
+            }
+
+            &:after {
+                display:none;//remove precautionary bottom padding
+            }
+        }                  
+        // /.accordion-body
+    }
+}

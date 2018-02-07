@@ -1,0 +1,291 @@
+/* _rz-slider-amcust.scss */
+
+$slider-height:80px;
+$slider-pointer-height:40px;
+$slider-tick-width:30px;
+$slider-btn-height:30px;
+$slider-bar-height:9px;
+$common-font-size:20px;
+
+.debug-options {
+    margin:$offset-2 0;
+    input {width:50px;}
+    background:#f1f1f1;
+    padding:$offset-1;
+}
+
+.amcust-slider {  
+
+    .heading-output {
+        display:flex;
+        width:100%;
+        font-size:$base-font-size;
+
+        .panels-count {
+            width:100%;
+            font-weight:bold;
+            color:black;
+        }
+
+        .panels-output {
+            white-space:nowrap;
+
+            .LblOutput {
+                padding-right:$offset-0-5;
+                @media (max-width:$bp-xxs){
+                    display:none;
+                }
+            }
+        }
+
+    }
+
+    .slider-wrap {
+        padding:$offset-1;
+        overflow:hidden;
+
+        .rzslider {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: $slider-height;
+            margin: 0;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            .rz-bar-wrapper {
+                top: #{($slider-pointer-height / 2) - ($slider-bar-height / 2)};
+                left: 0;
+                z-index: 1;
+                width: 100%;
+                height: $slider-bar-height;
+                padding-top: 0;
+                margin-top: 0;
+                box-sizing: border-box;
+
+                .rz-bar {
+                    position:absolute;
+                    top:0;
+                    left: 0;
+                    z-index: 1;
+                    width: 100%;
+                    height: $slider-bar-height;
+                    background: #E5E6E8;
+                    border-radius: 0px;
+                }
+                /* (END) .rz-bar */
+            }
+            /* (END) .rz-bar-wrapper */
+
+            .rz-pointer {
+                top: 0px;
+                z-index: 3;
+                @extend .btn;
+                @extend .btn-disc;
+                @extend .btn-default;
+                @include btn-raised-base($btn-color-default-bg,$btn-color-default-raised);
+    
+                width: $slider-pointer-height;
+                height: $slider-pointer-height;
+                min-width: $slider-pointer-height;
+                min-height: $slider-pointer-height;
+                color:white;
+                padding:0;
+                font-size:$base-font-size;
+                line-height:calc(#{$slider-pointer-height - 2px});
+                font-weight:bold;
+
+                &:after {
+                    display:none;
+                }
+            }
+            /* (END) .rz-pointer */
+
+            .rz-bubble.rz-limit.rz-ceil,
+            .rz-bubble.rz-limit.rz-floor,
+            .rz-bubble.rz-model-value,
+            .rz-bubble {
+                visibility:hidden !important;
+                display:none !important;
+            }
+
+            .rzslider .rz-pointer:after {
+                display:none;
+            }
+
+            .rz-ticks {
+                top:0;
+
+                .rz-tick {
+                    position: absolute;
+                    top: 0px;
+                    left: 0;
+                    z-index:2;
+                    width: $slider-pointer-height;
+                    height: $slider-height;
+                    margin:0;
+                    padding:0;
+                    text-align: center;
+                    cursor: pointer;
+                    background:transparent;                    
+                    @include border-radius(0px);
+
+                    &:before {
+                        content:"";
+                        display:block;
+                        width:1px;
+                        height:25px;
+                        margin:8px auto;
+                        background: $color-gray;
+                    }
+
+                    &.hide-tick:before {
+                        background:transparent;
+                    }
+                    &:not(.show-value) .rz-tick-value {
+                        display:none;
+                    }
+                    &.show-value .rz-tick-value {
+                        color:$color-gray;
+                        top: auto;
+                        bottom: 0px;
+                        line-height: $base-font-size;
+                    }
+                    &.tick-advice {
+                        z-index:3;
+
+                        .amcust-advice {
+                            top: 0px;
+                            left: -55px;// ( (width / 2) - (tick width) )
+                            z-index:3;
+                            position: absolute;
+                            width: 150px;
+                            height: $slider-height;
+                            display: block;
+
+                            &:before {
+                                content:"";
+                                display: block;
+                                width: 100%;
+                                height: $slider-bar-height;
+                                position: absolute;
+                                top: 15px;
+                                left: 0;
+                                z-index:3;
+                                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/$color-primary+0,5fb624+50,7db9e8+100&0+0,0.6+50,0+100 */
+                                background: -moz-linear-gradient(left, rgba(95,182,36,0) 0%, rgba(95,182,36,0.6) 50%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+                                background: -webkit-linear-gradient(left, rgba(95,182,36,0) 0%,rgba(95,182,36,0.6) 50%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+                                background: linear-gradient(to right, rgba(95,182,36,0) 0%,rgba(95,182,36,0.6) 50%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005fb624', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 */
+
+                                @media (max-width:$bp-sm) {
+                                    width: 60%;
+                                    left:50%;
+                                    margin-left:-30%;
+                                }
+                            }
+
+                            /* green advice arrow */
+                            &:after {
+                                content:"";
+                                position:absolute;
+                                bottom:20px;
+                                left:50%;
+                                margin-left:-7px;
+                                width: 0;
+                                height: 0;
+                                border-style: solid;
+                                border-width: 0 7.5px 7.5px 7.5px;
+                                border-color: transparent transparent $color-primary transparent;
+                            }
+                            /* (END) green advice arrow */
+
+                            .lbl {
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                width: 100%;
+                                text-align: center;
+                                color:$color-primary;
+                                font-size: $base-font-size;
+                                line-height: $base-font-size;
+
+                                // &.is-on {
+                                //     font-weight:bold;
+                                // }
+                            }
+
+                        }
+                    }
+                    /* (END) &.tick-advice */
+                    
+                }
+                /* (END) .rz-tick */
+            }
+            
+
+            .btn-slider {
+                position: absolute;
+                top: #{($slider-pointer-height - $slider-btn-height) / 2};
+                left: 0;
+                left:#{0 - ($slider-btn-height / 3)};
+                z-index:2;
+                @extend .btn;
+                @extend .btn-disc;
+                @extend .btn-sm;
+                width:$slider-btn-height;
+                height:$slider-btn-height;
+                min-width:$slider-btn-height;
+                min-height:$slider-btn-height;
+                line-height:$slider-btn-height;
+                color:$color-hyperlink;
+                border:1px solid $color-hyperlink !important;
+                text-align:center;
+                padding:0;
+
+                &:disabled,
+                &[disabled] {
+                    color:$color-gray-light !important;
+                    border-color:$color-gray-light !important;
+                }
+
+                &:before {
+                    position:absolute;
+                    text-align:center;
+                    top:50%;
+                    left:50%;
+                    margin-left:-10px; 
+                    font-size: 22px;
+                    font-weight: bold;
+                    line-height:20px;
+                    display:inline-block;
+                    width:20px;
+                    height:20px;      
+                }                
+                
+                &.minus {                    
+                    &:before {
+                        margin-top:-12px;
+                        content:"-";
+                    }
+                }
+
+                &.plus {
+                    left: auto;
+                    right:0;
+                    right:#{0 - ($slider-btn-height / 3)};
+
+                    &:before {
+                        margin-top:-11px;
+                        content:"+";
+                    }
+                }
+            }
+            /* (END) .btn-slider */
+        }
+        /* (END) .rzslider */
+    }
+}

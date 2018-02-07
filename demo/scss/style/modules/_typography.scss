@@ -1,0 +1,82 @@
+/* _typography.scss */
+
+h1,
+.h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2,
+.h2,
+h3,
+.h3 {
+    margin-top: $offset-g4;
+    margin-bottom: $offset-g2;
+}
+
+h4,
+.h4,
+h5,
+.h5 {
+    margin-top: $offset-g2;
+    margin-bottom: $offset-g2;
+}
+
+p,
+.pTag {
+    font-size: $base-font-size;
+    color: $base-font-color;
+    line-height: $base-font-line-height;
+    margin-bottom: $offset-g2;
+    font-weight: normal;
+}
+
+.lead {
+    font-weight: normal;
+}
+
+b,
+strong,
+.strong {
+    font-weight: bold;
+    color: black;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.fmt-uppercase {
+    text-transform: uppercase;
+}
+
+.fmt-trim-string {
+    @include trim-string();
+}
+.snippet:after,
+.snippetWrap p:after {
+    content: '...';
+}
+.head-date{
+    
+    color: #ffffff;
+    margin: 7px 0px -25px 0px !important;
+}
+.head-date span{
+    background-color: #5fb624; 
+    color: #ffffff;
+    padding: 5px 10px 5px 10px;
+    
+}
+.green span{
+    color: #5fb624; 
+}
+/* (copied from fontawesome.css */
+.fa-fw {
+    width: 1.28571429em;
+    text-align: center;
+}

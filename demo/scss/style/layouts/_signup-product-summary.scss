@@ -1,0 +1,46 @@
+/* _signup-product-summary.scss */
+
+.panel.panel-product-summary {
+    .panel-body {
+        table {
+            width:100%;
+
+            tr {
+                td {
+                    &.product-price {
+                        text-align:right;
+                    }
+
+                    .incentive {
+                        color:$color-primary;
+                    }
+
+                    &:not(:first-child):not(:last-child) {
+                        padding-left: $offset-g2;
+                        padding-right: $offset-g2;
+                    }
+
+                    &:last-child {
+                        width: 1%;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* sm and above */
+@media (min-width: ($bp-sm + 1px)) and (max-width: ($bp-md - 1px)) {
+
+}
+
+/* sm and above */
+@media (min-width: 769px) {
+
+}
+
+/* xs */
+@media (max-width: $bp-sm) {
+
+}

@@ -1,0 +1,144 @@
+/* _form-inputs.scss */
+
+form {
+
+    .floating-label-wrap {
+        // @extend .form-control-base-styles;
+        height:$offset-g4;
+        position:relative;
+        z-index:0;
+        overflow-x:hidden;//ensure placeholder label does not exceed box
+
+        .floating-label-input {
+            @extend .form-control-base-styles;
+            position:absolute;
+            z-index:1;
+            top:0;
+            left:0;
+            padding:$offset-g1;
+            line-height:$offset-g2;
+            height:$offset-g4;
+            @include border-radius($border-radius-input);
+        }
+
+        .floating-label-label {
+            position: absolute;
+            z-index:3;
+            pointer-events: none;
+            left: $offset-g1 + 2;
+            top: $offset-2;
+            transition: 0.2s ease all;
+            font-size:16px;
+            line-height:$offset-2;
+            color:$color-gray;
+        }
+        // /.floating-label-label
+
+        .floating-label-input.ng-not-empty, .floating-label-input.ng-empty.ng-invalid-number {
+            padding-top:25px;//needs to be big because of placeholder above
+            padding-bottom:5px;
+        }
+
+        //.floating-label-label (suck to top)
+        // input:focus ~ .floating-label-label,
+        // input.ng-touched.ng-not-empty.ng-dirty.ng-invalid ~ .floating-label-label,
+        input.ng-not-empty ~ .floating-label-label, input.ng-empty.ng-invalid-number ~ .floating-label-label {
+            top: 8px;
+            left: $offset-g1;
+            font-size: 12px;
+            font-weight:bold;
+            @include set-opacity('full');
+        }
+        // /.floating-label-label (suck to top)
+
+        //.floating-label-label (suck to top)
+        // input:focus ~ .detail-right:not(.fixed-pos),
+        // input.ng-touched.ng-dirty.ng-invalid ~ .detail-right:not(.fixed-pos),
+        // input.ng-not-empty ~ .detail-right:not(.fixed-pos),
+        input.ng-not-empty ~ .detail-right.fixed-pos {
+            top: 8px;
+            font-size: 12px;
+            font-weight:bold;
+            @include set-opacity('full');
+            color:$color-gray;
+
+            i.fa {
+                color:$color-gray;
+            }
+        }
+        // /.floating-label-label (suck to top)
+
+        input:focus ~ .detail-right {
+            i.fa {
+                @include set-opacity('full');
+            }
+        }
+        // /.detail-right full opacity
+    }
+    // /.floating-label-wrap
+
+    .input-group {
+        width: 100%;
+
+        &:not(.input-group-select) {
+            z-index: 0;
+        }
+
+        .input-group-addon {
+            position:absolute;
+            z-index:2;
+            top:$offset-2;
+            left:$offset-g1;
+            width:20px;
+            height:20px;
+            padding:0;
+            background:transparent;
+            border:0px;
+            line-height:$offset-2;
+
+            &.detail-right {
+                left:auto;
+                right:$offset-g1;
+                width:auto;
+                text-align:right;
+
+                i.fa {
+                    color:black;
+                    @include set-opacity('semi');
+                }
+
+                &.fixed-pos {
+                    i.fa {
+                        @include set-opacity('semi');
+                    }
+                }
+            }
+            // /&.detail-right
+        }
+        // /.input-group-addon
+
+        &.floating-label-wrap {
+            .floating-label-input {
+                z-index: 1;
+            }
+
+            &.has-detail-left {
+                .floating-label-input {
+                    padding-left: $offset-g3;
+                }
+
+                .floating-label-label {
+                    left: $offset-g3 + 2;
+                }
+
+                input.ng-not-empty ~ .floating-label-label, input.ng-empty.ng-invalid-number ~ .floating-label-label {
+                    left: $offset-g3;
+                }
+            }
+
+        }
+        // /.floating-label-wrap
+    }
+    // /.input-group
+}
+// /form

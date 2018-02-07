@@ -1,0 +1,53 @@
+.marketing-heading {
+    font-weight: 800;
+    margin: 0 auto;
+    max-width: 700px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+
+    .marketing-heading-inside {
+        display: inline-block;
+
+        .marketing-heading-1 {
+            text-align: left;
+
+            span {
+                background-color: $color-primary;
+                color: #fff;
+                display: inline-block;
+                font-size: 30px;
+                line-height: 30px;
+                margin: 0 $offset-g2 0 0;
+                padding: $offset-g1;
+                white-space: pre-wrap;
+
+                @media (min-width: ($bp-md)) {
+                    font-size: 60px;
+                    line-height: 60px;
+                }
+            }
+        }
+
+        .marketing-heading-2 {
+            text-align: right;
+
+            span {
+                background-color: #fff;
+                color: $color-primary;
+                display: inline-block;
+                font-size: 26px;
+                line-height: 26px;
+                margin-left: $offset-g2;
+                padding: $offset-g1;
+                text-align: left;
+                white-space: pre-wrap;
+
+                @media (min-width: ($bp-md)) {
+                    font-size: 48px;
+                    line-height: 48px;
+                }
+            }
+        }
+    }
+}

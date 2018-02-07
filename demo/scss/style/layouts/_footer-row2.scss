@@ -1,0 +1,118 @@
+/* _footer.scss */
+
+footer {
+    .jumbotron.ftr-row2 {
+        @extend .bg-primary;
+
+        .container {
+            .row.ftr-row2 {
+                @extend .bg-primary;
+                padding-top:$offset-g4;
+                padding-bottom:$offset-g4;
+
+                h4 {
+                    margin-top:$offset-g2;
+                    margin-bottom:$offset-g2;
+                    &:first-child {
+                        margin-top:0;
+                    }
+                }
+
+                a {
+                    @include underline-only-on-hover(white);
+                }
+
+                ul {
+                    @extend .ul-style-none;
+                    margin-bottom:0;
+
+                    &.ul-social-media {
+                        margin-top:$offset-g2;
+
+                        li {
+                            margin-bottom:$offset-1;
+                        }
+                    }
+
+                    li {
+                        white-space: nowrap;
+
+                        a {
+                            color:white;
+                            text-decoration:none;
+                            white-space: normal;
+                            @include underline-only-on-hover(white);
+                        }
+
+                        &:last-child {
+                            margin-right:0px;
+                        }
+                    }
+
+                }
+
+            }
+            // (END) row
+        }
+        // (END) container-fluid
+    }
+}
+
+
+@media all and (max-width: $bp-md) {
+    footer {
+        .jumbotron.ftr-row2 {
+            .container {
+                .row.ftr-row2 {
+                    padding-top:$offset-g2;
+                    padding-bottom:$offset-g2;
+
+                    > div:first-child {
+                        padding-bottom:$offset-g2;
+                    }
+
+                    .accordion-parent ul li a {
+                        @include underline-omit();
+                    }
+                }
+                // (END) row
+            }
+            // (END) container-fluid
+        }
+    }
+}
+
+@media all and (max-width: $bp-xs) {
+    footer {
+        .jumbotron.ftr-row2 {
+            .container {
+                .row.ftr-row2 {
+                    padding-top:$offset-g2;
+                    padding-bottom:$offset-g2;
+
+                    > div:first-child {
+                        padding-right:100px;
+                    }
+                }
+                // (END) row
+            }
+            // (END) container-fluid
+        }
+    }
+}
+
+@media all and (max-width: ($bp-xs - 1px)) {
+    footer {
+        .jumbotron.ftr-row2 {
+            .container {
+                .row.ftr-row2 {
+                    > div:first-child {
+                        padding-right:$offset-g4;
+                    }
+                }
+                // (END) row
+            }
+            // (END) container-fluid
+        }
+    }
+}

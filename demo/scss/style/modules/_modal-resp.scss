@@ -1,0 +1,98 @@
+/* _modal-resp.scss */
+
+.modal {
+    // <480
+    @media (max-width: ($bp-xs - 1px)) {
+        display: flex !important;
+        align-items: center;
+    }
+
+    .modal-dialog {
+        width:$modal-width-default;
+
+        &:not(.modal-left) {
+            
+            @media (max-width: 600px) {
+                width:$modal-width-xs;
+                margin:$offset-1 auto;
+            }
+
+            // <480
+            @media (max-width: ($bp-xs - 1px)) {
+                width:$modal-width-xxs;
+                width: calc(100% - #{$offset-g2});               
+                margin:0 auto;
+            }
+            // <320
+            @media (max-width: $bp-xxs)  {
+                width:100%;                
+            }
+
+        }
+
+        &.modal-left {
+            .modal-content {
+                .modal-header {
+                    height: $modal-header-height;
+                    max-height: $modal-header-height;
+                    @include trim-string();
+    
+                    .modal-title {                                   
+                        @include trim-string();
+                        margin: 0 40px 0 0;//need to show width -40px (button width + pad)
+                    }
+                }
+                .modal-body {
+                    padding:0 $offset-g2 100px $offset-g2;//set large padding-bottom to ensure content is never below mobile button bar
+                    overflow-x: hidden;
+
+                    &.iframe {
+                        overflow-y: hidden;
+                        padding: 0;
+                        border-right: 0 !important;
+                    }
+    
+                    &.scrollbar {
+                        height: calc(100vh - #{$modal-header-height});
+                        max-height: calc(100vh - #{$modal-header-height});
+                        overflow-x:hidden;    
+                        margin-top: 0;
+                        border-right: $offset-1 solid white;
+                    }
+
+                    > div.modal-top-text {
+                        h4:first-of-type {
+                            margin-top:$offset-2;
+
+                            @media all and (max-width: $bp-sm) {
+                                margin-top:$offset-1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media all and (min-width: ($bp-md + 1px)) {
+                width:$modal-width-lg;
+            }
+            @media all and (max-width: $bp-md) {
+                width:$modal-width-md;
+            }
+            @media all and (max-width: $bp-sm) {
+                width:$modal-width-sm;
+            }
+            //600px is preferred to $bp-xs (480) to ensure dialog never exceeds viewport area
+            @media (max-width: 600px) {
+                width:$modal-width-xs;
+            }
+            @media (max-width: ($bp-xs - 1px)) {
+                width:$modal-width-xxs;
+                width: calc(100% - #{$offset-g2});
+            }            
+            @media (max-width: $bp-xxs)  {
+                width:100%;
+            }
+
+        }
+    }
+}

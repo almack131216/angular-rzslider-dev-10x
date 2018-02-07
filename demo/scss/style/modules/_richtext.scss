@@ -1,0 +1,6 @@
+// all <ul>s displayed with green checks
+.wrap-widget ul {
+    @extend .ul-checks;
+
+    margin-bottom: 30px;
+}

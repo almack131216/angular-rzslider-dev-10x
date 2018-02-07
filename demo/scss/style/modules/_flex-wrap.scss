@@ -1,0 +1,181 @@
+/* _flex-wrap.scss */
+
+.flexWrap-shared {
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .row-flex {
+        width:100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+        float: left;
+        
+        &.equalMWrap {
+            justify-content: space-between;
+        }
+
+        &.justify-content-center {
+            justify-content: center;
+        }
+
+        &.flex-start {
+            -webkit-align-items: flex-start;
+            align-items: flex-start;
+        }
+
+        &.flex-end {
+            -webkit-align-items: flex-end;
+                    align-items: flex-end;
+        }
+
+        > .col-flex {
+            h3 {
+                white-space:normal;
+            }
+        }
+
+        // .has-#-cols
+        &.has-5-cols {
+            .col-flex {
+                width: 19%;
+                width:calc(20% - #{$offset-2});
+            }
+            &.has-no-gap .col-flex {
+                width:20%;
+            }
+        }
+        &.has-4-cols {
+            .col-flex {
+                width: 23%;
+                width:calc(25% - #{$offset-2});
+            }
+            &.has-no-gap .col-flex {
+                width:25%;
+            }
+        }
+        &.has-3-cols {
+            .col-flex {
+                width: 32%;
+                width:calc(33.33333333% - #{$offset-2});
+            }
+            &.has-no-gap .col-flex {
+                width:33.33333333%;
+            }
+        }
+        &.has-2-cols {
+            .col-flex {
+                width: 49%;
+                width:calc(50% - #{$offset-2 / 2});
+            }
+            &.has-no-gap .col-flex {
+                width:50%;
+            }
+        }
+        &.has-1-cols {
+            .col-flex {
+                width: 100%;
+            }
+        }
+        // /.has-#-cols
+
+        &.has-5-cols,
+        &.has-4-cols,
+        &.has-3-cols,
+        &.has-2-cols,
+        &.has-1-cols {
+            .col-flex {
+                margin:0 $offset-g1;
+
+                &:first-child {
+                    margin-left:0;
+                }
+                 &:last-child {
+                    margin-right:0;
+                }
+            }
+        }
+
+        &.has-no-gap {
+            .col-flex {
+                margin:0;
+            }
+        }
+    }
+}
+
+/* below md (959px - because it gets very squashed between 768 and 960) */
+@media (max-width: ($bp-md - 1px)) {
+
+    .flexWrap-shared {
+        display: block;//swipable
+        width: 100%;//swipable
+
+        .row-flex {
+            overflow-x: scroll;//swipable
+            overflow-y: hidden;//swipable
+            white-space: nowrap;//swipable
+            padding: 0;
+
+            width: calc(100% + 30px);
+            margin-left: -15px;
+            padding-left: 15px;
+
+            .col-flex {
+                &:last-child {
+                    padding-right: 15px;
+                    box-sizing: content-box;
+                }
+            }
+        }
+    }
+}
+
+/* <960 */
+// chop the right margin from container, so content goes to the far right
+@media (max-width: ($bp-md - 1px)) {
+
+    .container.container-flex-slider:not(.padding-x-0) {
+        width:100%;
+        margin-left:0px;
+        margin-right:0px;
+
+        > .row,
+        > .row-fluid {
+            margin-left:0;
+            margin-right:0;
+
+            > div[class*="-12"] {
+                // padding-left:0;
+                // padding-right:0;
+            }
+        }
+
+        &.jQueryTriggered {//use for debugging
+            //background: red;
+        }
+    }
+
+    //flexWrap parent container
+    .container {
+        .container-flex-slider-flexWrap {
+            //add this class to 'flexWrap'...
+            //jQuery looks for this class and adds 'container-flex-slider' to parent container
+            //enables us to use the standard 1/1 row in sitecore and style to suit
+        }
+    }
+    // /flexWrap parent container
+
+}

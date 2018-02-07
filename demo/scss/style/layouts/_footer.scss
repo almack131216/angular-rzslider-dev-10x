@@ -1,0 +1,16 @@
+/* _footer.scss */
+
+@media all and (min-width: 1440px) {
+    footer {        
+        background:white;
+        
+        .container {
+            .row {
+                // padding-left:$offset-g3;
+                // padding-right:$offset-g3;
+            }
+            // (END) row
+        }
+        // (END) container-fluid
+    }
+}

@@ -1,0 +1,68 @@
+/* _footer.scss */
+
+footer {
+    .jumbotron.ftr-row4 {
+        border-top: 1px solid $color-border;
+
+        .container {
+            .row.ftr-row4 {
+                background:white;                
+                
+                ul {
+                    @extend .ul-style-none;
+                    text-align:center;
+                    padding:$offset-g2 0;
+
+                    li {
+                        display:inline-block;
+                        margin-left:$offset-1;
+                        margin-right:$offset-1;
+
+                        a {
+                            @include underline-only-on-hover($base-font-color);
+                        }
+                    }
+                }     
+            }
+            // (END) row
+        }
+        // (END) container-fluid   
+    }
+}
+
+
+@media all and (max-width: ($bp-md - 1px)) {
+    footer {
+        .jumbotron.ftr-row4 {
+            .container {
+                .row.ftr-row4 {
+                    
+                }
+                // (END) row
+            }
+            // (END) container-fluid
+        }
+    }
+}
+
+@media all and (max-width: $bp-xs) {
+    footer {
+        .jumbotron.ftr-row4 {
+            .container {
+                .row.ftr-row4 {
+                    ul {
+                        li {
+                            margin-left:0;
+                            margin-right:0;
+                            display:list-item;
+                            text-align:center;
+                            width:100%;
+                        }
+                    }
+                }
+                // (END) row
+            }
+            // (END) container-fluid
+        }
+    }
+}

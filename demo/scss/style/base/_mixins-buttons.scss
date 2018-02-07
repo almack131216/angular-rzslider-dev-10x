@@ -1,0 +1,24 @@
+/* _buttons-raised.scss */
+
+@mixin btn-raised-base($color,$color-raised) {
+    position:relative;
+    top:$btn-raised-default-top;
+    background:$color;
+    @include btn-raised($btn-raised-default,$color-raised);
+
+    &:hover {
+        top:$btn-raised-hover-top;
+        @include btn-raised($btn-raised-hover,$color-raised);
+    }
+
+    &:active {
+        top:$btn-raised-active-top;
+        @include btn-raised($btn-raised-active,$color-raised);
+    }
+}
+
+@mixin btn-raised($size:3px,$color:$btn-color-default-raised){
+    -webkit-box-shadow: 0px $size 0px 0px $color;
+    -moz-box-shadow: 0px $size 0px 0px $color;
+    box-shadow: 0px $size 0px 0px $color;
+}

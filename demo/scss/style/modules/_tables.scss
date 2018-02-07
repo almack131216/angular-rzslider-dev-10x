@@ -1,0 +1,356 @@
+/* _tables.scss */
+
+$td-price-stretch-width: 90px;
+$td-i-width: $offset-g2;
+
+.table-title-wrap {
+    margin:0 0 $offset-2 0;
+
+    h3,h5 {
+        margin:0;
+        line-height: 1.875;
+    }
+}
+
+.multiple-table-wrap {
+    margin:0 0 $offset-g2 0;
+    padding:$offset-g1 $offset-g1 $offset-g2 $offset-g1;
+    border:1px solid $color-gray;
+    @include border-radius($border-radius-panel);
+    background:$color-debug;
+
+    > h4 {
+        margin: 0;
+    }
+
+    > h4 + p {
+        margin-bottom: 0;
+    }
+
+    table {
+        margin:0;
+    }
+    hr {
+        @extend .margin-y-g1;        
+    }
+}
+
+table,
+div.div-table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: $offset-g2;
+    border-collapse: collapse;
+    border-spacing:0; /*this should fix the spacing problem*/
+
+    i.fa.fa-plus-circle,
+    i.fa.fa-minus-circle,
+    tbody[ng-click] {
+        cursor: pointer;
+    }
+
+    tbody {
+        &.tbody-border-top-strong {
+            border-top: 1px solid $table-color-border-thead;
+        }
+
+        &.tbody-collapse tr td:first-child {
+            padding-left: $offset-g2;
+        }
+
+        &.tbody-collapse-level-2 tr td:first-child {
+            padding-left: $offset-g2 * 2;
+        }
+
+        &.tbody-totals tr {
+            &:first-child {
+                td {
+                    padding-bottom: 0;
+                }
+            }
+
+            &:nth-child(2) {
+                td {
+                    padding-top: 0;
+                }
+            }
+        }
+
+        & + tbody {
+            border-top: 1px solid $color-gray-light;
+        }
+    }
+
+    tr,
+    div.div-tr {
+        th,
+        td,
+        div.div-td {
+            line-height: $offset-g2;
+            padding: $offset-g1;
+            @media (max-width:$bp-xxs){
+                padding: $offset-1;
+            }
+            vertical-align: top;
+            border-color: $color-gray-light;
+            margin:0;
+
+            .i-title {
+                > i.fa {
+                    @extend .fa-fw;
+                    margin-right:$offset-1;
+                    @media (max-width:$bp-xxs){
+                        display:none;
+                    }
+                }
+            }
+        } 
+
+        th {
+            color: black;
+            font-weight: bold;
+            border-bottom: 1px solid $table-color-border-thead;
+            font-size: 20px;
+
+            &.th-price-stretch {
+                text-align: left;
+                width: $td-price-stretch-width + 2 * $offset-g1;
+            }
+        }
+
+        td,
+        div.div-td {
+            border-top: 1px solid $table-color-border;
+
+            &.border-bottom {
+                border-bottom:1px solid $table-color-border;
+            }
+
+            &.td-price span {
+                white-space: nowrap;
+            }
+            &.td-price-stretch {
+                text-align: right;
+
+                > span {
+                    width: $td-price-stretch-width;
+                    display: inline-block;
+
+                    &.cashback,
+                    &.price-negative {
+                        position: relative;
+
+                        &:before {
+                            position: absolute;
+                            top: 0;
+                            left: (- $offset-g1);
+                            content: "-";
+                        }
+
+                        .minus {
+                            display: none;
+                        }
+                    }
+
+                    span.currency {
+                        float: left;
+                    }
+                }
+                // /span
+            }
+            // /.td-price-stretch
+        }
+        // /td        
+
+        th.td-i,
+        td.td-i,
+        div.div-td.td-i {
+            text-align: left;
+            width: $td-i-width;            
+            padding-left: 0;
+
+            i.fa {
+                // @extend .fa-fw;
+                color: black;
+            }
+        }
+
+        td.td-content,
+        div.div-td.td-content {
+            padding:$offset-g1;
+
+            p:last-child {
+                margin-bottom:0;
+            }
+        }
+
+        // td:first-child {
+        //     &.td-i {
+        //         padding-left: $offset-g1;
+        //         padding-right: 0;
+        //     }
+        // }
+
+        &:first-child {
+            border-top: 0;
+        }
+
+        &.tr-join-row-top {
+            td,
+            div.div-td {
+                padding-top: 0;
+                border-top: 0;
+            }
+        }
+        &.tr-join-row-bottom {
+            td,
+            div.div-td {
+                padding-bottom: 0;
+                border-bottom: 0;
+            }
+        }
+        &.tr-strong {
+            td,
+            div.div-td {
+                font-weight:bold;
+                color:black;
+            }
+        }
+        &.tr-bg-primary {
+            td,
+            div.div-td {
+                background: $color-primary;
+                border-color: $color-primary;
+                border-bottom: 1px solid white;
+
+                &:first-of-type {
+                    border-left:1px solid $color-primary;
+                }
+                &:last-of-type {
+                    border-right:1px solid $color-primary;
+                }
+
+                color: white;
+                font-weight:bold;
+
+                > i.fa {
+                    color: white;
+                }
+            }
+        }
+        &.tr-shade,
+        &.tr-bg-gray-light {
+            td,
+            div.div-td {
+                background: $color-gray-light;
+                border-color: $color-gray-light;
+                border-bottom: 1px solid white;
+
+                &:first-of-type {
+                    border-left:1px solid $color-gray-light;
+                }
+                &:last-of-type {
+                    border-right:1px solid $color-gray-light;
+                }
+
+                > i.fa {
+                    color: $color-gray-dark;
+                }
+            }
+        }
+
+        &.tr-bg-white-with-border {
+            td,
+            div.div-td {
+                background: white;
+                
+                &:first-of-type {
+                    border-left:1px solid $color-gray-light;
+                }
+                &:last-of-type {
+                    border-right:1px solid $color-gray-light;
+                }
+            }
+        }
+
+        &.tr-cashback {
+            td,
+            div.div-td {
+                color: $color-primary;
+                font-weight: bold;
+
+                .popover-content {
+                    color: initial;
+                }
+            }
+        }
+    }
+
+    div.div-tr.tr-divider-line {
+        width:100%;
+        height:1px;
+        background:$color-gray;
+        margin:$offset-g1 0;
+
+        &.light {
+            background-color:$color-gray-light;
+        }
+    }
+
+    &.table-unstyled {
+        margin-bottom: 0;
+
+        tr,
+        div.div-tr {
+            td,
+            th,
+            div.div-td {
+                padding: 0;
+                border: 0px none;
+            }
+
+            th {
+                font-size: initial;
+            }
+        }
+    }
+}
+
+div.div-table {
+    display:block;
+    width:100%;
+    // background:black;//$color-debug2;
+
+    div.div-tr {
+        display: flex; 
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        div.div-td {
+            margin:0 -1px;
+            &.td-title {
+                flex: 1 1 50%;                
+            }
+            &.td-price-stretch {
+                flex: 1 1 0;                
+                padding-left:0px;
+                padding-right:$offset-1;
+            }
+            &.td-i {
+                flex: 0 1 0;
+                width:auto;
+            }
+            &.trim-string {
+                @include trim-string();
+            }
+        }
+
+        &.tr-bg-primary {
+            div.div-td {
+                &.td-title {
+                    @include trim-string();            
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+/* _form-validation.scss */
+
+form {
+    .floating-label-wrap {
+        input.ng-touched.ng-dirty.ng-invalid ~ .input-group-addon {
+            color: $color-validate-error;
+
+            i.fa {
+                @include set-opacity('full');
+                color: $color-validate-error;
+            }
+        }
+
+        input.ng-touched.ng-dirty.ng-valid ~ .input-group-addon {
+            color: $color-validate-good;
+
+            i.fa {
+                @include set-opacity('full');
+                color: $color-validate-good;
+            }
+        }
+    }
+    // /.floating-label-wrap
+}
+// /form
+
+/* form validations */
+.form-errors {
+    color: $color-validate-error;
+    margin-top: $offset-0-5;
+    padding: 0 $offset-g1;
+}
+
+input.ng-touched.ng-dirty.ng-invalid {
+    border-color: $color-validate-error;
+}
+
+input.ng-touched.ng-dirty.ng-invalid ~ .floating-label-label {
+    color: $color-validate-error;
+}
+
+input.ng-touched.ng-dirty.ng-invalid ~ .cr {
+    border-color: $color-validate-error;
+}
+
+input.ng-not-empty.ng-valid {
+    border: 1px solid $color-border !important;
+    border-bottom-color: $color-validate-good !important;
+}
+
+select.ng-touched.ng-dirty.ng-invalid {
+    & + .ed-select-styled {
+        border-color: $color-validate-error;
+        color: $color-validate-error;
+
+        &:hover {
+            border-color: $color-validate-error;
+        }
+
+        & > .fa {
+            color: $color-validate-error;
+        }
+    }
+
+    & ~ .ed-select-options {
+        border-color: $color-validate-error;
+    }
+}
+
+select.ng-not-empty.ng-valid {
+    & + .ed-select-styled {
+        border-bottom-color: $color-validate-good !important;
+
+        & > .fa {
+            color: $color-validate-good;
+        }
+    }
+}
+
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #cacdd1;
+}
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #cacdd1;
+    opacity: 1;
+}
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #cacdd1;
+    opacity: 1;
+}
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #cacdd1;
+}

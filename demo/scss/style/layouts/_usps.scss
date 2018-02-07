@@ -1,0 +1,42 @@
+.bg-is-dark {
+    .usps {
+        .fa,
+        h3 {
+            color: white;
+        }
+    }
+}
+
+.usps {
+    @extend .ul-style-none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin: 0 -#{$offset-g1};
+
+    li {
+        width: calc(25% - #{$offset-g2});
+        margin: 0 $offset-g1 $offset-g4;
+
+        .fa,
+        h3 {
+            color: $color-primary;
+        }
+
+        h3 {
+            margin-top: $offset-g2;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        @media (max-width: $bp-sm) {
+            width: calc(50% - #{$offset-g2});
+        }
+
+        @media (max-width: $bp-xs) {
+            margin-bottom: $offset-g2;
+        }
+    }
+}

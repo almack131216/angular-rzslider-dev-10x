@@ -1,0 +1,131 @@
+ed-review-bar {
+    .review-bar {
+        background-color: $color-gray-light;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: $offset-g1;
+
+        > div {
+            margin-left: $offset-g1;
+            margin-right: $offset-g1;
+        }
+
+        &-rating {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            line-height: normal;
+
+            h3 {
+                margin: 0;
+            }
+
+            .star-rating {
+                height: 24px;
+
+                &:before {
+                    color: white;
+                    font-size: 24px;
+                }
+
+                &:after {
+                    font-size: 24px;
+                }
+            }
+
+            &-number {
+                position: relative;
+                width: 140px;
+                min-width: 140px;
+                margin-left: $offset-g4;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                span {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: black;
+                    font-size: 70px;
+                    line-height: 70px;
+                    font-weight: 800;
+                }
+            }
+        }
+
+        &-description {
+            margin: $offset-g1;
+
+            span {
+                display: block;
+            }
+        }
+
+        &-image {
+            margin: $offset-g1;
+            text-align: right;
+
+            img {
+                width: 120px;
+            }
+        }
+
+        @media (min-width: $bp-md) and (max-width: $bp-xlg - 1) {
+            &-rating {
+                width: 33%;
+            }
+        }
+
+        @media (min-width: $bp-md) and (max-width: $bp-lg - 1) {
+            &-description {
+                width: 33%;
+            }
+        }
+
+        @media (max-width: $bp-md - 1) {
+            align-items: flex-end;
+
+            &-rating {
+                .star-rating {
+                    margin-top: 12px;
+                }
+            }
+        }
+
+        // on small screens - all three divs are stacked on top of each other
+        @media (max-width: 699px) {
+            &-rating,
+            &-description,
+            &-image {
+                width: 100%;
+            }
+
+            &-image {
+                margin-top: 0;
+            }
+        }
+
+        // stars must be bigger for several breakpoints
+        @media (min-width: 700px) and (max-width: $bp-md - 1),
+            (min-width: $bp-xlg) {
+            .star-rating {
+                height: 48px;
+                margin-top: 12px;
+
+                &:before {
+                    font-size: 48px;
+                }
+
+                &:after {
+                    font-size: 48px;
+                }
+            }
+        }
+    }
+}

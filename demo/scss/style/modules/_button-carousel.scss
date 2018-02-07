@@ -1,0 +1,59 @@
+/* _button-carousel.scss */
+
+$size-hitarea:20px;
+$size-default:6px;
+$size-default-offset:-3px;
+$size-hover:10px;
+$size-hover-offset:-5px;
+$size-active:16px;
+$size-active-offset:-8px;
+
+.swiper-pagination-bullet {
+    position:relative;
+    background:transparent;
+    border:none;
+    outline:none;
+    display:inline-block;
+    width:$size-hitarea;
+    height:$size-hitarea;
+    line-height:$size-hitarea;
+    margin:0;
+    padding:0;
+    text-align:center;
+    @include set-opacity('full');
+
+    &:before {
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin: $size-default-offset 0 0 $size-default-offset;
+        @extend .fa-dummy;
+        content:"\f111";
+        color:$color-primary;
+        font-size:$size-default;
+        width:$size-default;
+        height:$size-default;
+        line-height:$size-default;        
+    }
+
+    &:hover {
+        &:before {
+            margin:$size-hover-offset 0 0 $size-hover-offset;
+            font-size:$size-hover;
+            width:$size-hover;
+            height:$size-hover;
+            line-height:$size-hover;
+        }
+    }
+
+    &.swiper-pagination-bullet-active,
+    &.active {
+        &:before {
+            margin:$size-active-offset 0 0 $size-active-offset;
+            font-size:$size-active;
+            width:$size-active;
+            height:$size-active;
+            line-height:$size-active;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+/* _scrollbar.scss */
+
+$scrollbar-width:5px;
+
+.scrollbar {
+    height: auto;
+    height: calc(100vh - 95px);
+    max-height: calc(100vh - 95px);
+    width: 100%;
+    overflow-y: auto;
+    padding-right:$offset-g2;
+    padding-bottom:0;
+}
+
+.scrollbar::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 $scrollbar-width $rgba-black-20;
+    background-color: $color-gray;
+    @include border-radius($scrollbar-width);
+}
+
+.scrollbar::-webkit-scrollbar
+{
+    width: $scrollbar-width;
+    background-color: $color-gray;
+    @include border-radius($scrollbar-width);
+    margin-right:$offset-1;
+}
+
+.scrollbar::-webkit-scrollbar-thumb
+{
+    background-color: black;
+    @include border-radius($scrollbar-width);
+}

@@ -1,0 +1,127 @@
+/* _usage-wizard-resp.scss */
+
+.col-usage-wizard-wrap {
+    text-align:center;
+}
+// /.col-usage-wizard-wrap
+
+// base styles for .cust-input-group
+// 3 input fields inline
+.panel-usage-wizard {
+    max-width:450px;
+    margin:0 auto;
+
+    .cust-input-group {
+        .floating-label-wrap {
+            float:left;
+            width:32%;
+            width:calc(33.33333333% - #{$form-input-gap});
+            margin:0 #{($form-input-gap / 2)};
+
+            &:first-child {
+                margin-left:0px;
+                width:calc(33.33333333% - #{($form-input-gap / 2)});
+            }
+            &:last-child {
+                margin-right:0px;
+                width:calc(33.33333333% - #{($form-input-gap / 2)});
+            }
+        }
+    }
+}
+
+/* md and above (>=960) */
+@media (min-width: $bp-md) {
+
+
+}
+
+/* 768 - 959 */
+// make 3 input fields go on 2 lines
+@media (min-width: $bp-sm) and (max-width: ($bp-md - 1px)) {
+
+    .panel-usage-wizard {
+        .duration-buttons {
+            text-align: left;
+        }
+
+        .row.row_consumption-label {
+
+            label {
+                display:block;
+            }
+
+            .link-estimation {
+                display:block;
+                text-align:left;
+                margin-bottom:$offset-1;
+                float:left;
+
+                &:hover {
+                    margin-bottom: $offset-1 - 1px;
+                }
+            }
+        }
+
+        &.usage-wizard-return-state {
+            .duration-buttons {
+                &.with-img-box {
+                    .img-box {
+                        img {
+                            width: 115px;
+                        }
+                    }
+                }
+                // /&.with-img-box
+            }
+            // /.duration-buttons
+        }
+        // /&.usage-wizard-return-state
+    }
+    // /.panel-usage-wizard
+}
+
+/* 768 - 959 */
+@media (min-width: $bp-sm) and (max-width: ($bp-md - 1px)) {
+    .panel-usage-wizard {
+        .cust-input-group {
+            .floating-label-wrap {
+                margin:0;
+                display:block;
+                float:left;
+
+                &.inp-postcode-wrap {
+                    width:100%;
+                    margin-bottom:$form-input-gap;
+                }
+
+                &.inp-housnum-wrap {
+                    width:48%;
+                    width:calc(50% - #{($form-input-gap / 2)});
+                    margin-right:#{($form-input-gap / 2)};
+                }
+
+                &.inp-housnum-add-wrap {
+                    float:right;
+                    width:48%;
+                    width:calc(50% - #{($form-input-gap / 2)});
+                    margin-left:#{($form-input-gap / 2)};
+                }
+            }
+            // /.floating-label-wrap
+        }
+        // /.cust-input-group
+    }
+    // /.panel-usage-wizard
+}
+
+/* <480 */
+@media (max-width: ($bp-xs - 1px)) {
+    .col-usage-wizard-wrap {
+        .panel-usage-wizard {
+            max-width:100%;
+            width:100%;
+        }
+        // /.panel-usage-wizard
+    }
+}

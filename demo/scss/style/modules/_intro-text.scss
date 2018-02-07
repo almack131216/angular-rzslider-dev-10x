@@ -1,0 +1,32 @@
+/* _intro-text.scss */
+
+.introText {
+    text-align:center;
+    padding:0 16.5%;
+
+    h2 {
+        margin-top:0px;
+        margin-bottom:$offset-g1;
+        color:$color-primary;
+    }
+
+    div.text {
+        @extend .h5;
+
+        p {
+            margin-top:0;
+            
+            &:last-child {
+                margin-bottom:0px;
+            }
+        }
+    }
+}
+
+// >= 480
+@media (max-width: $bp-xs) {
+    .introText {
+        text-align:left;
+        padding:0 $offset-g1 0 0;
+    }
+}

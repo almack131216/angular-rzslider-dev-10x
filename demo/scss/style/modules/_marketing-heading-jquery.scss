@@ -1,0 +1,129 @@
+/* _marketing-heading-jquery.scss */
+
+.col-mh-wrap {
+    text-align: left;
+}
+// /.col-usage-wizard-wrap
+
+.mh-wrap-all {
+    display: block;
+    margin: 0;
+}
+
+// class added to <ed-marketing-heading> from Sitecore, marketing heading should be centered
+.mh-align-center .mh-wrap-all {
+    margin: 0 auto;
+}
+
+// class added to <ed-marketing-heading> from Sitecore, marketing heading should be aligned to the right
+.mh-align-right .mh-wrap-all {
+    margin: 0 0 0 auto;
+}
+
+.mh-wrap {
+    position: relative;
+    // background:yellow;
+    display: block;
+    margin: 0 auto;
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: 800;
+    width: 100%;
+    // max-width:100%;
+
+    .undercover {
+        position: absolute;
+        z-index: 0;
+        background: $color-primary;
+    }
+
+    .mh-a {
+        /*background:black;*/
+        position: absolute;
+        z-index: 1;
+        color: white;
+        text-align: left;
+        display: block;
+        width: calc(100% - 30px);
+        padding: 10px 15px;
+
+        font-size: 60px;
+        line-height: 60px;
+
+        @media (max-width: ($bp-md)) {
+            font-size: 30px;
+            line-height: 30px;
+        }
+
+        & > span {
+            white-space: pre-wrap;
+            text-align: left;
+            word-break: break-word;
+        }
+    }
+    .mh-a span.text {
+        white-space: normal;
+        /*display:inline-block;
+        /*background:blue;*/
+    }
+}
+
+.undercover.b {
+    position: absolute;
+    z-index: 0;
+    left: auto;
+    right: 0px;
+    background: white;
+}
+.mh-a.b {
+    color: $color-primary;
+    text-align: right;
+    width: 100%;
+
+    font-size: 48px;
+    line-height: 42px;
+
+    @media (max-width: ($bp-md)) {
+        font-size: 26px;
+        line-height: 26px;
+    }
+}
+
+/* if in full width column with wide res... */
+@media (min-width: $bp-lg) {
+    .col-xlg-12,
+    .col-lg-12 {
+        .mh-wrap-all {
+            max-width: 50%;
+        }
+    }
+}
+@media (min-width: $bp-md) and (max-width: ($bp-lg - 1px)) {
+    .col-lg-12 {
+        .mh-wrap-all {
+            max-width: 50%;
+        }
+    }
+}
+@media (min-width: $bp-sm) and (max-width: ($bp-md - 1px)) {
+    .col-md-12 {
+        .mh-wrap-all {
+            max-width: 50%;
+        }
+    }
+}
+@media (min-width: $bp-xs) and (max-width: ($bp-sm - 1px)) {
+    .col-sm-12,
+    .col-sm-xs-12 {
+        .mh-wrap-all {
+            max-width: 450px;
+        }
+    }
+}
+@media (max-width: ($bp-xs - 1px)) {
+    .col-xs-12 {
+        .mh-wrap-all {
+            max-width: 100%;
+        }
+    }
+}

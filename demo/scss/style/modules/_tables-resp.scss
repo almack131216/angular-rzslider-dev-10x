@@ -1,0 +1,61 @@
+/* _tables-resp.scss */
+
+@media only screen and (max-width: $bp-sm) {
+    table:not(.table-no-resp) {
+        display: none;
+
+        // force table to not be like tables anymore
+        &.ed-table-loaded,
+        & tbody,
+        & tr {
+            display: block;
+        }
+
+        & thead {
+            display: none;
+            // ..or, keep accessibility with:
+            // position: absolute;
+            // top: -9999px;
+            // left: -9999px;
+        }
+
+        & tr {
+            border: none;
+            border-top: 1px solid $table-color-border-thead;
+            padding-top: $offset-g1;
+            padding-bottom: $offset-g1;
+
+            &:last-child {
+                border-bottom: 1px solid $table-color-border-thead;
+            }
+
+            td {
+                display: flex;
+                border: none;
+                padding-top: 0;
+                padding-bottom: 0;
+
+                &:before {
+                    content: attr(data-title);
+                    padding-right: $offset-g1;
+                    width: 33%;
+                    min-width: 33%;
+                    text-align: left;
+                }
+            }
+        }
+
+        &.ed-table-no-th {
+            td:before {
+                display: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    table:not(.table-no-resp) tr td:before {
+        width: 50%;
+        min-width: 50%;
+    }
+}

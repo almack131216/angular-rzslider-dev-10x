@@ -1,0 +1,128 @@
+/* _recycled.scss */
+
+div[class^="col-"] {
+
+}
+
+.bg-gray {
+  background:gray;
+}
+
+.panel {
+  @include box-shadow(false);
+}
+
+@mixin btn-panel-active(){
+  padding:#{$offset-g2 - 2px};
+  border-color:$color-hyperlink;
+  border-width:3px;
+}
+
+.btn-panel-wrap {
+
+  .div-panel,
+  .btn-panel {
+    width:auto;
+    padding:$offset-g2;
+    text-align:center;
+    color:$base-font-color;
+    background:white;
+    @include border-me(true, $border-radius-panel-btn, false);
+
+    &.active {
+      @include btn-panel-active();
+    }
+
+    .text {
+      h4 {
+        margin:0 auto;
+      }
+      span {
+        display:block;
+
+        &.power {
+        }
+
+        &.price {
+          color:$color-gray-dark;
+        }
+      }
+    }
+
+  }
+
+  .btn-panel {
+    @include border-me(true, $border-radius-panel-btn, true);
+
+    &.btn-select-product {
+      img {
+        height:250px;
+        width:150px;        
+        background:$color-gray;
+        display:inline-block;
+        margin:0 auto $offset-g2 0;
+      }
+    }
+  }
+
+  .div-panel {
+    .div-panel-heading {
+      display: flex;
+      align-items: flex-start;
+      text-align:left;
+      margin:0 0 $offset-g2 0;
+
+      h4 {
+        width:100%;
+        margin:0;
+      }
+      &.with-link-right {
+        a:not(.btn) {
+            white-space:nowrap;
+            @include underline-only-on-hover();
+        }
+      }
+    }
+
+    .btn-panel {
+      padding:$offset-2;
+    }
+  }
+}
+
+/* navbar */
+
+.bh {
+  font-size: 60px;
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+.span-calculation {
+  display:block;
+  color:$color-gray-dark;
+}
+
+/* highlight changes */
+/* NOTE: For testing purposes only! */
+/* INSTRUCTION: Tester should use 'inspect element' and add class 'amcust_edits' to parent wrapper... */
+/* ..when no longer needed, ensure we delete all 'amcust_highlight' classes */ 
+.amcust_edits {
+
+  span.amcust_highlight {
+    // border:2px solid red;
+    // padding:3px 5px;
+    background:yellow;
+    color:black;
+  
+    &.hasVariable {
+      background:black;
+      color:yellow;
+    }
+  }
+
+}

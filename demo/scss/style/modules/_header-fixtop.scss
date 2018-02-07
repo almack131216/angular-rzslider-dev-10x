@@ -1,0 +1,102 @@
+/* _header-fixtop.scss */
+
+$header-space-top: 30px;
+$header-height: 75px;
+$header-height-breadcrumbs: 50px;
+$header-height-all: ($header-height + $header-height-breadcrumbs);
+
+header {
+    // background:rgba(22,0,0,0.4);
+    z-index: 99;
+    // transition: all 0.5s ease-in-out;
+    width: 100%;
+
+    &:not(.nav-up-fix):not(.nav-down-fix):not(.nav-down-fix-prep) {
+        @extend .nav-down-init;
+    }
+}
+// we'll add this class using javascript
+.nav-up-fix,
+.nav-up-abs {
+    top: (-$header-height); // same as header height. use variables in LESS/SASS
+    // background:rgba(255,0,0,0.4);
+    @include set-opacity('zero');
+}
+
+.nav-up-fix {
+    position: fixed;
+}
+
+.nav-up-abs {
+    position: absolute;
+}
+
+/* nav-down */
+.nav-down-fix,
+.nav-down-init {
+    @include set-opacity('full');
+}
+
+.nav-down-fix {
+    position: fixed;
+    top: -1px;
+    background: white;
+    background: $rgba-white-nav-down;
+    transition: top 0.3s ease-out;
+
+    nav.navbar {
+        z-index: auto;
+
+        &:hover {
+            background: white;
+            box-shadow: 0px 2px 4px 0px $rgba-black-20;
+
+            .container {
+                position: relative;
+            }
+        }
+
+        &:not(:hover) {
+            .container {
+                background: transparent;
+            }
+
+            .dropdown-menu {
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: none !important;
+            }
+        }
+    }
+}
+
+.nav-down-init {
+    position: absolute;
+    top: $header-space-top;
+    // height: $header-height-all;
+
+    nav.navbar {
+        .container {
+            background: white;
+            box-shadow: 0px 2px 4px 0px $rgba-black-20;
+
+            padding-left: $offset-g1;
+            padding-right: $offset-g1;
+        }
+    }
+}
+
+// <= 959
+@media (max-width: ($bp-md - 1px)) {
+    .nav-down-init {
+        top: -1px;
+    }
+
+    .nav-down-fix {
+        nav.navbar {
+            .container {
+                padding-left: $offset-g1;
+                padding-right: $offset-g1;
+            }
+        }
+    }
+}

@@ -1,0 +1,122 @@
+/* _bg-custom-colors.scss */
+
+/* dark background colors need white text for inner nodes */
+.dark-background-use-white-text {
+    color: white;
+
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    p,
+    strong,
+    b,
+    a {
+        color: white;
+    }
+
+    a {
+        @include underline-custom-color(white);
+    }
+
+    .ul-checks {
+        li:before {
+            color: white;
+        }
+    }
+
+    @extend .dark-background-use-white-table;
+}
+
+.dark-background-use-white-table {
+    table {
+        color: white;
+
+        tr {
+            th {
+                color: white;
+                border-bottom-color: white;
+            }
+            td {
+                border-top-color: $color-gray-light;
+                border-top-color: $rgba-gray-light-20;
+            }
+        }
+
+        &:not(.table-no-resp) tr {
+            border-top-color: white; //$rgba-gray-light-20;
+
+            &:last-child {
+                border-bottom-color: white; //$rgba-gray-light-20;
+            }
+        }
+        // /tr
+    }
+}
+
+.bg-primary {
+    background-color: $color-primary;
+    @extend .dark-background-use-white-text;
+}
+
+.bg-black {
+    background-color: black;
+    @extend .dark-background-use-white-text;
+}
+
+.bg-gray {
+    background-color: $color-gray;
+    @extend .dark-background-use-white-text;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.bg-gray-light {
+    background-color: $color-gray-light;
+}
+
+.bg-is-dark {
+    @extend .dark-background-use-white-table;
+
+    // rich text, text with heading, small review, bullets
+    .wrap-widget,
+    .introText,
+    .stars-and-text-wrap,
+    .bullets {
+        @extend .dark-background-use-white-text;
+    }
+
+    // FAQ
+    div.accordion-parent.faqAccordion {
+        .accordion-heading {
+            background: transparent;
+            border: 1px solid transparent;
+            border-bottom: 1px solid $rgba-gray-light-20;
+            color: white;
+
+            &[aria-expanded="true"] {
+                border-color: $rgba-gray-light-20;
+                border-bottom: 1px solid transparent !important;
+            }
+
+            &[aria-expanded="false"]:hover {
+                background-color: transparent;
+                border-color: $rgba-gray-light-20;
+            }
+        }
+
+        .accordion-body {
+            background: transparent;
+            border-color: $rgba-gray-light-20;
+        }
+    }
+    // /div.accordion-parent.faqAccordion
+}
