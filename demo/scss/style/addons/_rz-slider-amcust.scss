@@ -2,7 +2,7 @@
 
 $slider-height:80px;
 $slider-pointer-height:40px;
-$slider-tick-width:30px;
+$slider-tick-width:1px;
 $slider-btn-height:30px;
 $slider-bar-height:9px;
 $common-font-size:20px;
@@ -124,9 +124,10 @@ $common-font-size:20px;
                     top: 0px;
                     left: 0;
                     z-index:2;
-                    width: 1px;
+                    width: $slider-tick-width;
                     height: $slider-height;
                     margin:0;
+                    margin-left:#{($slider-pointer-height / 2)};
                     padding:0;
                     text-align: center;
                     cursor: default;
@@ -141,19 +142,6 @@ $common-font-size:20px;
                         margin:8px auto;
                         background: $color-gray;                        
                     }
-
-                    &:nth-child(10n+11) {
-                        
-                        background:yellow;
-                        // width: $slider-pointer-height;
-                        // margin:0;
-
-                        &:before {
-                            background: red;
-                            height:70px;
-                        }                        
-                    }
-
                     &.hide-tick:before {
                         background:transparent;
                     }
@@ -166,12 +154,29 @@ $common-font-size:20px;
                         bottom: 0px;
                         line-height: $base-font-size;
                     }
+                    &:nth-child(10n+11) {                        
+                        background:yellow;
+
+                        &:before {
+                            background: red;
+                            height:100%;
+                        }
+
+                        .rz-tick-value {
+                            // display:none;
+                            // color:$color-gray;
+                            // top: auto;
+                            // bottom: 0px;
+                            // line-height: $base-font-size;
+                        }                      
+                    }
                     &.tick-advice {
                         z-index:3;
+                        background:yellow;
 
                         .amcust-advice {
                             top: 0px;
-                            left: -55px;// ( (width / 2) - (tick width) )
+                            left: -75px;// ( (width / 2) - (tick width) )
                             z-index:3;
                             position: absolute;
                             width: 150px;
