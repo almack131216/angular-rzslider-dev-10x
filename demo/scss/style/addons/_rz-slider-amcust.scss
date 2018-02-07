@@ -124,12 +124,12 @@ $common-font-size:20px;
                     top: 0px;
                     left: 0;
                     z-index:2;
-                    width: $slider-pointer-height;
+                    width: 1px;
                     height: $slider-height;
                     margin:0;
                     padding:0;
                     text-align: center;
-                    cursor: pointer;
+                    cursor: default;
                     background:transparent;                    
                     @include border-radius(0px);
 
@@ -139,7 +139,19 @@ $common-font-size:20px;
                         width:1px;
                         height:25px;
                         margin:8px auto;
-                        background: $color-gray;
+                        background: $color-gray;                        
+                    }
+
+                    &:nth-child(10n+11) {
+                        
+                        background:yellow;
+                        // width: $slider-pointer-height;
+                        // margin:0;
+
+                        &:before {
+                            background: red;
+                            height:70px;
+                        }                        
                     }
 
                     &.hide-tick:before {

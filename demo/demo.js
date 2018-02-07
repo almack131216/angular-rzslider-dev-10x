@@ -6,16 +6,17 @@ app.controller('MainCtrl', function ($scope, $rootScope, $timeout, $uibModal) {
     value: 10,
   }
   $scope.amcustDebugSlider = {
-    value: 7,
+    value: 70,
     options: {
       showTicks: 1,
       showTicksValues: 1,
-      floor: 4,
-      ceil: 12,
+      floor: 40,
+      ceil: 120,
       step: 1,
       showSelectionBar: false,
       showAdvice: 10,
       powerOutput:0.2565,
+      finalValue: 7,
       optionBtnPlus: function () {
         console.log('!!! amcust: options > optionBtnPlus() [' + $scope.amcustDebugSlider.value + ' -> ' + ($scope.amcustDebugSlider.value + 1) + ']');
         if ($scope.amcustDebugSlider.value < $scope.amcustDebugSlider.options.ceil) {

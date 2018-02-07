@@ -31,12 +31,13 @@
     
     <div class="amcust-slider">
       <div class="heading-output">
-        <span class="panels-count"><span ng-bind="amcustDebugSlider.value"></span> panelen</span>
-        <span class="panels-output"><span class="LblOutput">Opbrengst</span><strong><span ng-bind="amcustDebugSlider.value * amcustDebugSlider.options.powerOutput | number : 3"></span> kWh/jr</strong></span>
+        <span class="panels-count"><span ng-bind="amcustDebugSlider.options.finalValue"></span> panelen</span>
+        <span class="panels-output"><span class="LblOutput">Opbrengst</span><strong><span ng-bind="amcustDebugSlider.options.finalValue * amcustDebugSlider.options.powerOutput | number : 3"></span> kWh/jr</strong></span>
       </div>
       <div class="slider-wrap">
         <rzslider
           rz-slider-model="amcustDebugSlider.value"
+          rz-slider-final-model="amcustDebugSlider.options.finalValue"
           rz-slider-options="amcustDebugSlider.options"
           rz-slider-tpl-url="amcustTemplate.html"
         ></rzslider>
@@ -49,6 +50,6 @@
 </body>
 <script src="../node_modules/angular/angular.js"></script>
 <script src="./lib/ui-bootstrap-tpls.js"></script>
-<script src="../dist/rzslider.js"></script>
+<script src="../src/rzslider.js"></script>
 <script src="demo.js"></script>
 </html>

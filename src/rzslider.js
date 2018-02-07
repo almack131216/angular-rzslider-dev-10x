@@ -380,6 +380,7 @@
           this.initHandles()
           this.manageEventsBindings()
 
+
           // Recalculate slider view dimensions
           this.scope.$on('reCalcViewDimensions', calcDimFn)
 
@@ -398,6 +399,7 @@
           }, self.options.interval)
 
           this.scope.$on('rzSliderForceRender', function () {
+            console.log('!!! amcust: rzSliderForceRender() - ' + getValue);
             self.resetLabelsValue()
             thrLow()
             if (self.range) {
@@ -412,6 +414,7 @@
             newValue,
             oldValue
           ) {
+            // console.log('!!! amcust: watch rzSliderOptions | ' + newValue + ' | ' + self.scope.rzSliderFinalModel);
             if (newValue === oldValue) return
             self.applyOptions() // need to be called before synchronizing the values
             self.syncLowValue()
@@ -419,11 +422,25 @@
             self.resetSlider()
           })
 
-          this.scope.$watch('rzSliderModel', function (newValue, oldValue) {
+          this.scope.$watch('rzSliderModel', function (newValue, oldValue) {            
+            // var newValueRounded = (parseInt(newValue/10, 10)+1)*10;
+            var newValueRounded = Math.round(Math.round((newValue / 10) * 10) / 10);
+            if (newValueRounded === self.scope.rzSliderFinalModel) return
+            self.scope.rzSliderFinalModel = newValueRounded;
+            console.log('!!! amcust: watch rzSliderModel | ' + newValue + ' | ' + newValueRounded);
             if (self.internalChange) return
             if (newValue === oldValue) return
             thrLow()
           })
+
+          // this.scope.$watch('rzSliderFinalModel', function (newValue, oldValue) {            
+          //   // var newValueRounded = (parseInt(newValue/10, 10)+1)*10;
+          //   var newValueRounded = Math.round(newValue / 10) * 10
+          //   // console.log('!!! amcust: watch rzSliderFinalModel | ' + newValue + ' | ' + newValueRounded);
+          //   if (self.internalChange) return
+          //   if (newValue === oldValue) return
+          //   thrLow()
+          // })
 
           this.scope.$watch('rzSliderHigh', function (newValue, oldValue) {
             if (self.internalChange) return
@@ -544,6 +561,7 @@
          * Read the user options and apply them to the slider model
          */
         applyOptions: function () {
+          console.log('!!! amcust: applyOptions()');
           var sliderOptions
           if (this.scope.rzSliderOptions)
             sliderOptions = this.scope.rzSliderOptions()
@@ -597,8 +615,10 @@
             this.dimensionProperty = 'height'
           }
 
-          if (this.options.customTemplateScope)
+          if (this.options.customTemplateScope) {
             this.scope.custom = this.options.customTemplateScope
+          }
+
         },
 
         parseStepsArray: function () {
@@ -2001,6 +2021,7 @@
          * @returns {undefined}
          */
         onMove: function (pointer, event, fromTick) {
+          console.log('!!! amcust: onMove() | ' + fromTick);
           var changedTouches = this.getEventAttr(event, 'changedTouches')
           var touchForThisSlider
           if (changedTouches) {
@@ -2047,6 +2068,13 @@
          * @returns {undefined}
          */
         onEnd: function (ehMove, event) {
+          /* move to nearest tick (x10) */
+          this.scope.rzSliderModel = Math.round(this.scope.rzSliderModel / 10) * 10;
+          this.scope.rzSliderFinalModel = Math.round(this.scope.rzSliderModel / 10);
+          this.positionTrackingHandle(this.scope.rzSliderModel);
+          console.log('!!! amcust: onEnd() | ' + this.scope.rzSliderModel + ' | ' + this.scope.rzSliderFinalModel);
+          /* (END) move to nearest tick (x10) */
+
           var changedTouches = this.getEventAttr(event, 'changedTouches')
           if (changedTouches && changedTouches[0].identifier !== this.touchId) {
             return
@@ -2069,6 +2097,7 @@
         },
 
         onTickClick: function (pointer, event) {
+          console.log('!!! amcust: onTickClick: ' + pointer + ', ' + event);
           this.onMove(pointer, event, true)
         },
 
@@ -2369,6 +2398,7 @@
          * @param {number} newValue new model value
          */
         positionTrackingHandle: function (newValue) {
+          console.log('!!! amcust: positionTrackingHandle(' + newValue + ')');
           var valueChanged = false
           newValue = this.applyMinMaxLimit(newValue)
           if (this.range) {
@@ -2596,6 +2626,7 @@
         replace: true,
         scope: {
           rzSliderModel: '=?',
+          rzSliderFinalModel: '=?',
           rzSliderHigh: '=?',
           rzSliderOptions: '&?',
           rzSliderTplUrl: '@',
