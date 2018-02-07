@@ -17,7 +17,7 @@
     <span class="rz-bar rz-selection" ng-style="barStyle"></span>
   </span>
   <!-- // 4 Left slider handle -->
-  <span class="rz-pointer rz-pointer-min" ng-style="minPointerStyle" ng-bind="slider.options.finalValue"></span>
+  <span class="rz-pointer rz-pointer-min" ng-style="minPointerStyle" ng-bind="slider.options.smoothDrag ? slider.options.finalValue : slider.lowValue"></span>
   <!-- // 5 Right slider handle -->
   <span class="rz-pointer rz-pointer-max" ng-style=maxPointerStyle></span>
   <!-- // 6 Floor label -->

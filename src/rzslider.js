@@ -37,7 +37,7 @@
         floor: 0,
         ceil: null, //defaults to rz-slider-model
         step: 1,
-        precision: 0,
+        precision: 0,        
         minRange: null,
         maxRange: null,
         pushRange: false,
@@ -91,6 +91,7 @@
         ariaLabelledBy: null,
         ariaLabelHigh: null,
         ariaLabelledByHigh: null,
+        smoothDrag: false,
       }
       var globalOptions = {}
 
@@ -423,11 +424,13 @@
           })
 
           this.scope.$watch('rzSliderModel', function (newValue, oldValue) {            
-            // var newValueRounded = (parseInt(newValue/10, 10)+1)*10;
-            var newValueRounded = Math.round(Math.round((newValue / 10) * 10) / 10);
-            if (newValueRounded === self.scope.rzSliderFinalModel) return
-            self.scope.rzSliderFinalModel = newValueRounded;
-            console.log('!!! amcust: watch rzSliderModel | ' + newValue + ' | ' + newValueRounded);
+            console.log('!!! amcust: watch rzSliderModel');
+            if (self.options.smoothDrag) {
+              var newValueRounded = Math.round(Math.round((newValue / 10) * 10) / 10);
+              if (newValueRounded === self.scope.rzSliderFinalModel) return
+              self.scope.rzSliderFinalModel = newValueRounded;
+              console.log('!!! amcust: watch rzSliderModel | ' + newValue + ' | ' + newValueRounded);
+            }
             if (self.internalChange) return
             if (newValue === oldValue) return
             thrLow()
@@ -2068,11 +2071,14 @@
          * @returns {undefined}
          */
         onEnd: function (ehMove, event) {
-          /* move to nearest tick (x10) */
-          this.scope.rzSliderModel = Math.round(this.scope.rzSliderModel / 10) * 10;
-          this.scope.rzSliderFinalModel = Math.round(this.scope.rzSliderModel / 10);
-          this.positionTrackingHandle(this.scope.rzSliderModel);
-          console.log('!!! amcust: onEnd() | ' + this.scope.rzSliderModel + ' | ' + this.scope.rzSliderFinalModel);
+          console.log('!!! amcust: onEnd() | ' + this.scope.rzSliderModel);
+          /* amcust: move to nearest tick (x10) */
+          if (this.options.smoothDrag) {
+            this.scope.rzSliderModel = Math.round(this.scope.rzSliderModel / 10) * 10;
+            this.scope.rzSliderFinalModel = Math.round(this.scope.rzSliderModel / 10);
+            this.positionTrackingHandle(this.scope.rzSliderModel);
+            console.log('!!! amcust: onEnd() | ' + this.scope.rzSliderModel + ' | ' + this.scope.rzSliderFinalModel);
+          }          
           /* (END) move to nearest tick (x10) */
 
           var changedTouches = this.getEventAttr(event, 'changedTouches')
