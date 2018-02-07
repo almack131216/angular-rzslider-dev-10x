@@ -2,7 +2,7 @@ var app = angular.module('rzSliderDemo', ['rzModule', 'ui.bootstrap'])
 
 app.controller('MainCtrl', function ($scope, $rootScope, $timeout, $uibModal) {
 
-  $scope.useSmoothScroll = false;
+  $scope.useSmoothDrag = false;
 
   $scope.amcustDebugSlider = {
     value: 7,
@@ -51,7 +51,7 @@ app.controller('MainCtrl', function ($scope, $rootScope, $timeout, $uibModal) {
     $scope.amcustDebugSlider.options.smoothDrag = true;
   }
 
-  if($scope.useSmoothScroll) use10x();
+  if($scope.useSmoothDrag) use10x();
 
   /* + button triggered outside of directive element */
   $scope.parentBtnPlus = function () {
