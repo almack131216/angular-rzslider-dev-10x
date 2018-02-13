@@ -1,0 +1,37 @@
+{
+    "Address": {
+        "postal":"6211AT",
+        "street":"Statenlaan",
+        "number":455,
+        "addition":null,
+        "city":"’s-Hertogenbosch",
+        "province":"Tilburg",
+        "country":"Netherlands",
+        "latitude":51.6837055,
+        "longitude":5.2920279
+    },
+    "AvailablePanels": [
+        {
+            "height":1.65,
+            "kwh":2565,
+            "loss":null,
+            "name":"Basis",
+            "width":0.99,
+            "wp":270,
+            "Max_panels":12,
+            "Suitability":null,
+            "Costs":293.42
+        },
+        {
+            "height":1.65,
+            "kwh":2850,
+            "loss":null,
+            "name":"Comfort",
+            "width":0.99,
+            "wp":290,
+            "Max_panels":14,
+            "Suitability":null,
+            "Costs":338.13
+        }
+    ]
+}

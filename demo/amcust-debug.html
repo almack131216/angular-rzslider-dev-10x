@@ -15,9 +15,8 @@
 
 <body ng-controller="MainCtrl">
 
-<div class="wrapper">
+<div class="container" ng-if="dummyData && amcustDebugSlider">
 
-  <article>
     <h2>Debug slider</h2>
     <div class="debug-options">
       <strong class="margin-right-1">settings:</strong>
@@ -28,22 +27,276 @@
       <button ng-click="parentBtnMinus()" ng-disabled="amcustDebugSlider.value == amcustDebugSlider.options.floor">parent -</button>
       <button ng-click="parentBtnPlus()" ng-disabled="amcustDebugSlider.value == amcustDebugSlider.options.ceil">parent +</button>
     </div>
-    
-    <div class="amcust-slider">
-      <div class="heading-output">
-        <span class="panels-count"><span ng-bind="amcustDebugSlider.options.finalValue"></span> panelen</span>
-        <span class="panels-output"><span class="LblOutput">Opbrengst</span><strong><span ng-bind="amcustDebugSlider.options.finalValue * amcustDebugSlider.options.powerOutput | number : 3"></span> kWh/jr</strong></span>
-      </div>
-      <div class="slider-wrap">
-        <rzslider
-          rz-slider-model="amcustDebugSlider.value"
-          rz-slider-final-model="amcustDebugSlider.options.finalValue"
-          rz-slider-options="amcustDebugSlider.options"
-          rz-slider-tpl-url="amcustTemplate.html"
-        ></rzslider>
+
+    <div class="debug-options">
+      <strong class="margin-right-1">configure:</strong>
+
+      <span ng-repeat="panel in dummyData.AvailablePanels">
+        <button
+          ng-click="selectProduct($index)"
+          ng-bind="panel.name"
+        ></button>
+      </span>
+
+      <p>activeSolarPanelIndex: {{ activeSolarPanelIndex }}</p>
+      <pre>activeSolarPanel: {{ activeSolarPanel }}</pre>
+    </div>
+</div>
+<div class="container" ng-if="activeSolarPanelIndex !== null">
+
+    <div class="wrap-signup-product-summary solar">
+      <div class="panel panel-signup solar panel-product-summary">
+        <div class="panel-heading">
+          <h3 class="color-primary">
+            <span class="hdr-aligned">
+              Jouw pakket.
+            </span>
+          </h3>
+        </div>
+
+        <div class="panel-body arrow-bottom">
+          <div class="div-table table-no-resp table-unstyled table-solar-cart">
+            <div class="div-tr">
+              <div class="div-td">
+                {{amcustDebugSlider.value}} Zonnepanelen {{activeSolarPanel.name}}
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;{{ scCartTable.PanelTotalPrice | number:2 }}
+                </span>
+              </div>
+            </div>
+            <div class="div-tr">
+              <div class="div-td">
+                SolarEdge SE3000 omvormer
+                <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;570,92
+                </span>
+              </div>
+            </div>
+            <div
+              ng-if="ShineOnService"
+              class="div-tr">
+              <div class="div-td">
+                Shine on service
+                <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;29,95
+                </span>
+              </div>
+            </div>
+            <div
+              ng-if="ReclaimBTW"
+              class="div-tr tr-pad tr-shade margin-top-g1">
+              <div class="div-td">
+                + Automatisch btw terugvragen
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;84,95
+                </span>
+              </div>
+            </div>
+            <div
+              ng-if="ShowNewDiscount"
+              class="div-tr tr-discount margin-top-g1"
+              >
+              <div class="div-td">
+                Nu tijdelijk 10% korting
+                <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;350,51
+                </span>
+              </div>
+            </div>
+            <div class="div-tr tr-divider-line light">
+            </div>
+            <div class="div-tr">
+              <div class="div-td">
+                Subtotaal (incl. btw)
+                <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;{{ scCartTable.Subtotal | number:2 }}
+                </span>
+              </div>
+            </div>
+            <div class="div-tr">
+              <div class="div-td">
+                Terug te vragen btw ({{ rateBTW * 100 }}%)
+                <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;{{ scCartTable.RefundBTW | number:2 }}
+                </span>
+              </div>
+            </div>
+            <div class="div-tr tr-divider-line">
+            </div>
+            <div class="div-tr tr-strong">
+              <div class="div-td">
+                Totale investering
+                <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;2.490,16
+                </span>
+              </div>
+            </div>
+            <div class="div-tr">
+              <div class="div-td">
+                <span class="color-primary">
+                  <i class="fa fa-check fa-small"></i>
+                  Inclusief installatie & montage
+                </span>
+              </div>
+            </div>
+          </div>
+          <!--(END) table -->
+        </div>
+
+        <div class="panel-body ftr-cart">
+          <button class="btn btn-default">Offerte aanvragen</button>
+          <h4>Besparing per jaar (2.565 kWh)</h4>
+          <span>Terugverdiendtijd 7 jaar en 5 maanden</span>
+          <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
+        </div>
       </div>
     </div>
-  </article>
+
+    <div class="wrap-signup-form bg-steps enable-animation">    
+      <div class="amcust-slider">
+          <div class="heading-output">
+              <span class="panels-count"><span ng-bind="amcustDebugSlider.options.smoothDrag ? amcustDebugSlider.options.finalValue : amcustDebugSlider.value"></span> panelen</span>
+              <span class="panels-output"><span class="LblOutput">Opbrengst</span><strong>
+                  <span ng-if="!amcustDebugSlider.options.smoothDrag" ng-bind="amcustDebugSlider.value * amcustDebugSlider.options.powerOutput | number : 3"></span>
+                  <span ng-if="amcustDebugSlider.options.smoothDrag" ng-bind="amcustDebugSlider.options.finalValue * amcustDebugSlider.options.powerOutput | number : 3"></span>
+                  kWh/jr</strong>
+              </span>
+          </div>
+          <div class="slider-wrap">
+              <rzslider
+                  rz-slider-model="amcustDebugSlider.value"
+                  rz-slider-final-model="amcustDebugSlider.options.finalValue"
+                  rz-slider-options="amcustDebugSlider.options"
+                  rz-slider-tpl-url="amcustTemplate.html"
+              ></rzslider>
+          </div>
+      </div>
+      
+      <!-- Solar Widget - Extra Services -->
+        <div class="panel panel-signup solar panel-naked">
+            <div class="panel-heading">
+                <h4>
+                    <span class="stepnum">
+                        3
+                    </span>
+                    <span class="hdr-aligned">
+                        Kies je extra services.
+                    </span>
+                </h4>
+            </div>
+            <div class="panel-heading-summary indent-to-match-step-title">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu purus pharetra, efficitur mi quis, consequat massa. Maecenas a lorem neque. Pellentesque tellus massa.</p>
+            </div>
+
+            <div class="panel-body no-style">
+                <div class="flexWrap-shared">
+                    <div class="row-flex has-2-cols btn-panel-wrap">
+
+                        <!-- col-flex -->
+                        <div class="col-flex div-panel">                            
+                            <div class="div-panel-heading with-link-right">
+                                <h4>BTW terugvragen</h4>
+                                <a>
+                                    Meer info
+                                </a>
+                            </div>
+                            <div class="flexWrap-shared">
+                                <div class="row-flex has-2-cols has-no-gap btn-panel-wrap">
+                                    <div
+                                      class="col-flex btn-panel"
+                                      ng-click="scSetReclaimBTW(false)"
+                                      ng-class="{'active':!ReclaimBTW}"
+                                      >
+                                        <div class="text">
+                                            <span class="strong">Zelf regelen</span>
+                                            <span class="price">€ 0,-</span>                                        
+                                        </div>
+                                    </div>
+                                    <div
+                                      class="col-flex btn-panel"
+                                      ng-click="scSetReclaimBTW(true)"
+                                      ng-class="{'active':ReclaimBTW}"
+                                      >
+                                        <div class="text">
+                                            <span class="strong">Automatisch</span>
+                                            <span class="price">€ 84,95</span>    
+                                        </div>                                                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- (END) col-flex -->
+
+                        <!-- col-flex -->
+                        <div class="col-flex div-panel">                            
+                            <div class="div-panel-heading with-link-right">
+                                <h4>Shine on service</h4>
+                                <a>
+                                    Meer info
+                                </a>
+                            </div>
+                            <div class="flexWrap-shared">
+                                <div class="row-flex has-2-cols has-no-gap btn-panel-wrap">
+                                    <div
+                                      class="col-flex btn-panel"
+                                      ng-click="scSetShineOnService(false)"
+                                      ng-class="{'active':!ShineOnService}"
+                                      >
+                                        <div class="text">
+                                            <span class="strong">Geen</span>
+                                            <span class="price">€ 0,-</span>                                        
+                                        </div>
+                                    </div>
+                                    <div
+                                      class="col-flex btn-panel"
+                                      ng-click="scSetShineOnService(true)"
+                                      ng-class="{'active':ShineOnService}"
+                                      >
+                                        <div class="text">
+                                            <span class="strong">Shine on service</span>
+                                            <span class="price">€ 29,95 per jaar</span>    
+                                        </div>                                                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- (END) col-flex -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- (END) Solar Widget - Extra Services -->
+    </div>
 
 </div>
 
