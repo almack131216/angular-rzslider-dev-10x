@@ -1,37 +1,78 @@
 {
+  "Error": null,
+  "Custom": null,
+  "Response": {
     "Address": {
-        "postal":"6211AT",
-        "street":"Statenlaan",
-        "number":455,
-        "addition":null,
-        "city":"’s-Hertogenbosch",
-        "province":"Tilburg",
-        "country":"Netherlands",
-        "latitude":51.6837055,
-        "longitude":5.2920279
+      "Id": null,
+      "Street": "fahrenheitstraat",
+      "HouseNumber": "35",
+      "HouseNumberExtension": "a",
+      "PostalCode": "5621bp",
+      "City": "Eindhoven",
+      "Country": "Netherlands"
+    },
+    "CalculationParameters": {
+      "CostsInsurance": 4,
+      "CostsOther": 0,
+      "CostsService": 20,
+      "Degration": 0.1,
+      "EnergyConsumption": 5000,
+      "EnergyPrice": 0.19,
+      "EnergyPriceIncrease": 2,
+      "Profile": "private_household",
+      "Storage": false,
+      "StorageCostsKWH": 1200,
+      "StorageSize": 0,
+      "Discountrate": 0,
+      "VAT": 21
     },
     "AvailablePanels": [
-        {
-            "height":1.65,
-            "kwh":2565,
-            "loss":null,
-            "name":"Basis",
-            "width":0.99,
-            "wp":270,
-            "Max_panels":12,
-            "Suitability":null,
-            "Costs":293.422
-        },
-        {
-            "height":1.65,
-            "kwh":2850,
-            "loss":null,
-            "name":"Comfort",
-            "width":0.99,
-            "wp":290,
-            "Max_panels":14,
-            "Suitability":null,
-            "Costs":338.133
-        }
-    ]
+      {
+        "Id": 1,
+        "kWh": 224,
+        "Loss": "null",
+        "Name": "standard_260",
+        "Width": 0.99,
+        "Height": 1.65,
+        "Wp": 260,
+        "MaxPanels": 16,
+        "MinPanels": 8,
+        "Recommend": "verygood",
+        "Price": 3210,
+        "PriceExclVat": 2653,
+        "EstimatedYieldYear": 231.14
+      },
+      {
+        "Id": 2,
+        "kWh": 238,
+        "Loss": "",
+        "Name": "Performance 280Wp",
+        "Width": 0.99,
+        "Height": 1.65,
+        "Wp": 280,
+        "MaxPanels": 16,
+        "MinPanels": 8,
+        "Recommend": "good",
+        "Price": 3210,
+        "PriceExclVat": 2653,
+        "EstimatedYieldYear": 248.92
+      }
+    ],
+    "MapLayers": [
+      {
+        "Type": "pv",
+        "Name": "default",
+        "Url": "https://api1.zonatlas.nl/hub/api/map_nl/5632SB/47/?layer=pv&lat=6706589.02507&lon=612662.029255&zoom=18"
+      }
+    ],
+    "ResponseInfo": {
+      "Timestamp": "2018-02-14T13:31:44.783572Z",
+      "Succeeded": true,
+      "ErrorCode": "",
+      "ErrorMessage": "",
+      "ErrorCustom": null,
+      "IsRequestEnqueued": false,
+      "IsCachedResponse": false
+    }
+  }
 }

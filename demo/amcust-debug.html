@@ -36,13 +36,13 @@
       <span ng-repeat="panel in spData.AvailablePanels">
         <button
           ng-click="selectProduct($index)"
-          ng-bind="panel.name"
+          ng-bind="panel.Name"
         ></button>
       </span>
-      <pre>spConf.base.activeSolarPanel: {{ spConf.base.activeSolarPanel }}</pre>
+      <pre>spConf.spActive: {{ spConf.spActive }}</pre>
     </div>
 </div>
-<div class="container" ng-if="spConf.base.activeSolarPanelIndex !== null">
+<div class="container" ng-if="spConf.spActiveIndex !== null">
 
     <!-- Solar Cart -->
     <div class="wrap-signup-product-summary solar">
@@ -59,7 +59,7 @@
           <div class="div-table table-no-resp table-unstyled table-solar-cart">
             <div class="div-tr">
               <div class="div-td">
-                {{spConf.value}} Zonnepanelen {{spConf.base.activeSolarPanel.name}}
+                {{spConf.value}} Zonnepanelen {{spConf.spActive.Name}}
               </div>
               <div class="div-td td-price-stretch">
                 <span>
@@ -76,12 +76,12 @@
               <div class="div-td td-price-stretch">
                 <span>
                   <span class="currency">€</span>
-                  &nbsp;{{ spConf.base.spInverter | number:2 }}
+                  &nbsp;{{ spConf.cp.spInverter | number:2 }}
                 </span>
               </div>
             </div>            
             <div
-              ng-if="spConf.base.ReclaimBTW"
+              ng-if="spConf.cp.ReclaimBTW"
               class="div-tr tr-pad tr-shade margin-top-g1">
               <div class="div-td">
                 + Automatisch btw terugvragen
@@ -94,7 +94,7 @@
               </div>
             </div>
             <div
-              ng-if="spConf.base.ShowNewDiscount"
+              ng-if="spConf.cp.ShowNewDiscount"
               class="div-tr tr-discount margin-top-g1"
               >
               <div class="div-td">
@@ -124,7 +124,7 @@
             </div>
             <div class="div-tr">
               <div class="div-td">
-                Terug te vragen btw ({{ spConf.base.rateBTW * 100 }}%)
+                Terug te vragen btw ({{ spConf.cp.rateBTW }}%)
                 <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
               </div>
               <div class="div-td td-price-stretch">
@@ -149,7 +149,7 @@
               </div>
             </div>
             <div
-              ng-if="spConf.base.ShineOnService"
+              ng-if="spConf.cp.ShineOnService"
               class="div-tr">
               <div class="div-td">
                 + Pak-de-zon-service per jaar
@@ -158,7 +158,7 @@
               <div class="div-td td-price-stretch">
                 <span>
                   <span class="currency">€</span>
-                  &nbsp;29,95
+                  &nbsp;<span ng-bind="spData.CalculationParameters.CostsService | number:2"></span>
                 </span>
               </div>
             </div>
@@ -187,7 +187,7 @@
     <div class="wrap-signup-form bg-steps enable-animation">
 
       <!-- Solar Widget - PRODUCT SELECTION -->
-      <div class="panel panel-signup solar panel-naked display-none amcust">
+      <div class="panel panel-signup solar panel-naked display-none-amcust">
         <div class="panel-heading with-btn-right">                
           <h4>
             <span class="stepnum">
@@ -208,14 +208,14 @@
               <a
                 ng-repeat="panel in spData.AvailablePanels"
                 class="col-flex btn-panel btn-select-product"
-                ng-class="{'active':spConf.base.activeSolarPanelIndex == $index}"
+                ng-class="{'active':spConf.spActiveIndex == $index}"
                 ng-click="selectProduct($index)"
                 >
                 <img style="height:30px;">
                 <div class="text">
-                  <h4 ng-bind="panel.name"></h4>
-                  <span class="power" ng-bind="panel.kwh"></span>
-                  <span class="price" ng-bind="panel.Costs | number:2"></span>
+                  <h4 ng-bind="panel.Name"></h4>
+                  <span class="power" ng-bind="panel.kWh"></span>
+                  <span class="price" ng-bind="panel.Price | number:2"></span>
                 </div>
               </a>
             </div>
@@ -228,8 +228,8 @@
           <div class="heading-output">
               <span class="panels-count"><span ng-bind="spConf.options.smoothDrag ? spConf.options.finalValue : spConf.value"></span> panelen</span>
               <span class="panels-output"><span class="LblOutput">Opbrengst</span><strong>
-                  <span ng-if="!spConf.options.smoothDrag" ng-bind="spConf.value * spConf.options.powerOutput | number : 3"></span>
-                  <span ng-if="spConf.options.smoothDrag" ng-bind="spConf.options.finalValue * spConf.options.powerOutput | number : 3"></span>
+                  <span ng-if="!spConf.options.smoothDrag" ng-bind="spConf.value * spConf.spActive.EstimatedYieldYear | number : 3"></span>
+                  <span ng-if="spConf.options.smoothDrag" ng-bind="spConf.options.finalValue * spConf.spActive.EstimatedYieldYear | number : 3"></span>
                   kWh/jr</strong>
               </span>
           </div>
@@ -276,7 +276,7 @@
                                     <div
                                       class="col-flex btn-panel"
                                       ng-click="spConfSetReclaimBTW(false)"
-                                      ng-class="{'active':!spConf.base.ReclaimBTW}"
+                                      ng-class="{'active':!spConf.cp.ReclaimBTW}"
                                       >
                                         <div class="text">
                                             <span class="strong">Zelf regelen</span>
@@ -286,7 +286,7 @@
                                     <div
                                       class="col-flex btn-panel"
                                       ng-click="spConfSetReclaimBTW(true)"
-                                      ng-class="{'active':spConf.base.ReclaimBTW}"
+                                      ng-class="{'active':spConf.cp.ReclaimBTW}"
                                       >
                                         <div class="text">
                                             <span class="strong">Automatisch</span>
@@ -311,7 +311,7 @@
                                     <div
                                       class="col-flex btn-panel"
                                       ng-click="spConfSetShineOnService(false)"
-                                      ng-class="{'active':!spConf.base.ShineOnService}"
+                                      ng-class="{'active':!spConf.cp.ShineOnService}"
                                       >
                                         <div class="text">
                                             <span class="strong">Geen</span>
@@ -321,11 +321,11 @@
                                     <div
                                       class="col-flex btn-panel"
                                       ng-click="spConfSetShineOnService(true)"
-                                      ng-class="{'active':spConf.base.ShineOnService}"
+                                      ng-class="{'active':spConf.cp.ShineOnService}"
                                       >
                                         <div class="text">
                                             <span class="strong">Shine on service</span>
-                                            <span class="price">€ 29,95 per jaar</span>    
+                                            <span class="price" ng-bind="spData.CalculationParameters.CostsService | number:2"> per jaar</span>    
                                         </div>                                                                            
                                     </div>
                                 </div>

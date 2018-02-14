@@ -7,7 +7,7 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
 
   function init(){
     $http.get("dummydata.json").success(function(response) {   
-      $scope.spData = response.Response;
+      $scope.spData = response;
       console.log('!!! amcust: $http.get() | 1 | success');
       console.log(angular.toJson($scope.spData));      
     })
@@ -16,15 +16,15 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
     })
     .then(function() {
       console.log('!!! amcust: $http.get() | 2 | then... ' + angular.toJson($scope.spConf));
-      $scope.spConf.spActiveIndex = 0;
-      $scope.spConf.spActive = {};    
+      $scope.spConf.base.activeSolarPanelIndex = 0;
+      $scope.spConf.base.activeSolarPanel = {};    
 
-      $scope.spConf.cp.spInverter = 570.92;// amcust 2do
-      $scope.spConf.cp.rateBTW = $scope.spData.CalculationParameters.VAT;
-      $scope.spConf.cp.ReclaimBTW = false;
-      $scope.spConf.cp.ReclaimBTWPrice = 84.95;// amcust 2do
-      $scope.spConf.cp.ShineOnService = false;
-      $scope.spConf.cp.ShineOnServicePrice = $scope.spData.CalculationParameters.CostsService;
+      $scope.spConf.base.spInverter = 570.92;
+      $scope.spConf.base.rateBTW = 0.21;
+      $scope.spConf.base.ReclaimBTW = false;
+      $scope.spConf.base.ReclaimBTWPrice = 84.95;
+      $scope.spConf.base.ShineOnService = false;
+      $scope.spConf.base.ShineOnServicePrice = 29.95;
       
       if($scope.spData) $scope.selectProduct(0);
     });    
@@ -32,21 +32,21 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
 
   $scope.$watch('spConf', function(newValue, oldValue){
     if(!newValue) return;
-    console.log('!!! amcust: $watch... $scope.spConf.spActive = ' + $scope.spConf.spActive);
+    console.log('!!! amcust: $watch... $scope.spConf.base.activeSolarPanel = ' + $scope.spConf.base.activeSolarPanel);
     spConfUpdateCartValues();
   }, true);
 
 
   function spConfUpdateCartValues(){
     console.log('!!! amcust: spConfUpdateCartValues() | 1-2');
-    if(!$scope.spConf.spActive) return;
+    if(!$scope.spConf.base.activeSolarPanel) return;
     console.log('!!! amcust: spConfUpdateCartValues() | 2-2');
     $scope.spConf.cart = {};
-    $scope.spConf.cart.PanelTotalPrice = $scope.spConf.spActive.Price * $scope.spConf.value;
-    if($scope.spConf.options.smoothDrag) $scope.spConf.cart.PanelTotalPrice = $scope.spConf.spActive.Price * $scope.spConf.options.finalValue;
-    $scope.spConf.cart.Subtotal = $scope.spConf.cart.PanelTotalPrice + ($scope.spConf.cp.ReclaimBTW && $scope.spConf.cp.ReclaimBTWPrice || 0) + $scope.spConf.cp.spInverter;
-    $scope.spConf.cart.RefundBTW = $scope.spConf.cart.Subtotal * ($scope.spConf.cp.rateBTW / 100);
-    $scope.spConf.cart.TotalInvestment = $scope.spConf.cart.Subtotal + ($scope.spConf.cp.ShineOnService && $scope.spConf.cp.ShineOnServicePrice || 0) - $scope.spConf.cart.RefundBTW;
+    $scope.spConf.cart.PanelTotalPrice = $scope.spConf.base.activeSolarPanel.Costs * $scope.spConf.value;
+    if($scope.spConf.options.smoothDrag) $scope.spConf.cart.PanelTotalPrice = $scope.spConf.base.activeSolarPanel.Costs * $scope.spConf.options.finalValue;
+    $scope.spConf.cart.Subtotal = $scope.spConf.cart.PanelTotalPrice + ($scope.spConf.base.ReclaimBTW && $scope.spConf.base.ReclaimBTWPrice || 0) + $scope.spConf.base.spInverter;
+    $scope.spConf.cart.RefundBTW = $scope.spConf.cart.Subtotal * $scope.spConf.base.rateBTW;
+    $scope.spConf.cart.TotalInvestment = $scope.spConf.cart.Subtotal + ($scope.spConf.base.ShineOnService && $scope.spConf.base.ShineOnServicePrice || 0) - $scope.spConf.cart.RefundBTW;
   }
 
   function initSlider(){
@@ -54,10 +54,8 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
 
     $scope.spConf = {
       value: null,
-      spActiveIndex: null,
-      spActive: {},
       cart: {},
-      cp: {},
+      base: {},
       options: {
         showTicks: 1,
         showTicksValues: 1,
@@ -133,28 +131,28 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
   
 
   $scope.selectProduct = function(getIndex = 0) {
-    console.log('!!! amcust: selectProduct() > ' + $scope.spData.AvailablePanels[getIndex].Name);
+    console.log('!!! amcust: selectProduct() > ' + $scope.spData.AvailablePanels[getIndex].name);
     
-    $scope.spConf.options.ceil = $scope.spData.AvailablePanels[getIndex].MaxPanels;
-    $scope.spConf.options.floor = $scope.spData.AvailablePanels[getIndex].MinPanels;
-    $scope.spConf.options.showAdvice = 10;// amcust 2do - get from API
-    $scope.spConf.options.powerOutput = $scope.spData.AvailablePanels[getIndex].kWh;
+    $scope.spConf.options.ceil = $scope.spData.AvailablePanels[getIndex].Max_panels;
+    $scope.spConf.options.floor = 4;// amcust - need DYNAMIC
+    $scope.spConf.options.showAdvice = 10;// amcust - need DYNAMIC
+    $scope.spConf.options.powerOutput = $scope.spData.AvailablePanels[getIndex].kwh;
     
     if(!$scope.spConf.value) $scope.spConf.value = $scope.spConf.options.showAdvice;
 
-    $scope.spConf.spActiveIndex = getIndex;
-    $scope.spConf.spActive = $scope.spData.AvailablePanels[getIndex];
+    $scope.spConf.base.activeSolarPanelIndex = getIndex;
+    $scope.spConf.base.activeSolarPanel = $scope.spData.AvailablePanels[getIndex];
     if($scope.useSmoothDrag) use10x();
   }
 
   $scope.spConfSetReclaimBTW = function(getBoolean){
     console.log('!!! scSetReclaimBTW() > ' + getBoolean);
-    $scope.spConf.cp.ReclaimBTW = getBoolean;
+    $scope.spConf.base.ReclaimBTW = getBoolean;
   }
 
   $scope.spConfSetShineOnService = function(getBoolean){
     console.log('!!! scSetShineOnService() > ' + getBoolean);
-    $scope.spConf.cp.ShineOnService = getBoolean;
+    $scope.spConf.base.ShineOnService = getBoolean;
   }
 
 })
