@@ -2,26 +2,23 @@ var app = angular.module('rzSliderDemo', ['rzModule', 'ui.bootstrap'])
 
 app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibModal, $timeout) {
 
-  
-
-  $timeout(init);
+  initSlider();
+  if($scope.sc) $timeout(init);
 
   function init(){
-    initSlider();
-
     $http.get("dummydata.json").success(function(response) {   
       $scope.dummyData = response;
       console.log('!!! amcust: $http.get() | 1 | success');
-      console.log(angular.toJson($scope.dummyData));
-
-      
+      console.log(angular.toJson($scope.dummyData));      
     })
     .error(function(data, status) {
       console.error('Repos error', status, data);
     })
     .then(function() {
-      console.log('!!! amcust: $http.get() | 2 | finally...');
-      $scope.sc.base.activeSolarPanelIndex = null;
+      
+
+      console.log('!!! amcust: $http.get() | 2 | then... ' + angular.toJson($scope.sc));
+      $scope.sc.base.activeSolarPanelIndex = 0;
       $scope.sc.base.activeSolarPanel = {};    
 
       $scope.sc.base.scInverter = 570.92;
@@ -30,10 +27,12 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
       $scope.sc.base.ReclaimBTWPrice = 84.95;
       $scope.sc.base.ShineOnService = false;
       $scope.sc.base.ShineOnServicePrice = 29.95;
-      // $scope.selectProduct(0);
+      
+      console.log('!!! amcust: $http.get() | 3 | finally... ' + $scope.sc.base.activeSolarPanelIndex);
+      if($scope.dummyData) $scope.selectProduct(0);
+      console.log('!!! amcust: $http.get() | 3 | finally... ' + $scope.sc.base.activeSolarPanel.Costs);
       // scUpdateCartValues();
-    });
-    
+    });    
   }
 
   $scope.$watch('sc', function(newValue, oldValue){
@@ -47,7 +46,7 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
     console.log('!!! amcust: scUpdateCartValues() | 1');
     if(!$scope.sc.base.activeSolarPanel) return;
     console.log('!!! amcust: scUpdateCartValues() | 2');
-    $scope.sc.cart = {}    
+    $scope.sc.cart = {};
     $scope.sc.cart.PanelTotalPrice = $scope.sc.base.activeSolarPanel.Costs * $scope.sc.value;
     $scope.sc.cart.Subtotal = $scope.sc.cart.PanelTotalPrice + ($scope.sc.base.ReclaimBTW && $scope.sc.base.ReclaimBTWPrice || 0) + $scope.sc.base.scInverter;
     $scope.sc.cart.RefundBTW = $scope.sc.cart.Subtotal * $scope.sc.base.rateBTW;
@@ -59,7 +58,7 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
 
     $scope.sc = {
       value: null,
-      cartValues: {},
+      cart: {},
       base: {},
       options: {
         showTicks: 1,
