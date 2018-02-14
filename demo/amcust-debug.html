@@ -15,17 +15,17 @@
 
 <body ng-controller="MainCtrl">
 
-<div class="container" ng-if="dummyData && amcustDebugSlider">
+<div class="container" ng-if="dummyData && sc">
 
     <h2>Debug slider</h2>
     <div class="debug-options">
       <strong class="margin-right-1">settings:</strong>
-      value: <input type="number" ng-model="amcustDebugSlider.value">
-      advice: <input type="number" ng-model="amcustDebugSlider.options.showAdvice">
-      min: <input type="number" ng-model="amcustDebugSlider.options.floor" min="1">
-      max: <input type="number" ng-model="amcustDebugSlider.options.ceil">
-      <button ng-click="parentBtnMinus()" ng-disabled="amcustDebugSlider.value == amcustDebugSlider.options.floor">parent -</button>
-      <button ng-click="parentBtnPlus()" ng-disabled="amcustDebugSlider.value == amcustDebugSlider.options.ceil">parent +</button>
+      value: <input type="number" ng-model="sc.value">
+      advice: <input type="number" ng-model="sc.options.showAdvice">
+      min: <input type="number" ng-model="sc.options.floor" min="1">
+      max: <input type="number" ng-model="sc.options.ceil">
+      <button ng-click="parentBtnMinus()" ng-disabled="sc.value == sc.options.floor">parent -</button>
+      <button ng-click="parentBtnPlus()" ng-disabled="sc.value == sc.options.ceil">parent +</button>
     </div>
 
     <div class="debug-options">
@@ -38,11 +38,11 @@
         ></button>
       </span>
 
-      <p>activeSolarPanelIndex: {{ activeSolarPanelIndex }}</p>
-      <pre>activeSolarPanel: {{ activeSolarPanel }}</pre>
+      <p>sc.base.activeSolarPanelIndex: {{ sc.base.activeSolarPanelIndex }}</p>
+      <pre>sc.base.activeSolarPanel: {{ sc.base.activeSolarPanel }}</pre>
     </div>
 </div>
-<div class="container" ng-if="activeSolarPanelIndex !== null">
+<div class="container" ng-if="sc.base.activeSolarPanelIndex !== null">
 
     <div class="wrap-signup-product-summary solar">
       <div class="panel panel-signup solar panel-product-summary">
@@ -58,12 +58,12 @@
           <div class="div-table table-no-resp table-unstyled table-solar-cart">
             <div class="div-tr">
               <div class="div-td">
-                {{amcustDebugSlider.value}} Zonnepanelen {{activeSolarPanel.name}}
+                {{sc.value}} Zonnepanelen {{sc.base.activeSolarPanel.name}}
               </div>
               <div class="div-td td-price-stretch">
                 <span>
                   <span class="currency">€</span>
-                  &nbsp;{{ scCartTable.PanelTotalPrice | number:2 }}
+                  &nbsp;{{ sc.cart.PanelTotalPrice | number:2 }}
                 </span>
               </div>
             </div>
@@ -75,26 +75,12 @@
               <div class="div-td td-price-stretch">
                 <span>
                   <span class="currency">€</span>
-                  &nbsp;570,92
+                  &nbsp;{{ sc.base.scInverter | number:2 }}
                 </span>
               </div>
-            </div>
+            </div>            
             <div
-              ng-if="ShineOnService"
-              class="div-tr">
-              <div class="div-td">
-                Shine on service
-                <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
-              </div>
-              <div class="div-td td-price-stretch">
-                <span>
-                  <span class="currency">€</span>
-                  &nbsp;29,95
-                </span>
-              </div>
-            </div>
-            <div
-              ng-if="ReclaimBTW"
+              ng-if="sc.base.ReclaimBTW"
               class="div-tr tr-pad tr-shade margin-top-g1">
               <div class="div-td">
                 + Automatisch btw terugvragen
@@ -107,7 +93,7 @@
               </div>
             </div>
             <div
-              ng-if="ShowNewDiscount"
+              ng-if="sc.base.ShowNewDiscount"
               class="div-tr tr-discount margin-top-g1"
               >
               <div class="div-td">
@@ -131,19 +117,19 @@
               <div class="div-td td-price-stretch">
                 <span>
                   <span class="currency">€</span>
-                  &nbsp;{{ scCartTable.Subtotal | number:2 }}
+                  &nbsp;{{ sc.cart.Subtotal | number:2 }}
                 </span>
               </div>
             </div>
             <div class="div-tr">
               <div class="div-td">
-                Terug te vragen btw ({{ rateBTW * 100 }}%)
+                Terug te vragen btw ({{ sc.base.rateBTW * 100 }}%)
                 <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
               </div>
               <div class="div-td td-price-stretch">
                 <span>
                   <span class="currency">€</span>
-                  &nbsp;{{ scCartTable.RefundBTW | number:2 }}
+                  &nbsp;{{ sc.cart.RefundBTW | number:2 }}
                 </span>
               </div>
             </div>
@@ -157,7 +143,21 @@
               <div class="div-td td-price-stretch">
                 <span>
                   <span class="currency">€</span>
-                  &nbsp;2.490,16
+                  &nbsp;{{ sc.cart.TotalInvestment | number:2 }}
+                </span>
+              </div>
+            </div>
+            <div
+              ng-if="sc.base.ShineOnService"
+              class="div-tr">
+              <div class="div-td">
+                + Pak-de-zon-service per jaar
+                <ed-popover-info content="!!! sitecore popover text here"></ed-popover-info>
+              </div>
+              <div class="div-td td-price-stretch">
+                <span>
+                  <span class="currency">€</span>
+                  &nbsp;29,95
                 </span>
               </div>
             </div>
@@ -185,18 +185,18 @@
     <div class="wrap-signup-form bg-steps enable-animation">    
       <div class="amcust-slider">
           <div class="heading-output">
-              <span class="panels-count"><span ng-bind="amcustDebugSlider.options.smoothDrag ? amcustDebugSlider.options.finalValue : amcustDebugSlider.value"></span> panelen</span>
+              <span class="panels-count"><span ng-bind="sc.options.smoothDrag ? sc.options.finalValue : sc.value"></span> panelen</span>
               <span class="panels-output"><span class="LblOutput">Opbrengst</span><strong>
-                  <span ng-if="!amcustDebugSlider.options.smoothDrag" ng-bind="amcustDebugSlider.value * amcustDebugSlider.options.powerOutput | number : 3"></span>
-                  <span ng-if="amcustDebugSlider.options.smoothDrag" ng-bind="amcustDebugSlider.options.finalValue * amcustDebugSlider.options.powerOutput | number : 3"></span>
+                  <span ng-if="!sc.options.smoothDrag" ng-bind="sc.value * sc.options.powerOutput | number : 3"></span>
+                  <span ng-if="sc.options.smoothDrag" ng-bind="sc.options.finalValue * sc.options.powerOutput | number : 3"></span>
                   kWh/jr</strong>
               </span>
           </div>
           <div class="slider-wrap">
               <rzslider
-                  rz-slider-model="amcustDebugSlider.value"
-                  rz-slider-final-model="amcustDebugSlider.options.finalValue"
-                  rz-slider-options="amcustDebugSlider.options"
+                  rz-slider-model="sc.value"
+                  rz-slider-final-model="sc.options.finalValue"
+                  rz-slider-options="sc.options"
                   rz-slider-tpl-url="amcustTemplate.html"
               ></rzslider>
           </div>
@@ -235,7 +235,7 @@
                                     <div
                                       class="col-flex btn-panel"
                                       ng-click="scSetReclaimBTW(false)"
-                                      ng-class="{'active':!ReclaimBTW}"
+                                      ng-class="{'active':!sc.base.ReclaimBTW}"
                                       >
                                         <div class="text">
                                             <span class="strong">Zelf regelen</span>
@@ -245,7 +245,7 @@
                                     <div
                                       class="col-flex btn-panel"
                                       ng-click="scSetReclaimBTW(true)"
-                                      ng-class="{'active':ReclaimBTW}"
+                                      ng-class="{'active':sc.base.ReclaimBTW}"
                                       >
                                         <div class="text">
                                             <span class="strong">Automatisch</span>
@@ -270,7 +270,7 @@
                                     <div
                                       class="col-flex btn-panel"
                                       ng-click="scSetShineOnService(false)"
-                                      ng-class="{'active':!ShineOnService}"
+                                      ng-class="{'active':!sc.base.ShineOnService}"
                                       >
                                         <div class="text">
                                             <span class="strong">Geen</span>
@@ -280,7 +280,7 @@
                                     <div
                                       class="col-flex btn-panel"
                                       ng-click="scSetShineOnService(true)"
-                                      ng-class="{'active':ShineOnService}"
+                                      ng-class="{'active':sc.base.ShineOnService}"
                                       >
                                         <div class="text">
                                             <span class="strong">Shine on service</span>

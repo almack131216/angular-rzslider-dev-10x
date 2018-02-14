@@ -20,7 +20,7 @@
             "wp":270,
             "Max_panels":12,
             "Suitability":null,
-            "Costs":293.42
+            "Costs":293.422
         },
         {
             "height":1.65,
@@ -31,7 +31,7 @@
             "wp":290,
             "Max_panels":14,
             "Suitability":null,
-            "Costs":338.13
+            "Costs":338.133
         }
     ]
 }

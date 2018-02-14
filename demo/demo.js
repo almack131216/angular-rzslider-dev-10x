@@ -7,45 +7,60 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
   $timeout(init);
 
   function init(){
-    $scope.activeSolarPanelIndex = null;
-    $scope.activeSolarPanel = null;
-
-
-    $scope.rateBTW = 0.21;
-    $scope.ReclaimBTW = false;
-    $scope.ReclaimBTWPrice = 84.95;
-    $scope.ShineOnService = false;
-    $scope.ShineOnServicePrice = 29.95;
-
     initSlider();
+
+    $http.get("dummydata.json").success(function(response) {   
+      $scope.dummyData = response;
+      console.log('!!! amcust: $http.get() | 1 | success');
+      console.log(angular.toJson($scope.dummyData));
+
+      
+    })
+    .error(function(data, status) {
+      console.error('Repos error', status, data);
+    })
+    .then(function() {
+      console.log('!!! amcust: $http.get() | 2 | finally...');
+      $scope.sc.base.activeSolarPanelIndex = null;
+      $scope.sc.base.activeSolarPanel = {};    
+
+      $scope.sc.base.scInverter = 570.92;
+      $scope.sc.base.rateBTW = 0.21;
+      $scope.sc.base.ReclaimBTW = false;
+      $scope.sc.base.ReclaimBTWPrice = 84.95;
+      $scope.sc.base.ShineOnService = false;
+      $scope.sc.base.ShineOnServicePrice = 29.95;
+      // $scope.selectProduct(0);
+      // scUpdateCartValues();
+    });
+    
   }
 
-  $http.get("dummydata.json").success(function(response) {   
-    $scope.dummyData = response;
-    console.log('!!!');
-    console.log(angular.toJson($scope.dummyData));
-  });
-
-  $scope.$watch('amcustDebugSlider', function(newValue, oldValue){
-    // console.log('being watched oldValue:', oldValue, 'newValue:', newValue);
+  $scope.$watch('sc', function(newValue, oldValue){
     if(!newValue) return;
-
-    scUpdateCart();
-
+    console.log('!!! amcust: $watch... $scope.sc.base.activeSolarPanel = ' + $scope.sc.base.activeSolarPanel);
+    scUpdateCartValues();
   }, true);
 
-  function scUpdateCart(){
-    $scope.scCartTable = {}
-    $scope.scCartTable.PanelTotalPrice = $scope.activeSolarPanel.Costs * $scope.amcustDebugSlider.value;
-    $scope.scCartTable.Subtotal = $scope.scCartTable.PanelTotalPrice + ($scope.ShineOnService && $scope.ShineOnServicePrice || 0) + ($scope.ReclaimBTW && $scope.ReclaimBTWPrice || 0);
-    $scope.scCartTable.RefundBTW = $scope.scCartTable.Subtotal * $scope.rateBTW;
+
+  function scUpdateCartValues(){
+    console.log('!!! amcust: scUpdateCartValues() | 1');
+    if(!$scope.sc.base.activeSolarPanel) return;
+    console.log('!!! amcust: scUpdateCartValues() | 2');
+    $scope.sc.cart = {}    
+    $scope.sc.cart.PanelTotalPrice = $scope.sc.base.activeSolarPanel.Costs * $scope.sc.value;
+    $scope.sc.cart.Subtotal = $scope.sc.cart.PanelTotalPrice + ($scope.sc.base.ReclaimBTW && $scope.sc.base.ReclaimBTWPrice || 0) + $scope.sc.base.scInverter;
+    $scope.sc.cart.RefundBTW = $scope.sc.cart.Subtotal * $scope.sc.base.rateBTW;
+    $scope.sc.cart.TotalInvestment = $scope.sc.cart.Subtotal + ($scope.sc.base.ShineOnService && $scope.sc.base.ShineOnServicePrice || 0) - $scope.sc.cart.RefundBTW;
   }
 
   function initSlider(){
     $scope.useSmoothDrag = false;
 
-    $scope.amcustDebugSlider = {
+    $scope.sc = {
       value: null,
+      cartValues: {},
+      base: {},
       options: {
         showTicks: 1,
         showTicksValues: 1,
@@ -57,24 +72,24 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
         powerOutput:null,      
         smoothDrag: false,
         optionBtnPlus: function () {
-          console.log('!!! amcust: options > optionBtnPlus() [' + $scope.amcustDebugSlider.value + ' -> ' + ($scope.amcustDebugSlider.value + 1) + ']');
-          if ($scope.amcustDebugSlider.value < $scope.amcustDebugSlider.options.ceil) {
-            if ($scope.amcustDebugSlider.options.smoothDrag) {
-              $scope.amcustDebugSlider.value = $scope.amcustDebugSlider.value + 10;
-              // $scope.amcustDebugSlider.value = ($scope.amcustDebugSlider.options.finalValue + 1) * 10;
+          console.log('!!! amcust: options > optionBtnPlus() [' + $scope.sc.value + ' -> ' + ($scope.sc.value + 1) + ']');
+          if ($scope.sc.value < $scope.sc.options.ceil) {
+            if ($scope.sc.options.smoothDrag) {
+              $scope.sc.value = $scope.sc.value + 10;
+              // $scope.sc.value = ($scope.sc.options.finalValue + 1) * 10;
             } else {
-              $scope.amcustDebugSlider.value++;
+              $scope.sc.value++;
             }          
           }
         },
         optionBtnMinus: function () {
-          console.log('!!! amcust: options > optionBtnMinus() [' + $scope.amcustDebugSlider.value + ' -> ' + ($scope.amcustDebugSlider.value - 1) + ']');
-          if (($scope.amcustDebugSlider.value > $scope.amcustDebugSlider.options.floor) && $scope.amcustDebugSlider.options.floor > 1) {          
-            if ($scope.amcustDebugSlider.options.smoothDrag) {
-              $scope.amcustDebugSlider.value = $scope.amcustDebugSlider.value - 10;
-            // $scope.amcustDebugSlider.value = ($scope.amcustDebugSlider.options.finalValue - 1) * 10;
+          console.log('!!! amcust: options > optionBtnMinus() [' + $scope.sc.value + ' -> ' + ($scope.sc.value - 1) + ']');
+          if (($scope.sc.value > $scope.sc.options.floor) && $scope.sc.options.floor > 1) {          
+            if ($scope.sc.options.smoothDrag) {
+              $scope.sc.value = $scope.sc.value - 10;
+            // $scope.sc.value = ($scope.sc.options.finalValue - 1) * 10;
             } else {
-              $scope.amcustDebugSlider.value--;
+              $scope.sc.value--;
             }
           }
         }
@@ -82,28 +97,26 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
     }
   }
 
-  
-
+  // smoothDrag? (trick slider into multiples of 10 to make dragging smoother)
   function use10x(){
-    $scope.amcustDebugSlider.options.finalValue = $scope.amcustDebugSlider.value;
-    $scope.amcustDebugSlider.value = $scope.amcustDebugSlider.value * 10;
-    $scope.amcustDebugSlider.options.finalValue = $scope.amcustDebugSlider.options.finalValue * 10;
-    $scope.amcustDebugSlider.options.floor = $scope.amcustDebugSlider.options.floor * 10;
-    $scope.amcustDebugSlider.options.ceil = $scope.amcustDebugSlider.options.ceil * 10;
-    $scope.amcustDebugSlider.options.showAdvice = $scope.amcustDebugSlider.options.showAdvice * 10;
-    $scope.amcustDebugSlider.options.smoothDrag = true;
+    $scope.sc.options.finalValue = $scope.sc.value;
+    $scope.sc.value = $scope.sc.value * 10;
+    $scope.sc.options.finalValue = $scope.sc.options.finalValue * 10;
+    $scope.sc.options.floor = $scope.sc.options.floor * 10;
+    $scope.sc.options.ceil = $scope.sc.options.ceil * 10;
+    $scope.sc.options.showAdvice = $scope.sc.options.showAdvice * 10;
+    $scope.sc.options.smoothDrag = true;
   }
-
   if($scope.useSmoothDrag) use10x();
 
   /* + button triggered outside of directive element */
   $scope.parentBtnPlus = function () {
-    $scope.amcustDebugSlider.options.optionBtnPlus();
+    $scope.sc.options.optionBtnPlus();
   }
 
   /* - button triggered outside of directive element */
   $scope.parentBtnMinus = function () {
-    $scope.amcustDebugSlider.options.optionBtnMinus();
+    $scope.sc.options.optionBtnMinus();
   }
 
   /* 
@@ -114,32 +127,29 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
   }
   */
 
+  
+
   $scope.selectProduct = function(getIndex = 0) {
-    console.log($scope.dummyData.AvailablePanels[getIndex].name);
+    console.log('!!! amcust: selectProduct() > ' + $scope.dummyData.AvailablePanels[getIndex].name);
     
-    $scope.amcustDebugSlider.options.ceil = $scope.dummyData.AvailablePanels[getIndex].Max_panels;
-    $scope.amcustDebugSlider.options.showAdvice = 10;// amcust - need DYNAMIC
-    $scope.amcustDebugSlider.options.powerOutput = $scope.dummyData.AvailablePanels[getIndex].kwh;
+    $scope.sc.options.ceil = $scope.dummyData.AvailablePanels[getIndex].Max_panels;
+    $scope.sc.options.showAdvice = 10;// amcust - need DYNAMIC
+    $scope.sc.options.powerOutput = $scope.dummyData.AvailablePanels[getIndex].kwh;
     
-    if(!$scope.amcustDebugSlider.value) $scope.amcustDebugSlider.value = $scope.amcustDebugSlider.options.showAdvice;
+    if(!$scope.sc.value) $scope.sc.value = $scope.sc.options.showAdvice;
 
-    $scope.activeSolarPanelIndex = getIndex;
-    $scope.activeSolarPanel = $scope.dummyData.AvailablePanels[getIndex];
-    scUpdateCart();
+    $scope.sc.base.activeSolarPanelIndex = getIndex;
+    $scope.sc.base.activeSolarPanel = $scope.dummyData.AvailablePanels[getIndex];
   }
-
-  if($scope.dummyData) $scope.selectProduct($scope.activeSolarPanelIndex);
 
   $scope.scSetReclaimBTW = function(getBoolean){
     console.log('!!! scSetReclaimBTW() > ' + getBoolean);
-    $scope.ReclaimBTW = getBoolean;
-    scUpdateCart();
+    $scope.sc.base.ReclaimBTW = getBoolean;
   }
 
   $scope.scSetShineOnService = function(getBoolean){
     console.log('!!! scSetShineOnService() > ' + getBoolean);
-    $scope.ShineOnService = getBoolean;
-    scUpdateCart();
+    $scope.sc.base.ShineOnService = getBoolean;
   }
 
 })
