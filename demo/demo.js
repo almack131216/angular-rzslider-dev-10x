@@ -103,8 +103,11 @@ app.controller('MainCtrl', function ($http, $scope, $rootScope, $timeout, $uibMo
     $scope.spConf.options.floor *= 10;
     $scope.spConf.options.ceil *= 10;
     $scope.spConf.options.showAdvice *= 10;
-    $scope.spConf.options.smoothDrag = true;
-    
+    $scope.spConf.options.smoothDrag = true;    
+  }
+
+  $scope.toggleSmoothScroll = function(){
+    use10x();
   }
 
   /* + button triggered outside of directive element */

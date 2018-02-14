@@ -17,8 +17,8 @@
 
 <div class="container" ng-if="spData && spConf">
 
-    <h2 class="margin-y-g1">Debug slider</h2>
-    <div class="debug-options">
+    <h2 class="margin-y-g1 display-inline-block margin-right-g1">Debug slider</h2>
+    <div class="debug-options display-inline-block" style="background:white;">
       <strong class="margin-right-1">settings:</strong>
       value: <input type="number" ng-model="spConf.value">
       <input ng-if="spConf.options.smoothDrag" type="number" ng-model="spConf.options.finalValue">
@@ -27,6 +27,7 @@
       max: <input type="number" ng-model="spConf.options.ceil">
       <button ng-click="parentBtnMinus()" ng-disabled="spConf.value == spConf.options.floor">parent -</button>
       <button ng-click="parentBtnPlus()" ng-disabled="spConf.value == spConf.options.ceil">parent +</button>
+      <button ng-if="!spConf.options.smoothDrag" ng-click="toggleSmoothScroll()">smooth drag? {{spConf.options.smoothDrag}}</button>
     </div>
 
     <div class="debug-options">
@@ -43,6 +44,7 @@
 </div>
 <div class="container" ng-if="spConf.base.activeSolarPanelIndex !== null">
 
+    <!-- Solar Cart -->
     <div class="wrap-signup-product-summary solar">
       <div class="panel panel-signup solar panel-product-summary">
         <div class="panel-heading">
@@ -180,6 +182,7 @@
         </div>
       </div>
     </div>
+    <!-- (END) Solar Cart -->
 
     <div class="wrap-signup-form bg-steps enable-animation">
 
